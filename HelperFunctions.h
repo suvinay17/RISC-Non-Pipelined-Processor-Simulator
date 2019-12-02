@@ -7,7 +7,7 @@
 //#include <bits/stdc++.h>
 #include <map>
 using namespace std;
-class HelperFuntions{
+class HelperFunctions{
 
   public:
 
