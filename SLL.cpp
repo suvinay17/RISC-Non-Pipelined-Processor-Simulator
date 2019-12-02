@@ -1,11 +1,11 @@
 #include "SLL.h"
 
-/*
-int main(int argc, char *argv[]){
+
+/*int main(int argc, char *argv[]){
   SLL *sl;
   sl = new SLL();
-  string slll = sl->shift("00110011001100110011001100110011");
-  cout << "00110011001100110011001100110011" << endl;
+  string slll = sl->shift("10010010010010010010010010010010");
+  cout << "01001001001001001001001001001000" << endl;
   cout << slll << endl;
 
 }
