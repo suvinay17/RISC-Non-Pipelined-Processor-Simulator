@@ -13,7 +13,7 @@ ControlUnit::ControlUnit()
     myControls[i].name = "aluSrc"; myControls[i].value = -1; i++;
     myControls[i].name = "regWrite"; myControls[i].value = -1; i++;
 }
-i
+
 
 //returns the control value based what control was asked for
 int ControlUnit::getValue(string control)

@@ -38,7 +38,8 @@ void Parser::ParseRegFile(string filename){
       size_t pos = line.find(":");
       string param = line.substr(0, pos);
       string value = line.substr(pos+1);
-      RegisterTable::setRegValueByNumber(param, value); 
+      RegisterTable table;
+      table.setRegValueByNumber(param, value); 
     }
   }
 }       
@@ -60,9 +61,12 @@ ifstream in;
       size_t pos = line.find(":");
       string param = line.substr(0, pos);
       string value = line.substr(pos+1);
-      DataMemory::setData(value, param); 
+      DataMemory mem;
+      mem.setData(value, param); 
 
     }
+
+  }
 }
 void Parser::ParseConfigFile(string filename){
   ifstream in;
