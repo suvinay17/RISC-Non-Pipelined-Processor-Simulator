@@ -13,7 +13,9 @@ class Parser{
 
   public:
     Parser();
-    void ParseFile(string filename);
+    void ParseConfigFile(string filename);
+    void ParseRegFile(string filename);
+    void ParseMemFile(string filename);
     string getProgram_input();
     string getMemory_contents_input();
     string getRegister_file_input();
