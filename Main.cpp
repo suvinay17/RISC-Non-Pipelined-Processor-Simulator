@@ -25,11 +25,21 @@
 int main(int argc, char *argv[])
 {
 
+  ifstream inputFile;
 
   if(argc < 2){
     cerr << "Specify a configuration file to simulate the processr."<<endl;
-    exit(1);
+    return 0;
   }
+
+  inputFile.open(argv[1]);
+    if (!inputFile.is_open()){
+        cerr << "Error: Unable to open file " << argv[1] << endl;
+        return 1;
+    }
+  
+
+
 
 };
 
