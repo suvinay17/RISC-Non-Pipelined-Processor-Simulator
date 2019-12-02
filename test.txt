@@ -1,0 +1,14 @@
+
+program_input=1
+#afaf
+#faafa
+memory_contents_input=2
+register_file_input=3
+
+output_mode=4
+
+debug_mode=true
+print_memory_contents=true
+write_to_file=true
+#af
+output_file=true
