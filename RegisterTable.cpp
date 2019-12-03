@@ -96,10 +96,20 @@ Register RegisterTable::getNum(string reg)
   return NumRegisters;
 
 }
-void RegisterTable::setRegValue(string reg, string data)
+
+void RegisterTable::setRegValueByName(string reg, string data)
 {
   for(int i = 0; i < 2*NumRegisters; i++){
     if(myRegisters[i].name == reg){
+      myRegisters[i].value = data;
+    }
+
+  }
+}
+void RegisterTable::setRegValueByNumber(string regNum, string data)
+{
+  for(int i = 0; i < 2*NumRegisters; i++){
+    if(myRegisters[i].number == regNum){
       myRegisters[i].value = data;
     }
 
