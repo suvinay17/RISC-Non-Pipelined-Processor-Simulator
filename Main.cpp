@@ -27,10 +27,10 @@ int main(int argc, char *argv[])
 
 
   if(argc < 2){
-    cerr << "Need to specify a configuration file to stimulate the processr."<<endl;
+    cerr << "Specify a configuration file to simulate the processr."<<endl;
     exit(1);
   }
-	
+
 };
 
 
