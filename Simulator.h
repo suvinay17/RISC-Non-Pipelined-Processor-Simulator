@@ -46,10 +46,11 @@ private:
     std::string memory_contents_input;
     std::string register_file_input;
     std::string output_mode;
+    std::string output_file;
     bool debug_mode;
     bool print_memory_contents;
     bool write_to_file;
-    bool output_file;
+  
 
 };
 
