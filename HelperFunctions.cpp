@@ -136,7 +136,8 @@ string HelperFuntions::hextoBin(string input){
 }
 
 
-void HelperFuntions::createMap(unordered_map<string, char> *um)
+//void HelperFuntions::createMap(unordered_map<string, char> *um)
+void HelperFuntions::createMap(map<string, char> *um)
 {
     (*um)["0000"] = '0';
     (*um)["0001"] = '1';

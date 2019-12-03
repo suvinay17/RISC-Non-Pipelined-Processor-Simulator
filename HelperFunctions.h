@@ -4,7 +4,8 @@
 #include <string>
 #include <iostream>
 #include <sstream>
-#include <bits/stdc++.h>
+//#include <bits/stdc++.h>
+#include <map>
 using namespace std;
 class HelperFuntions{
 
@@ -16,8 +17,9 @@ class HelperFuntions{
     string bintoHex(string bin);
 
   private:
-
-    void createMap(unordered_map<string, char> *um);
+    
+    //void createMap(unordered_map<string, char> *um);
+    void createMap(map<string, char> *um);
 };
 
 #endif

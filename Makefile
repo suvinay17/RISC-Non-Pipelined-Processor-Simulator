@@ -9,6 +9,12 @@ CFLAGS=-DDBUG -g -Wall
 Main: Main.o ProgramCounter.o Multiplexor.o ALU.o DataMemory.o ALUControl.o SLL.o HelperFunctions.o Parser.o ControlUnit.o Instruction.o Opcode.o RegisterTable.o SignExtend.o SymbolTable.o
 	g++ -o Main Main.o ProgramCounter.o Multiplexor.o ALU.o DataMemory.o ALUControl.o SLL.o HelperFunctions.o Parser.o ControlUnit.o Instruction.o Opcode.o RegisterTable.o SignExtend.o SymbolTable.o
 
+ControlUnit.o: ControlUnit.h Instruction.h Opcode.h RegisterTable.h
+
+Instruction.o: Instruction.h Opcode.h RegisterTable.h
+
+SymbolTable.o: SymbolTable.h HelperFunctions.h
+
 ProgramCounter.o: ProgramCounter.h
 
 Multiplexor.o: Multiplexor.h
@@ -25,17 +31,11 @@ HelperFunctions.o: HelperFunctions.h
 
 Parser.o: Parser.h
 
-ControlUnit.o: ControlUnit.h Instruction.h Opcode.h RegisterTable.h
-
-Instruction.o: Instruction.h Opcode.h RegisterTable.h
-
 Opcode.o: Opcode.h
 
 RegisterTable.o: RegisterTable.h
 
 SignExtend.o: SignExtend.h
-
-SymbolTable.o: SymbolTable.h HelperFunctions.h
 
 clean:
 	/bin/rm/ -f Main *.o core

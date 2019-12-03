@@ -12,14 +12,16 @@
 //Contstructor for creating DataMemory
 DataMemory::DataMemory(){}
 
+
+
 //Parametrized Constructor
-ProgramCounter::ProgramCounter(std::string address, std::string data)
+DataMemory::DataMemory(std::string address, std::string data)
 {
     this->mapping[address] = data;
 }
 
 //Deconstructor
-ProgramCounter::~DataMemory(){}
+DataMemory::~DataMemory(){}
 
 // getData will return the data in the provided address
 std::string    DataMemory::getData(std::string address)
