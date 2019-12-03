@@ -21,7 +21,7 @@ Parser::Parser(){
   output_file = false;
 }
 
-void Parser::ParseRegFile(string filename){
+void Parser::ParseRegFile(string filename, RegisterTable table){
   ifstream in;
   in.open(filename.c_str());
   if(in.bad()){
@@ -38,13 +38,12 @@ void Parser::ParseRegFile(string filename){
       size_t pos = line.find(":");
       string param = line.substr(0, pos);
       string value = line.substr(pos+1);
-      RegisterTable table;
       table.setRegValueByNumber(param, value); 
     }
   }
 }       
 
-void Parser::ParseMemFile(string filename){
+void Parser::ParseMemFile(string filename, DataMemory mem){
 ifstream in;
   in.open(filename.c_str());
   if(in.bad()){
@@ -61,7 +60,6 @@ ifstream in;
       size_t pos = line.find(":");
       string param = line.substr(0, pos);
       string value = line.substr(pos+1);
-      DataMemory mem;
       mem.setData(param, value); 
 
     }

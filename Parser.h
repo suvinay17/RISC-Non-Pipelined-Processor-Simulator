@@ -6,7 +6,8 @@
 #include <fstream>
 #include <sstream>
 #include <stdlib.h>
-
+#include "DataMemory.h"
+#include "RegisterTable.h"
 using namespace std;
 //PArser
 class Parser{
@@ -14,8 +15,8 @@ class Parser{
   public:
     Parser();
     void ParseConfigFile(string filename);
-    void ParseRegFile(string filename);
-    void ParseMemFile(string filename);
+    void ParseRegFile(string filename, RegisterTable table);
+    void ParseMemFile(string filename, DataMemory mem);
     string getProgram_input();
     string getMemory_contents_input();
     string getRegister_file_input();
