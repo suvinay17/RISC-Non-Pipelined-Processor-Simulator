@@ -60,13 +60,16 @@ void Simulator::simulate(){
   alu1.setInput_2("100");
   alu1.setOperation("add");
   alu1.conductOperation();
-  
   string add4toAddr = alu1.getResult();
-  
+  if(debug_mode){
+	cout << " The result of adding 4 to the address using ALU is: : << newAddr << endl;
+  }
   //reset control and values in control
-  control.setValues(
-  multi1.setControlInput(control.getRegDest())
-  
+  control.setValues(Binary encodingi of the first 6 bits of instruction);
+  multi1.setControlInput(control.getRegDest());
+  multi2.setControlInput(controlgetAluSrc());
+  multi3.setControlInput(control.setControlInput(control.getmemToReg());
+  multi4.setControlInput(control.getJump());
 
 
 
