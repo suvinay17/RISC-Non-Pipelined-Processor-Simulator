@@ -11,12 +11,12 @@
 class DataMemory
 {
    private:
-      std::map<string,string> mapping;
+      std::map<std::string,std::string> mapping;
 
    public:
      //Constructor
       DataMemory();
-      DataMemory(string address, string data);
+      DataMemory(std::string address, std::string data);
       //Deconstructor
       ~DataMemory();
 
