@@ -62,7 +62,7 @@ ifstream in;
       string param = line.substr(0, pos);
       string value = line.substr(pos+1);
       DataMemory mem;
-      mem.setData(value, param); 
+      mem.setData(param, value); 
 
     }
 
