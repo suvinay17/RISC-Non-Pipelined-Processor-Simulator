@@ -24,7 +24,7 @@ class Parser{
     bool getDebug_mode();
     bool getPrint_memory_contents();
     bool getWrite_to_file();
-    bool getOutput_file();
+    string getOutput_file();
 
 
   private:

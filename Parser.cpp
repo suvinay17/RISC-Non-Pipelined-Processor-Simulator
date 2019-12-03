@@ -21,6 +21,16 @@ Parser::Parser(){
   output_file = false;
 }
 
+string Parser::getProgram_input(){ return program_input; }
+string Parser::getMemory_contents_input(){ return memory_contents_input; }
+string Parser::getRegister_file_input(){ return register_file_input; }
+string Parser::getOutput_mode(){ return output_mode; }
+bool Parser::getDebug_mode(){ return debug_mode; }
+bool Parser::getPrint_memory_contents(){ return print_memory_contents; }
+bool Parser::getWrite_to_file() { return write_to_file; }
+string Parser::getOutput_file(){ return output_file; }
+
+
 void Parser::ParseRegFile(string filename, RegisterTable table){
   ifstream in;
   in.open(filename.c_str());

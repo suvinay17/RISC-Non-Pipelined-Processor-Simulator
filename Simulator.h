@@ -12,7 +12,6 @@
 #include "SLL.h"
 #include "SignExtend.h"
 #include "SymbolTable.h"
-#include "InstructionMemory.h"
 #include "ProgramCounter.h"
 #include "DataMemory.h"
 #include "ControlUnit.h"
