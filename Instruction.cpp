@@ -41,7 +41,7 @@ void Instruction::setValues(Opcode op, Register rs, Register rt, Register rd, in
 
 }
 
-int Instruction:::getName()
+int Instruction::getName()
 {
     return (int)myOpcode;   
 }

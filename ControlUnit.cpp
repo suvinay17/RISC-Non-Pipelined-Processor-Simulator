@@ -19,8 +19,8 @@ ControlUnit::ControlUnit()
 int ControlUnit::getValue(string control)
 {
     for(int i = 0; i < 9; i++) {
-        if(myControl[i].name == control)
-            return myControl[i].value;
+        if(myControls[i].name == control)
+            return myControls[i].value;
     }
     return -1;
 }
