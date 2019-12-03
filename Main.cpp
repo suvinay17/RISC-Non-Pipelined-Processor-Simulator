@@ -22,34 +22,17 @@
 #include <fstream>
 #include <iostream>
 
-//Contstructor for creating ProgramCounter
-ProgramCounter::ProgramCounter(){}
-
-//Parametrized Constructor
-ProgramCounter::ProgramCounter(std::string address)
+int main(int argc, char *argv[])
 {
-    this->currentAddress = address;
-}
 
-//Deconstructor
-ProgramCounter::~ProgramCounter(){}
 
-// getCurrentAddress will return the current address of the ProgramCounter
-std::string    ProgramCounter::getCurrentAddress()
-        {
-            return currentAddress;
-        }
+  if(argc < 2){
+    cerr << "Need to specify a configuration file to stimulate the processr."<<endl;
+    exit(1);
+  }
+	
+};
 
-/*
-setAddress will set the address in the ProgramCounter to a given address
-used for j type and branch instructions
-returning current address for testing purposes
-*/
-std::string    ProgramCounter::setAddress(std::string newAddress)
-    {
-            this->currentAddress = newAddress;
-            return currentAddress;
-    }
+
 
 #endif
-
