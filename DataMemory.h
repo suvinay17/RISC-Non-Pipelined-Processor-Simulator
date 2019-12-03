@@ -17,7 +17,7 @@ class DataMemory
      //Constructor
       DataMemory();
       //Deconstructor
-      ~ProgramCounter();
+      ~DataMemory();
 
       // getData returns the data in the specified address
       std::string    getData(std::string address);
