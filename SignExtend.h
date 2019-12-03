@@ -7,9 +7,9 @@ using namespace std;
 
 class SignExtend{
     public:
-        SignExtend{};
+        SignExtend();
 
-        string extend(sting input);
+        string extend(string input);
 
 };
 

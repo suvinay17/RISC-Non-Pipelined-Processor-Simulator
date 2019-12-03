@@ -9,11 +9,11 @@ using namespace std;
 struct Symbols{
     string name;
     string address;
-}
+};
 
 class SymbolTable{
     public:
-        SymbolTable{};
+        SymbolTable();
 
         void readASM(string filename);
         string getSymbol(string symbol);
@@ -21,3 +21,5 @@ class SymbolTable{
     private:
         Symbols mySymbol[100];
 };
+
+#endif

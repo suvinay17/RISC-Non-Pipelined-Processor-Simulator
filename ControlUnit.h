@@ -12,9 +12,9 @@ struct Control{
 
 class ControlUnit {
     public:
-        ControlUnit{};
+        ControlUnit();
         int getValue(string control);
-        void setInstruction(Instruciton inst);
+        void setInstruction(Instruction inst);
     private:
         Control myControls[9];
 
