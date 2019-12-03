@@ -23,7 +23,7 @@ class DataMemory
       std::string    getData(std::string address);
 
       //setData will set the data in the specified address
-      std::string    setData(std::string data, std::string address);
+      std::string    setData(std::string address, std::string data);
 
 };
 
