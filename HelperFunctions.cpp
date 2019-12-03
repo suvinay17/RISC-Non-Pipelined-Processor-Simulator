@@ -14,7 +14,7 @@ int main(int argc, char *argv[]){
 }
 
 */
-string HelperFuntions::dectoBin(string input){
+string HelperFunctions::dectoBin(string input){
 
   stringstream dec(input);
   int n = 0;
@@ -33,7 +33,7 @@ string HelperFuntions::dectoBin(string input){
 
 }
 
-string HelperFuntions::dectoHex(string input){
+string HelperFunctions::dectoHex(string input){
 
   char hexaDeciNum[100];
   int i = 0;
@@ -64,7 +64,7 @@ string HelperFuntions::dectoHex(string input){
   return asd;
 }
 
-string HelperFuntions::hextoBin(string input){
+string HelperFunctions::hextoBin(string input){
   stringstream ss;
   if((string(1, input[0]) == "0") && (string(1, input[1]) == "x")){
     input = input.substr(2);
@@ -137,7 +137,7 @@ string HelperFuntions::hextoBin(string input){
 
 
 //void HelperFuntions::createMap(unordered_map<string, char> *um)
-void HelperFuntions::createMap(map<string, char> *um)
+void HelperFunctions::createMap(map<string, char> *um)
 {
     (*um)["0000"] = '0';
     (*um)["0001"] = '1';
@@ -156,7 +156,7 @@ void HelperFuntions::createMap(map<string, char> *um)
     (*um)["1110"] = 'E';
     (*um)["1111"] = 'F';
 }
-string HelperFuntions::bintoHex(string bin){
+string HelperFunctions::bintoHex(string bin){
 
   int l = bin.size();
   int t = bin.find_first_of('.');

@@ -35,6 +35,9 @@ class Instruction{
   // Stores the 32 bit binary encoding of MIPS instruction passed in
   void setEncoding(string s) { myEncoding = s;};
 
+  // Returns the name of the instruction
+  int getName();
+
   // Returns string representing the 32 binary encoding of MIPS instruction
   string getEncoding() { return myEncoding; };
 

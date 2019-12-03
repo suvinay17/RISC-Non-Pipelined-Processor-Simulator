@@ -13,14 +13,14 @@ ControlUnit::ControlUnit()
     myControls[i].name = "aluSrc"; myControls[i].value = -1; i++;
     myControls[i].name = "regWrite"; myControls[i].value = -1; i++;
 }
-i
+
 
 //returns the control value based what control was asked for
 int ControlUnit::getValue(string control)
 {
     for(int i = 0; i < 9; i++) {
-        if(myControl[i].name == control)
-            return myControl[i].value;
+        if(myControls[i].name == control)
+            return myControls[i].value;
     }
     return -1;
 }
@@ -31,7 +31,7 @@ void ControlUnit::setInstruction(Instruction inst)
     int i = 0;
     switch(inst.getName())
     {
-        case "ADD":
+        case 0:
             myControls[i].value = 1; i++;
             myControls[i].value = 0; i++;
             myControls[i].value = 0; i++;
@@ -41,7 +41,7 @@ void ControlUnit::setInstruction(Instruction inst)
             myControls[i].value = 0; i++;
             myControls[i].value = 0; i++;
             myControls[i].value = 1; i++;
-        case "ADDI":
+        case 1:
             myControls[i].value = 0; i++;
             myControls[i].value = 0; i++;
             myControls[i].value = 0; i++;
@@ -51,7 +51,7 @@ void ControlUnit::setInstruction(Instruction inst)
             myControls[i].value = 0; i++;
             myControls[i].value = 1; i++;
             myControls[i].value = 1; i++;
-        case "SUB":
+        case 2:
             myControls[i].value = 1; i++;
             myControls[i].value = 0; i++;
             myControls[i].value = 0; i++;
@@ -61,7 +61,7 @@ void ControlUnit::setInstruction(Instruction inst)
             myControls[i].value = 0; i++;
             myControls[i].value = 0; i++;
             myControls[i].value = 1; i++;
-        case "SLT":
+        case 3:
             myControls[i].value = 1; i++;
             myControls[i].value = 0; i++;
             myControls[i].value = 0; i++;
@@ -71,7 +71,7 @@ void ControlUnit::setInstruction(Instruction inst)
             myControls[i].value = 0; i++;
             myControls[i].value = 0; i++;
             myControls[i].value = 1; i++;
-        case "LW":
+        case 4:
             myControls[i].value = 0; i++;
             myControls[i].value = 0; i++;
             myControls[i].value = 0; i++;
@@ -81,7 +81,7 @@ void ControlUnit::setInstruction(Instruction inst)
             myControls[i].value = 0; i++;
             myControls[i].value = 1; i++;
             myControls[i].value = 1; i++;
-        case "SW":
+        case 5:
             myControls[i].value = 0; i++;
             myControls[i].value = 0; i++;
             myControls[i].value = 0; i++;
@@ -91,7 +91,7 @@ void ControlUnit::setInstruction(Instruction inst)
             myControls[i].value = 1; i++;
             myControls[i].value = 1; i++;
             myControls[i].value = 0; i++;
-        case "BEQ":
+        case 6:
             myControls[i].value = 0; i++;
             myControls[i].value = 0; i++;
             myControls[i].value = 1; i++;
@@ -101,7 +101,7 @@ void ControlUnit::setInstruction(Instruction inst)
             myControls[i].value = 0; i++;
             myControls[i].value = 1; i++;
             myControls[i].value = 0; i++;
-        case "J":
+        case 7:
             myControls[i].value = 0; i++;
             myControls[i].value = 1; i++;
             myControls[i].value = 0; i++;
