@@ -11,8 +11,12 @@
 #include "SLL.h"
 #include "HelperFunctions.h"
 #include "Parser.h"
-#include ".h"
-#include "ProgramCounter.h"
+#include "ControlUnit.h"
+#include "Instruction.h"
+#include "Opcode.h"
+#include "RegisterTable.h"
+#include "SignExtend.h"
+#include "SymbolTable.h"
 #include <stdio.h>
 #include <string>
 #include <fstream>
