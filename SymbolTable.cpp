@@ -10,6 +10,7 @@ SymbolTable::SymbolTable()
 //addresses to the symbols 
 void SymbolTable::readASM(string filename)
 {
+    HelperFunctions help;
     ifstream infile;
     infile.open(filename.c_str());
 
@@ -22,7 +23,6 @@ void SymbolTable::readASM(string filename)
     int startMem = 4194304;     //starting address of symbols program
                                 //equals hex value 0x400000
     int track = 0;
-    int numSymbols = 0;
     int place;
     string line;
     string hexAddress;
@@ -32,8 +32,9 @@ void SymbolTable::readASM(string filename)
         place = line.find(":");
         if(place != -1) {
             int decAddress = track + startMem;     //finds decimal value of mem location
-            Symbols temp = {dectoHex(to_string(decAddress), line.substr(0,place)};
-            mySymbols.push_back(temp);
+            //Symbols temp = {help.dectoHex(to_string(decAddress)), line.substr(0,place)};
+            Symbols temp = {help.dectoHex("" + decAddress), line.substr(0,place)};
+            mySymbol.push_back(temp);
         }
         track += 4;
     }
@@ -42,7 +43,7 @@ void SymbolTable::readASM(string filename)
 
 string SymbolTable::getSymbol(string symbol)
 {
-    for(int i = 0; i < mySymbols.size(); i++)
+    for(unsigned int i = 0; i < mySymbol.size(); i++)
     {
         if(mySymbol[i].name == symbol)
             return mySymbol[i].address;

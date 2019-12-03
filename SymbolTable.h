@@ -3,6 +3,8 @@
 
 #include "HelperFunctions.h"
 #include <string>
+#include <vector>
+#include <stdlib.h>
 
 using namespace std;
 
@@ -19,7 +21,7 @@ class SymbolTable{
         string getSymbol(string symbol);
 
     private:
-        Symbols mySymbol[100];
+        vector<Symbols> mySymbol;
 };
 
 #endif

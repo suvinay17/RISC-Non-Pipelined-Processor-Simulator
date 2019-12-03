@@ -1,3 +1,4 @@
+#include "SignExtend.h"
 #include <string>
 
 SignExtend::SignExtend()
@@ -6,12 +7,13 @@ SignExtend::SignExtend()
 
 string SignExtend::extend(string input)
 {
-    string binary =  HelperFunctions.hextoBin(input);
+    HelperFunctions help;
+    string binary =  help.hextoBin(input);
     string posneg = binary.substr(0,1);
     string output;
     for(int i = 0; i < 16; i++)
         output.append(posneg.substr(0,1));
     output.append(binary);
-    string outputHex = HelperFunctions.bintoHex(output);
+    string outputHex = help.bintoHex(output);
     return outputHex;
 }
