@@ -34,7 +34,7 @@ class Parser{
     bool debug_mode;
     bool print_memory_contents;
     bool write_to_file;
-    bool output_file;
+    string output_file;
 
 };
 

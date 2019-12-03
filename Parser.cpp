@@ -121,12 +121,9 @@ void Parser::ParseConfigFile(string filename){
         }
       }
       else if(param.compare("output_file") == 0){
-        if(value.compare("true") == 0){
-          output_file = true;
-        }else{
-          output_file = false;
+        output_file = value; 
         }
-      }
+      
     }
     cout << "program_input: "<< program_input << endl;
     cout << "memory_contents_input: "<< memory_contents_input << endl;
