@@ -174,7 +174,8 @@ string HelperFuntions::bintoHex(string bin){
       bin = bin + '0';
   }
 
-  unordered_map<string, char> bin_hex_map;
+  //unordered_map<string, char> bin_hex_map;
+  map<string, char> bin_hex_map;
   createMap(&bin_hex_map);
 
   int i = 0;
