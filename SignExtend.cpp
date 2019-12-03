@@ -1,4 +1,3 @@
-#include "HelperFunctions.h"
 #include <string>
 
 SignExtend::SignExtend()

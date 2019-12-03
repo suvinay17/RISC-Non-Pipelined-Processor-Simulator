@@ -1,6 +1,8 @@
 #ifndef __SIGNEXTEND_H__
 #define __SIGNEXTEND_H__
 
+
+#include "HelperFunctions.h"
 #include <string>
 
 using namespace std;

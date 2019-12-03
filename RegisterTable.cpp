@@ -109,7 +109,7 @@ void RegisterTable::setRegValueByName(string reg, string data)
 void RegisterTable::setRegValueByNumber(string regNum, string data)
 {
   for(int i = 0; i < 2*NumRegisters; i++){
-    if(myRegisters[i].number == regNum){
+    if(("" + myRegisters[i].number) == regNum){
       myRegisters[i].value = data;
     }
 
