@@ -4,13 +4,14 @@
 #ifndef __DATA_MEMORY_H__
 #define __DATA_MEMORY_H__
 #include <string>
+#include <map>
 //This h file creates the guidelines for the data memory
 
 
 class DataMemory
 {
    private:
-      std::vector<string> vect;
+      std::map<char,int> mapping;
 
    public:
      //Constructor
