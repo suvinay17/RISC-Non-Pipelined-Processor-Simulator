@@ -22,8 +22,9 @@ void Simulator::simulate(){
   getFiles();
   Parser parser;
   DataMemory memory
-  Register registry;
+  RegisterTable registry;
   HelperFunctions help;
+  
 
   SymbolTable symbolTable;
   symbolTable.readASM(program_input);        //populates symbolTable
@@ -57,10 +58,11 @@ void Simulator::simulate(){
 
 
   Instruction i;
+  string addrBin;
   i = instMem->getNextInstruction();
 
 
-  while(i.getOpcode() !=UNDEFINED) {
+  while(i.getOpcode() != UNDEFINED) {
 
 
     addr = pc.getCurrentAddress();

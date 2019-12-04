@@ -46,7 +46,7 @@ using namespace std;
 
    parser = new Simulator(argv[1]);
 
-   if(parser->isFormatCorrect() == false){
+/*   if(parser->isFormatCorrect() == false){
      cerr << "Format of input file is incorrect " << endl;
      exit(1);
    }
@@ -60,7 +60,7 @@ using namespace std;
      cout << i.getEncoding() << endl;
      i = parser->getNextInstruction();
    }
-
+*/
    delete parser;
  }
 

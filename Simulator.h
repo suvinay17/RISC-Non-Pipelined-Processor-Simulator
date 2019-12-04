@@ -15,6 +15,7 @@
 #include "ProgramCounter.h"
 #include "DataMemory.h"
 #include "ControlUnit.h"
+#include "InstructionMemory.h"
 #include "ALU.h"
 #include "Parser.h"
 #include "ALUControl.h"

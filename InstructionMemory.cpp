@@ -74,7 +74,7 @@ Instruction InstructionMemory::getNextInstruction(string position)
 {
   HelperFunction help;
   string start = "0x400000";
-  int place = help.hextoDec(position) - help.hextoDec(start);
+  int place = (help.hextoDec(position) - help.hextoDec(start))/4;
   if(myInstructions.size() < place) {
     Instruction i;
     return i;
