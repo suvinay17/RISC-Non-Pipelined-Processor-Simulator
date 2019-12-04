@@ -4,6 +4,7 @@
 #include "Opcode.h"
 #include "RegisterTable.h"
 #include <sstream>
+#include <string>
 
 /* This class provides an internal representation for a MIPS assembly instruction.
  * Any of the fields can be queried.  Additionally, the class stores a 32 bit binary
@@ -27,7 +28,7 @@ class Instruction{
   Register getRS()     { return myRS; };
   Register getRD()     { return myRD; };
   Register getRT()     { return myRT; };
-  int getImmediate()   { return myImmediate; };
+  string getImmediate()   { return "" + myImmediate; };
 
   // Returns a string which represents all of the fields 
   string getString();

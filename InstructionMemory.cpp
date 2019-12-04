@@ -68,6 +68,18 @@ Instruction InstructionMemory::getNextInstruction()
 
 }
 
+
+Instruction InstructionMemory::getNextInstruction(int place)
+  // Returns the next Instruction in the list of Instructions.
+{
+  if(myInstructions.size() < place) {
+    Instruction i;
+    return i;
+  }
+ 
+  return myInstructions[place];
+}
+
 void InstructionMemory::getTokens(string line,
 			       string &opcode,
 			       string *operand,

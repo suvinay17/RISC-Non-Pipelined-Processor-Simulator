@@ -5,14 +5,17 @@
 #define __PROGRAM_COUNTER_CPP__
 
 #include "ProgramCounter.h"
+#include "HelperFunctions.h"
 #include <stdio.h>
 #include <string>
+
+using namespace std;
 
 //Contstructor for creating ProgramCounter
 ProgramCounter::ProgramCounter(){}
 
 //Parametrized Constructor
-ProgramCounter::ProgramCounter(std::string address)
+ProgramCounter::ProgramCounter(string address)
 {
     this->currentAddress = address;
 }
@@ -21,7 +24,7 @@ ProgramCounter::ProgramCounter(std::string address)
 ProgramCounter::~ProgramCounter(){}
 
 // getCurrentAddress will return the current address of the ProgramCounter
-std::string    ProgramCounter::getCurrentAddress()
+string    ProgramCounter::getCurrentAddress()
         {
             return currentAddress;
         }
@@ -31,10 +34,18 @@ setAddress will set the address in the ProgramCounter to a given address
 used for j type and branch instructions
 returning current address for testing purposes
 */
-std::string    ProgramCounter::setAddress(std::string newAddress)
+string    ProgramCounter::setAddress(string newAddress)
     {
             this->currentAddress = newAddress;
             return currentAddress;
     }
+
+//returns the value in the instruction vector that will be the next instruction
+int       ProgramCounter::nextInstruction(string address)
+{
+    HelperFunction help;
+    string start = "0x400000";
+    return help.hextoDec(address) - help.hextoDec(start);
+}
 
 #endif

@@ -24,6 +24,7 @@ class ProgramCounter
       //setAddress will set the address in the PC
       //this is for branch and j type instructions. Main calls
       std::string    setAddress(std::string newAddress);
+      std::int       nextInstruction(string address);
 
 };
 

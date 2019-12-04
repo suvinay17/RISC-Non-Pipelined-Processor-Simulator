@@ -15,7 +15,7 @@ void SLL::setInput(string input){
 }
 
 string SLL::shift(string input){
-  cout << input.length() << endl;
+  //cout << input.length() << endl;
   if(input.length() == 32){
     for(int i = 2; i < input.length(); i++){
       input[i-2] = input[i];

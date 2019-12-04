@@ -23,10 +23,17 @@ void Simulator::simulate(){
   Parser parser;
   DataMemory memory
   Register registry;
+  HelperFunctions help;
+
+  SymbolTable symbolTable;
+  symbolTable.readASM(program_input);        //populates symbolTable
+
+  InstructionMemory *instMem;
+  instMem = new InstructionMemory(program_input); 
 
   ProgramCounter pc("0x400000");
 
-  ALU alu1;
+  ALU alu1;                 //Adds 4 to PC
   ALU alu2;
   ALU alu3;
 
@@ -39,67 +46,74 @@ void Simulator::simulate(){
   ControlUnit control;
   ALUControl alucontrol;
 
-  SLL sll1;
-  SLL sll2;
+  SLL sll1;                 //for jump instructions
+  SLL sll2;                 //for branch instructions
 
   SignExtend signext;
 
   parser.ParseRegFile(register_file_input, registry);
   parser.ParseMemFile(memory_contents_input, memory);
-
-  Instruction i(program_input);
-
-  //i is are encoding instruction
-
-  string addr = pc.getCurrentAddress();
-  instruc=getInstruction(addr);
-  //instruc.toString() --> print the instruction
+  string addr;
 
 
-  //convert addresss to binAddr
+  Instruction i;
+  i = instMem->getNextInstruction();
 
-  alu1.setInput_1(binAddr);
-  alu1.setInput_2("100");
-  alu1.setOperation("add");
-  alu1.conductOperation();
-  string add4toAddr = alu1.getResult();
-  if(debug_mode){
-	cout << " The result of adding 4 to the address using ALU is: :" << newAddr << endl;
+
+  while(i.getOpcode() !=UNDEFINED) {
+
+
+    addr = pc.getCurrentAddress();
+    addrBin = help.hextoBin(addr);
+
+  
+    //adds 4 to the PC
+    alu1.setInput_1(binAddr);
+    alu1.setInput_2("100");
+    alu1.setOperation("add");
+    alu1.conductOperation();
+    string add4toPC = alu1.getResult();
+    if(debug_mode){
+	    cout << " The result of adding 4 to the address using ALU is: :" << newAddr << endl;
+    }
+
+
+    //reset control and values in control
+    control.setValues(i);
+    multi1.setControlInput(control.getValue("regDest"));
+    multi2.setControlInput(controlgetValue("aluSrc"));
+    multi3.setControlInput(control.getValue("memToReg");
+    multi4.setControlInput(control.getValue("jump"));
+    multi5.setControlInput(control.getValue("branch"));
+    /*if(debug_mode){
+	    cout << " Instruction (32 bits is): " << instr.getEncdoing() << endl;
+    }
+
+    string reg1 = inst.getEncoding().substr(6, 5);
+    */
+
+
+    if(i.getName() == 7)
+    {
+       //we need to check if the immediate is a hex or dec number
+       string shifted = sll1.shift(help.hextoBin(""+i.getImmediate()));
+       string combined = addrBin.substr(0,3);       //combine first 4 bits of current address with the shifted jump value
+       combined.append(shifted);
+
+       if(multi4.getControlInput() == 1)
+       {
+            pc.setAddress(combined);
+            i = inst.getNextInstruction(pc.nextInstruction(combined));  //calculates which instruction in the instrution vector i should be
+       }
+
+
+    }
+
+
+  //i.getNextInstruction();
+
+
   }
-
-
-
-  //reset control and values in control
-  control.setValues(Binary encodingi of the first 6 bits of instruction);
-  multi1.setControlInput(control.getValue("regDest"));
-  multi2.setControlInput(controlgetValue("aluSrc"));
-  multi3.setControlInput(control.getValue("memToReg");
-  multi4.setControlInput(control.getValue("jump"));
-  multi5.setControlInput(control.getValue("branch"));
-  if(debug_mode){
-	cout << " Instruction (32 bits is): " << instr.getEncdoing() << endl;
-  }
-
-  string reg1 = inst.getEncoding().substr(6, 5);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  i.getNextInstruction();
-
-
-
 
 
 
