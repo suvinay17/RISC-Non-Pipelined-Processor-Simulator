@@ -6,6 +6,7 @@ using namespace std;
 #include <iostream>
 #include <fstream>
 #include "Instruction.h"
+#include "HelperFunctions.h"
 #include "RegisterTable.h"
 #include "Opcode.h"
 #include <vector>
@@ -31,7 +32,7 @@ class InstructionMemory{
 
   // Iterator that returns the next Instruction in the list of Instructions.
   Instruction getNextInstruction();
-  Instruciton getNextInstruciton(int place);
+  Instruciton getNextInstruciton(string position);
 
  private:
   vector<Instruction> myInstructions;      // list of Instructions
