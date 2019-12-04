@@ -34,6 +34,7 @@ class InstructionMemory{
   Instruction getNextInstruction();
   Instruction getNextInstruction1(string position);
 
+  string encode(Instruction i);
  private:
   vector<Instruction> myInstructions;      // list of Instructions
   int myIndex;                             // iterator index
@@ -69,7 +70,6 @@ class InstructionMemory{
 
   // Given a valid instruction, returns a string representing the 32 bit MIPS binary encoding
   // of that instruction.
-  string encode(Instruction i);
 
 };
 
