@@ -1,5 +1,5 @@
-#ifndef __ASMPARSER_H__
-#define __ASMPARSER_H__
+#ifndef __INSTRUCTION_MEMORY_H__
+#define __INSTRUCTION_MEMORY_H__
 
 using namespace std;
 
@@ -19,11 +19,11 @@ using namespace std;
  */
    
 
-class ASMParser{
+class InstructionMemory{
  public:
   // Specify a text file containing MIPS assembly instructions. Function
   // checks syntactic correctness of file and creates a list of Instructions.
-  ASMParser(string filename);
+  InstructionMemory(string filename);
 
   // Returns true if the file specified was syntactically correct.  Otherwise,
   // returns false.

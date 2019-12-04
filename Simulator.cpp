@@ -23,9 +23,9 @@ void Simulator::simulate(){
   Parser parser;
   DataMemory memory
   Register registry;
-  
+
   ProgramCounter pc("400000");
-  
+
   ALU alu1;
   ALU alu2;
   ALU alu3;
@@ -35,15 +35,15 @@ void Simulator::simulate(){
   Multiplexor multi3;
   Multiplexor multi4;
   Multiplexor multi5;
-  
+
   ControlUnit control;
-  ALUControl alucontrol; 
+  ALUControl alucontrol;
 
   SLL sll1;
   SLL sll2;
-  
+
   SignExtend signext;
-  
+
   parser.ParseRegFile(register_file_input, registry);
   parser.ParseMemFile(memory_contents_input, memory);
 
@@ -54,7 +54,7 @@ void Simulator::simulate(){
   string addr = pc.getCurrentAddress();
   instruc=getInstruction(addr);
   //instruc.toString() --> print the instruction
-  
+
 
   //convert addresss to binAddr
 
@@ -64,7 +64,7 @@ void Simulator::simulate(){
   alu1.conductOperation();
   string add4toAddr = alu1.getResult();
   if(debug_mode){
-	cout << " The result of adding 4 to the address using ALU is: : << newAddr << endl;
+	cout << " The result of adding 4 to the address using ALU is: :" << newAddr << endl;
   }
   //reset control and values in control
   control.setValues(Binary encodingi of the first 6 bits of instruction);
@@ -75,9 +75,9 @@ void Simulator::simulate(){
   if(debug_mode){
 	cout << " Instruction (32 bits is): " << instr.getEncdoing() << endl;
   }
-  
+
   string reg1 = inst.getEncoding().substr(6, 5);
-  
+
 
 
 
