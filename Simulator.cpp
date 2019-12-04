@@ -159,7 +159,7 @@ void Simulator::simulate(){
         multi1.setFirstInput(r2);
         multi1.setSecondInput(r3);
 
-        string writerRegister = multi1.getResult();
+        string writeRegister = multi1.getResult();
         if(debug_mode){
     	    cout << " Multiplexor 1 result is : " << writeRegister << endl;
         }
@@ -182,12 +182,12 @@ void Simulator::simulate(){
         }
 
         alu3.setInput_1(help.hextoBin(valatr1));
-        alu3.setInpuit_2(AluInput);
+        alu3.setInput_2(AluInput);
 
 
         //alucontrol.setControl(control.getValue("aluOp1"), control.getValue("aluOp2"));
-
-        string op = alucontrol.getOperation(control.getValue("aluOp1"), control.getValue("aluOp2"), functcode);
+        string funct;
+        string op = alucontrol.getControlOutput(control.getValue("aluOp1"), control.getValue("aluOp2"), funct);
 
         alu3.setOperation(op);
 
@@ -228,7 +228,7 @@ void Simulator::simulate(){
             string writeData = multi3.getResult();
 
 
-        int writeint = help.hextoDec(registry.getRegValue(writerRegister));
+        int writeint = help.hextoDec(registry.getRegValue(writeRegister));
 
         registry.setRegValueByNumber("" + writeint, writeData);
 

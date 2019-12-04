@@ -14,6 +14,7 @@ string SignExtend::extend(string input)
     for(int i = 0; i < 16; i++)
         output.append(posneg.substr(0,1));   output.append(input);
     output.append(binary);
+    return output;
     //string outputHex = help.bintoHex(output);
     //return outputHex;
 }

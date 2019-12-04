@@ -26,7 +26,7 @@ string ALUControl::getControlOutput(int input1, int input2, string funct)
    {
         return "compare";
    }
-   else if(input1 = 1 && input2 = 0)
+   else if(input1 == 1 && input2 == 0)
    {
        if(funct == "0000")
            return "add";

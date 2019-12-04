@@ -1,4 +1,5 @@
 #include "HelperFunctions.h"
+#include <cmath>
 /*
 int main(int argc, char *argv[]){
   HelperFuntions *help;
@@ -207,7 +208,7 @@ string HelperFunctions::bintoHex(string bin){
 
 }
 
-double HelperFuntions::binaryToDecimal(string input) {
+double HelperFunctions::binaryToDecimal(string input) {
 
 	double decimal = 0.0;
 	int power = 0;

@@ -10,7 +10,7 @@ class ALUControl{
   public:
    int getControlInput_1();
    int getControlInput_2();
-   string getControlOuput(int input1, int input2, string funct);
+   string getControlOutput(int input1, int input2, string funct);
    void setControlInput(int input1, int input2);
    void setImmediate(string imm);
 
