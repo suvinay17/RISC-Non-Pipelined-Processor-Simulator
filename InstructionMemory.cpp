@@ -69,10 +69,10 @@ Instruction InstructionMemory::getNextInstruction()
 }
 
 
-Instruction InstructionMemory::getNextInstruction(string position)
+Instruction InstructionMemory::getNextInstruction1(string position)
   // Returns the next Instruction in the list of Instructions.
 {
-  HelperFunction help;
+  HelperFunctions help;
   string start = "0x400000";
   int place = (help.hextoDec(position) - help.hextoDec(start))/4;
   if(myInstructions.size() < place) {
@@ -282,7 +282,7 @@ string InstructionMemory::encode(Instruction i)
   {
     case JTYPE: {
 	inst.append(opcodes.getOpcodeField(op));	//Appends the opcode
-	int imm = i.getImmediate();			//gets the immediate value and translates it into 26 bit binary
+	int imm = stoi(i.getImmediate());			//gets the immediate value and translates it into 26 bit binary
 	bitset<26> bitImm(imm);
 	inst.append(bitImm.to_string());		//appends immediate field
  	}	
@@ -324,7 +324,7 @@ string InstructionMemory::encode(Instruction i)
  	if(opcodes.IMMposition(op) == -1)
 	    inst.append(empty);
 	else {
-	    int imm = i.getImmediate();
+	    int imm = stoi(i.getImmediate());
 	    bitset<5> bitIMM(imm);
 	    inst.append(bitIMM.to_string());
 	}
@@ -338,7 +338,7 @@ string InstructionMemory::encode(Instruction i)
 	inst.append(opcodes.getOpcodeField(op));	//appends the opcode
 	int rs = i.getRS();				//reads in the values for rs, rt, and imm fields
 	int rt = i.getRT();
-	int imm = i.getImmediate();
+	int imm = stoi(i.getImmediate());
 	bitset<5> bitRS(rs);				//bitsets rs and rt to 5 bits and imm to 16 bits
 	bitset<5> bitRT(rt);
 	bitset<16> bitImm(imm);

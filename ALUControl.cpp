@@ -1,11 +1,16 @@
 #include "ALUControl.h"
 
-int ALUControl::getControlInput(){
-  return controlInput;
+int ALUControl::getControlInput_1(){
+  return controlInput1;
 }
 
-void ALUControl::setControlInput(int input){
-  controlInput = input;
+int ALUControl::getControlInput_2(){
+  return controlInput2;
+}
+
+void ALUControl::setControlInput(int input1, int input2){
+  controlInput1 = input1;
+  controlInput2 = input2;
 
 }
 

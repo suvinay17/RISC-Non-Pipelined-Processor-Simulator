@@ -4,7 +4,7 @@ CFLAGS=-DDBUG -g -Wall
 .SUFFIXES: .cpp .o
 
 .cpp.o:
-	g++ $(CFLAGS) -c $<
+	g++ -std=c++11 $(CFLAGS) -c $<
 
 Main: Main.o Simulator.o ProgramCounter.o Multiplexor.o ALU.o DataMemory.o ALUControl.o SLL.o HelperFunctions.o Parser.o ControlUnit.o Instruction.o Opcode.o RegisterTable.o SignExtend.o SymbolTable.o InstructionMemory.o
 	g++ -o Main Main.o Simulator.o ProgramCounter.o Multiplexor.o ALU.o DataMemory.o ALUControl.o SLL.o HelperFunctions.o Parser.o ControlUnit.o Instruction.o Opcode.o RegisterTable.o SignExtend.o SymbolTable.o InstructionMemory.o
