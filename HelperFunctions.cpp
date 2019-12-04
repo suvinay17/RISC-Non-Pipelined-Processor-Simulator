@@ -33,6 +33,13 @@ string HelperFunctions::dectoBin(string input){
 
 }
 
+string HelperFunction::hexToDec(string input){
+  std::string newStr = HelperFunctions::dectoBin(input);
+  std::string stri = HelperFunctions::bintoHex(newStr);
+  return stri;
+
+}
+
 string HelperFunctions::dectoHex(string input){
 
   char hexaDeciNum[100];
@@ -198,5 +205,3 @@ string HelperFunctions::bintoHex(string bin){
   return hex;
 
 }
-
-

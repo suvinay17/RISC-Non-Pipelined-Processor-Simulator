@@ -15,9 +15,10 @@ class HelperFunctions{
     string dectoHex(string input);
     string hextoBin(string input);
     string bintoHex(string bin);
+    string hexToDec(string input);
 
   private:
-    
+
     //void createMap(unordered_map<string, char> *um);
     void createMap(map<string, char> *um);
 };
