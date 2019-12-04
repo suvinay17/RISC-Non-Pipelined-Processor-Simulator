@@ -99,7 +99,7 @@ void Simulator::simulate(){
     {
        //we need to check if the immediate is a hex or dec number
        string shifted = sll1.shift(help.hextoBin(""+i.getImmediate()));
-       string combined = addrBin.substr(0,3);       //combine first 4 bits of current address with the shifted jump value
+       string combined = addrBin.substr(0,4);       //combine first 4 bits of current address with the shifted jump value
        combined.append(shifted);
 
        if(multi4.getControlInput() == 1)
@@ -112,16 +112,117 @@ void Simulator::simulate(){
     }
     else
     {
+        string encoded = instMem->encode(i);
+
+        string reg1 = encoded.substr(6,5);
+        string reg2 = encoded.substr(11,5);
+        string reg3 = encoded.substr(16,5);
+        string immediate = encoded.substr(17,15);
+        string jAddress = encoded.substr(6,26);
+
+       
+        string functCode = encoded.substr(26,6);
+       
+        string jsll = sll1.shift(jAddress);
         
 
+        multi4.setSecondInput(jsll);
+        multi1.setFirstInput(reg2);
+        multi1.setSecondInput(reg3);
+
+        string writerRegister = multi1.mux();
+        int reg1Int = help.binaryToDecimal(reg1); //move to helper functions
+        int reg21Int = help.binaryToDecimal(reg2); //move to helper functions
+         
+        string valatreg1 = registry.getRegValue("" + reg1);
+        string valatreg2 = registry.getRegValue(""  + reg2);
+
+        string ext = signext.extend(immediate);
+
+        multi2.setFirstInput(help.hextoBin(valatreg2));
+        multi2.setSecondInput(ext);
+
+        string AluInput = multi2.mux();
+
+        alu3.setInput_1(help.hextoBin(valatreg1));
+        alu3.setInpuit_2(AluInput);
+
+
+        //alucontrol.setControl(control.getValue("aluOp1"), control.getValue("aluOp2"));
+        
+        string op = alucontrol.getOperation(control.getValue("aluOp1"), control.getValue("aluOp2"), functcode);
+
+        alu3.setOperation(op);
+
+        alu3.conductOperation();
+
+        string alu3result = alu3.getResult();
+
+        if(control.getValue("branch") == 1 && alu3result == "equal")
+        {
+            multi5.setControlInput(control.getValue("branch"));
+        }
+        else {
+            multi5.setControlInput(0);
+        }
+
+        if(control.getValue("memWrite") == 1)
+        {
+            string hexMemWrite = help.bintoHex(alu3result);
+            memory.setData(hexMemWrite, valatreg2);
+        }
+
+        string alu3resultHex = help.bintoHex(alu3result);
+
+        multi3.setFirstInput(alu3resultHex);
+
+        if(control.getValue("memRead") == 1)
+        {
+            string dataFromMem = memory.getData(alu3resultHex);
+        }
+
+        //maybe think about removing 0x
+        
+
+        multi3.setSecondInput(dataFromMem); //Data from mem here should not have 0x
+        if(control.getValue("regWrite") == 1)
+        {
+            string writeData = multi3.mux()
+        
+
+        int writeint = help.hextoDec(registry.getRegValue(writerRegister));
+
+        registry.setRegValueByNumber("" + writeint, writeData);
+
+        }
+
+        string instructionSLL = sll2.shift(ext);
+
+        alu2.setInput_1(add4toPC);
+        alu2.setInput_2(instructionSLL);
+        alu2.setOperation("add");
+        alu2.conductOperation();
+        string resultofAlu2 = alu2.getResult();
+
+        multi5.setFirstInput(add4toPC);
+        multi5.secondInput(resultofAlu2);
+        string resultofmux5 = multi5.mux();
+
+        multi4.setFirstInput(resultofmux5);
+        
+        string resultofmux4 = multi4.mux();
+        
+        string hexfinal = help.bintoHex(resultofmux4);
+        pc.setAddress(hexfinal);
 
 
         i = instMem->getNextInstruction1(add4toPC);
+
     }
 
 
   //i.getNextInstruction();
-
+        
 
   }
 
