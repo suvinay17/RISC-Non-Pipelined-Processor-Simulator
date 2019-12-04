@@ -51,8 +51,10 @@ void Simulator::simulate(){
 
   //i is are encoding instruction
 
-  string addr = pc.getCurrentAddress()
-
+  string addr = pc.getCurrentAddress();
+  instruc=getInstruction(addr);
+  //instruc.toString() --> print the instruction
+  
 
   //convert addresss to binAddr
 
@@ -70,7 +72,12 @@ void Simulator::simulate(){
   multi2.setControlInput(controlgetAluSrc());
   multi3.setControlInput(control.setControlInput(control.getmemToReg());
   multi4.setControlInput(control.getJump());
-
+  if(debug_mode){
+	cout << " Instruction (32 bits is): " << instr.getEncdoing() << endl;
+  }
+  
+  string reg1 = inst.getEncoding().substr(6, 5);
+  
 
 
 
