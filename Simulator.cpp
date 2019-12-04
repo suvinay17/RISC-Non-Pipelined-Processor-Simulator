@@ -95,13 +95,9 @@ void Simulator::simulate(){
     multi3.setControlInput(control.getValue("memToReg"));
     multi4.setControlInput(control.getValue("jump"));
     multi5.setControlInput(control.getValue("branch"));
-    /*if(debug_mode){
-	    cout << " Instruction (32 bits is): " << instr.getEncdoing() << endl;
+    if(debug_mode){
+	    cout << " Instruction in 32 bit format is: " << instMem->encode(i) << endl;
     }
-
-    string r1 = inst.getEncoding().substr(6, 5);
-    */
-
 
     if(i.getName() == 7)
     {
@@ -126,12 +122,21 @@ void Simulator::simulate(){
         string r2 = encoded.substr(11,5);
         string r3 = encoded.substr(16,5);
         string immediate = encoded.substr(17,15);
-        string jAddress = encoded.substr(6,26);
-
-
+        string jumpAddr = encoded.substr(6,26);
         string functCode = encoded.substr(26,6);
+        string jsll = sll1.shift(jumpAddr);
 
-        string jsll = sll1.shift(jAddress);
+        if(debug_mode){
+        cout << "Address for Jump in binary: " << jumpAddr << endl;
+        cout << "immediate value in binary: " << immediate << endl;
+        cout << "r1,r2,r3 are: " << r1 << ","r2 << ","r3 << endl;
+        cout << "function code is: " << functCode << endl;
+        cout << "Jump shifted left by 2 is" << jumpAddr << endl;
+      }
+
+
+
+
 
 
         multi4.setSecondInput(jsll);
@@ -139,6 +144,9 @@ void Simulator::simulate(){
         multi1.setSecondInput(r3);
 
         string writerRegister = multi1.getResult();
+        if(debug_mode){
+    	    cout << " Multiplexor 1 result is : " << writeRegister << endl;
+        }
         int r1_Int = help.binaryToDecimal(r1); //move to helper functions
         int r2_Int = help.binaryToDecimal(r2); //move to helper functions
 
@@ -149,8 +157,13 @@ void Simulator::simulate(){
 
         multi2.setFirstInput(help.hextoBin(valAtR2));
         multi2.setSecondInput(ext);
+        
 
         string AluInput = multi2.getResult();
+
+        if(debug_mode){
+    	    cout << " Multiplexor 2 result is : " << AluInput << endl;
+        }
 
         alu3.setInput_1(help.hextoBin(valatr1));
         alu3.setInpuit_2(AluInput);
