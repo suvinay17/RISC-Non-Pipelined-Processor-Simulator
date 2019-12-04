@@ -31,17 +31,16 @@ using namespace std;
  *
  */
 
- #include "Stimulator.h"
 
  int main(int argc, char *argv[])
  {
- 	Stimulator* stim ;
+ 	Simulator* stim ;
 
    if(argc < 2){
      cerr << "Need to specify a configuration file to stimulate the processr."<<endl;
      exit(1);
    }
- 	stim =new Stimulation (argv[1]);
+ 	stim =new Simulatior (argv[1]);
  	stim->simulate();
 
  	delete stim;
