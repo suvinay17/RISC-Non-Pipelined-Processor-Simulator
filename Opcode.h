@@ -8,15 +8,16 @@ using namespace std;
 
 
 // Listing of all supported MIPS instructions
+// Numbers are for switch statement in control unit
 enum Opcode {
-  ADD, 
-  ADDI, 
-  SUB,
-  SLT,
-  LW,
-  SW,
-  BEQ,
-  J, 
+  ADD,          //0 
+  ADDI,         //1
+  SUB,          //2
+  SLT,          //3
+  LW,           //4
+  SW,           //5
+  BEQ,          //6
+  J,            //7
   UNDEFINED
 };
 

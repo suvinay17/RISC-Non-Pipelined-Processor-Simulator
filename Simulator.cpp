@@ -24,17 +24,17 @@ void Simulator::simulate(){
   DataMemory memory
   Register registry;
 
-  ProgramCounter pc("400000");
+  ProgramCounter pc("0x400000");
 
   ALU alu1;
   ALU alu2;
   ALU alu3;
 
-  Multiplexor multi1;
-  Multiplexor multi2;
-  Multiplexor multi3;
-  Multiplexor multi4;
-  Multiplexor multi5;
+  Multiplexor multi1;       //RegDest
+  Multiplexor multi2;       //ALUSrc
+  Multiplexor multi3;       //MemToReg
+  Multiplexor multi4;       //Jump
+  Multiplexor multi5;       //To branch AND
 
   ControlUnit control;
   ALUControl alucontrol;
@@ -66,12 +66,16 @@ void Simulator::simulate(){
   if(debug_mode){
 	cout << " The result of adding 4 to the address using ALU is: :" << newAddr << endl;
   }
+
+
+
   //reset control and values in control
   control.setValues(Binary encodingi of the first 6 bits of instruction);
-  multi1.setControlInput(control.getRegDest());
-  multi2.setControlInput(controlgetAluSrc());
-  multi3.setControlInput(control.setControlInput(control.getmemToReg());
-  multi4.setControlInput(control.getJump());
+  multi1.setControlInput(control.getValue("regDest"));
+  multi2.setControlInput(controlgetValue("aluSrc"));
+  multi3.setControlInput(control.getValue("memToReg");
+  multi4.setControlInput(control.getValue("jump"));
+  multi5.setControlInput(control.getValue("branch"));
   if(debug_mode){
 	cout << " Instruction (32 bits is): " << instr.getEncdoing() << endl;
   }

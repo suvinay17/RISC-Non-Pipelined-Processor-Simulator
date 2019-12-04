@@ -16,7 +16,7 @@ class ControlUnit {
         int getValue(string control);
         void setInstruction(Instruction inst);
     private:
-        Control myControls[9];
+        Control myControls[10];
 
 };
 

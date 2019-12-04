@@ -7,8 +7,9 @@ ControlUnit::ControlUnit()
     myControls[i].name = "jump"; myControls[i].value = -1; i++;
     myControls[i].name = "branch"; myControls[i].value = -1; i++;
     myControls[i].name = "memRead"; myControls[i].value = -1; i++;
-    myControls[i].name = "memToRead"; myControls[i].value = -1; i++;
-    myControls[i].name = "aluOp"; myControls[i].value = -1; i++;
+    myControls[i].name = "memToReg"; myControls[i].value = -1; i++;
+    myControls[i].name = "aluOp1"; myControls[i].value = -1; i++;
+    myControls[i].name = "aluOp2"; myControls[i].value = -1; i++;
     myControls[i].name = "memWrite"; myControls[i].value = -1; i++;
     myControls[i].name = "aluSrc"; myControls[i].value = -1; i++;
     myControls[i].name = "regWrite"; myControls[i].value = -1; i++;
@@ -37,11 +38,13 @@ void ControlUnit::setInstruction(Instruction inst)
             myControls[i].value = 0; i++;
             myControls[i].value = 0; i++;
             myControls[i].value = 0; i++;
+            myControls[i].value = 1; i++;
             myControls[i].value = 0; i++;
             myControls[i].value = 0; i++;
             myControls[i].value = 0; i++;
             myControls[i].value = 1; i++;
         case 1:
+            myControls[i].value = 0; i++;
             myControls[i].value = 0; i++;
             myControls[i].value = 0; i++;
             myControls[i].value = 0; i++;
@@ -57,6 +60,7 @@ void ControlUnit::setInstruction(Instruction inst)
             myControls[i].value = 0; i++;
             myControls[i].value = 0; i++;
             myControls[i].value = 0; i++;
+            myControls[i].value = 1; i++;
             myControls[i].value = 0; i++;
             myControls[i].value = 0; i++;
             myControls[i].value = 0; i++;
@@ -67,6 +71,7 @@ void ControlUnit::setInstruction(Instruction inst)
             myControls[i].value = 0; i++;
             myControls[i].value = 0; i++;
             myControls[i].value = 0; i++;
+            myControls[i].value = 1; i++;
             myControls[i].value = 0; i++;
             myControls[i].value = 0; i++;
             myControls[i].value = 0; i++;
@@ -79,6 +84,7 @@ void ControlUnit::setInstruction(Instruction inst)
             myControls[i].value = 1; i++;
             myControls[i].value = 0; i++;
             myControls[i].value = 0; i++;
+            myControls[i].value = 0; i++;
             myControls[i].value = 1; i++;
             myControls[i].value = 1; i++;
         case 5:
@@ -86,6 +92,7 @@ void ControlUnit::setInstruction(Instruction inst)
             myControls[i].value = 0; i++;
             myControls[i].value = 0; i++;
             myControls[i].value = 1; i++;
+            myControls[i].value = 0; i++;
             myControls[i].value = 0; i++;
             myControls[i].value = 0; i++;
             myControls[i].value = 1; i++;
@@ -97,6 +104,7 @@ void ControlUnit::setInstruction(Instruction inst)
             myControls[i].value = 1; i++;
             myControls[i].value = 0; i++;
             myControls[i].value = 0; i++;
+            myControls[i].value = 0; i++;
             myControls[i].value = 1; i++;
             myControls[i].value = 0; i++;
             myControls[i].value = 1; i++;
@@ -104,6 +112,7 @@ void ControlUnit::setInstruction(Instruction inst)
         case 7:
             myControls[i].value = 0; i++;
             myControls[i].value = 1; i++;
+            myControls[i].value = 0; i++;
             myControls[i].value = 0; i++;
             myControls[i].value = 0; i++;
             myControls[i].value = 0; i++;
