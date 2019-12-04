@@ -108,6 +108,10 @@ void Simulator::simulate(){
 
 
     }
+    else
+    {
+
+    }
 
 
   //i.getNextInstruction();
