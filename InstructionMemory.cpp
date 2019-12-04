@@ -1,7 +1,7 @@
-#include "ASMParser.h"
+#include "InstructionMemory.h"
 #include <bits/stdc++.h>
 
-ASMParser::ASMParser(string filename)
+InstructionMemory::InstructionMemory(string filename)
   // Specify a text file containing MIPS assembly instructions. Function
   // checks syntactic correctness of file and creates a list of Instructions.
 {
@@ -55,7 +55,7 @@ ASMParser::ASMParser(string filename)
 }
 
 
-Instruction ASMParser::getNextInstruction()
+Instruction InstructionMemory::getNextInstruction()
   // Iterator that returns the next Instruction in the list of Instructions.
 {
   if(myIndex < (int)(myInstructions.size())){
@@ -68,7 +68,7 @@ Instruction ASMParser::getNextInstruction()
 
 }
 
-void ASMParser::getTokens(string line,
+void InstructionMemory::getTokens(string line,
 			       string &opcode,
 			       string *operand,
 			       int &numOperands)
@@ -145,7 +145,7 @@ void ASMParser::getTokens(string line,
     return;
 }
 
-bool ASMParser::isNumberString(string s)
+bool InstructionMemory::isNumberString(string s)
   // Returns true if s represents a valid decimal integer
 {
     int len = s.length();
@@ -163,7 +163,7 @@ bool ASMParser::isNumberString(string s)
 }
 
 
-int ASMParser::cvtNumString2Number(string s)
+int InstructionMemory::cvtNumString2Number(string s)
   // Converts a string to an integer.  Assumes s is something like "-231" and produces -231
 {
     if (!isNumberString(s))
@@ -192,7 +192,7 @@ int ASMParser::cvtNumString2Number(string s)
 }
 		
 
-bool ASMParser::getOperands(Instruction &i, Opcode o, 
+bool InstructionMemory::getOperands(Instruction &i, Opcode o, 
 			    string *operand, int operand_count)
   // Given an Opcode, a string representing the operands, and the number of operands, 
   // breaks operands apart and stores fields into Instruction.
@@ -254,7 +254,7 @@ bool ASMParser::getOperands(Instruction &i, Opcode o,
 }
 
 
-string ASMParser::encode(Instruction i)
+string InstructionMemory::encode(Instruction i)
   // Given a valid instruction, returns a string representing the 32 bit MIPS binary encoding
   // of that instruction.
 {
