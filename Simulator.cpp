@@ -112,7 +112,11 @@ void Simulator::simulate(){
     }
     else
     {
+        
 
+
+
+        i = instMem->getNextInstruction1(add4toPC);
     }
 
 
