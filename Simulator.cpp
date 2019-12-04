@@ -1,6 +1,22 @@
 #include "Simulator.h"
 using namespace std;
 
+
+// method that uses parser to put parsed results so simulator can use it
+void Simulator::getFiles(){
+Parser par;
+par.ParseConfigFile(configurationFile);
+program_input = par.getProgram_input();
+memory_contents_input = par.getMemory_contents_input();
+register_file_input = par.getRegister_file_input();
+output_mode = par.getOutput_mode();
+debug_mode = par.getDebug_mode();
+print_memory_contents = par.getPrint_memory_contents();
+write_to_file = par.getWrite_to_file();
+output_file = par.getOutput_file();
+}
+
+
 void Simulator::simulate(){
   getFiles();
   Parser parser;
@@ -52,7 +68,7 @@ void Simulator::simulate(){
 
   while(i.getOpcode() != UNDEFINED) {
 
-    if(outputMode == "single_step"){ //new addition
+    if(output_mode == "single_step"){ //new addition
 
        while(true)
        {
@@ -129,7 +145,7 @@ void Simulator::simulate(){
         if(debug_mode){
         cout << "Address for Jump in binary: " << jumpAddr << endl;
         cout << "immediate value in binary: " << immediate << endl;
-        cout << "r1,r2,r3 are: " << r1 << ","r2 << ","r3 << endl;
+        cout << "r1,r2,r3 are: " << r1 << "," << r2 << "," << r3 << endl;
         cout << "function code is: " << functCode << endl;
         cout << "Jump shifted left by 2 is" << jumpAddr << endl;
       }
@@ -226,7 +242,7 @@ void Simulator::simulate(){
         string alu2_Result = alu2.getResult();
 
         multi5.setFirstInput(incrementedPC);
-        multi5.secondInput(alu2_Result);
+        multi5.setSecondInput(alu2_Result);
         string multi5_Result = multi5.getResult();
 
         multi4.setFirstInput(multi5_Result);
@@ -249,16 +265,3 @@ void Simulator::simulate(){
 
 }
 
-// method that uses parser to put parsed results so simulator can use it
-void Simulator::getFiles(){
-Parser par;
-par.ParseConfigFile(configurationFile);
-program_input = par.getProgram_input();
-memory_contents_input = par.getMemory_contents_input();
-register_file_input = par.getRegister_file_input();
-output_mode = par.getOutput_mode();
-debug_mode = par.getDebug_mode();
-print_memory_contents = par.getPrint_memory_contents();
-write_to_file = par.getWrite_to_file();
-output_file = par.getOutput_file();
-}
