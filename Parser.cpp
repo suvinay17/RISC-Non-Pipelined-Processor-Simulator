@@ -15,10 +15,10 @@ Parser::Parser(){
   memory_contents_input = " ";
   register_file_input = " ";
   output_mode = " ";
-  debug_mode = false;
-  print_memory_contents = false;
-  write_to_file = false;
-  output_file = false;
+  //debug_mode;
+  //print_memory_contents = false;
+  //write_to_file = false;
+  //output_file = false;
 }
 
 string Parser::getProgram_input(){ return program_input; }
