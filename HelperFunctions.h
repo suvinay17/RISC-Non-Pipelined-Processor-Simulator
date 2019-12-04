@@ -15,7 +15,7 @@ class HelperFunctions{
     string dectoHex(string input);
     string hextoBin(string input);
     string bintoHex(string bin);
-    string hextoDec(string input);
+    int hextoDec(string input);
 
   private:
 

@@ -32,10 +32,10 @@ std::string    DataMemory::getData(std::string address)
 /*
 setData will set data to the given address, the return type is string for test purposes
 */
-std::string    DataMemory::setData(std::string address, std::string data)
+void    DataMemory::setData(std::string address, std::string data)
     {
             this->mapping[address] = data;
-            return this->mapping[address];
+           // return this->mapping[address];
     }
 
 #endif
