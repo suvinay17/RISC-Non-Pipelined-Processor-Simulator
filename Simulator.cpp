@@ -173,7 +173,7 @@ void Simulator::simulate(){
 
         multi2.setFirstInput(help.hextoBin(valAtR2));
         multi2.setSecondInput(ext);
-        
+
 
         string AluInput = multi2.getResult();
 
@@ -215,16 +215,17 @@ void Simulator::simulate(){
 
         if(control.getValue("memRead") == 1)
         {
-            string dataFromMem = memory.getData(alu3_ResultHex);
+            string dataFromMem = memory.getData(alu3_ResultHex); //consider removing 0x
+            multi3.setSecondInput(dataFromMem); //Data from mem here should not have 0x
         }
 
         //maybe think about removing 0x
 
 
-        multi3.setSecondInput(dataFromMem); //Data from mem here should not have 0x
+
         if(control.getValue("regWrite") == 1)
         {
-            string writeData = multi3.getResult()
+            string writeData = multi3.getResult();
 
 
         int writeint = help.hextoDec(registry.getRegValue(writerRegister));
@@ -264,4 +265,3 @@ void Simulator::simulate(){
   }
 
 }
-
