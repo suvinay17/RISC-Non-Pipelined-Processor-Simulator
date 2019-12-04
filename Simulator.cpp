@@ -21,7 +21,7 @@ void Simulator::getFiles(){
 void Simulator::simulate(){
   getFiles();
   Parser parser;
-  DataMemory memory
+  DataMemory memory;
   RegisterTable registry;
   HelperFunctions help;
   
@@ -58,7 +58,7 @@ void Simulator::simulate(){
 
 
   Instruction i;
-  string addrBin;
+  string addrBin = "";
   i = instMem->getNextInstruction();
 
 
@@ -70,7 +70,7 @@ void Simulator::simulate(){
 
   
     //adds 4 to the PC
-    alu1.setInput_1(binAddr);
+    alu1.setInput_1(addrBin);
     alu1.setInput_2("100");
     alu1.setOperation("add");
     alu1.conductOperation();
