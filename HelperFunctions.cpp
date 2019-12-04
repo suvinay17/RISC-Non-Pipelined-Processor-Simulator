@@ -206,3 +206,20 @@ string HelperFunctions::bintoHex(string bin){
   return hex;
 
 }
+
+double HelperFuntions::binaryToDecimal(string input) {
+
+	double decimal = 0.0;
+	int power = 0;
+
+	// For each char in the given 32-bit input
+	for(int i = input.length() - 1; i >= 0; i--) {
+
+		if (input.at(i) == '1') {
+			decimal += pow(2.0, power);
+		}
+		power++;
+	}
+
+	return decimal;
+}
