@@ -61,12 +61,12 @@ class OpcodeTable {
   // Given an Opcode, returns a string representing the binary encoding of the opcode
   // field.
   string getOpcodeField(Opcode o);
-
+ 
   // Given an Opcode, returns a string representing the binary encoding of the function
   // field.
   string getFunctField(Opcode o);
 
-
+  string getInstName(int i);
  private:
   struct OpcodeTableEntry{
     string name;

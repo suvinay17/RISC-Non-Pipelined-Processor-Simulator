@@ -138,7 +138,7 @@ void Simulator::simulate(){
         multi1.setFirstInput(r2);
         multi1.setSecondInput(r3);
 
-        string writerRegister = multi1.mux();
+        string writerRegister = multi1.getResult();
         int r1_Int = help.binaryToDecimal(r1); //move to helper functions
         int r2_Int = help.binaryToDecimal(r2); //move to helper functions
 
@@ -150,7 +150,7 @@ void Simulator::simulate(){
         multi2.setFirstInput(help.hextoBin(valAtR2));
         multi2.setSecondInput(ext);
 
-        string AluInput = multi2.mux();
+        string AluInput = multi2.getResult();
 
         alu3.setInput_1(help.hextoBin(valatr1));
         alu3.setInpuit_2(AluInput);
@@ -195,7 +195,7 @@ void Simulator::simulate(){
         multi3.setSecondInput(dataFromMem); //Data from mem here should not have 0x
         if(control.getValue("regWrite") == 1)
         {
-            string writeData = multi3.mux()
+            string writeData = multi3.getResult()
 
 
         int writeint = help.hextoDec(registry.getRegValue(writerRegister));
@@ -214,11 +214,11 @@ void Simulator::simulate(){
 
         multi5.setFirstInput(incrementedPC);
         multi5.secondInput(alu2_Result);
-        string multi5_Result = multi5.mux();
+        string multi5_Result = multi5.getResult();
 
         multi4.setFirstInput(multi5_Result);
 
-        string multi4_Result = multi4.mux();
+        string multi4_Result = multi4.getResult();
 
         string hexResult = help.bintoHex(multi4_Result);
         pc.setAddress(hexResult);

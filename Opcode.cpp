@@ -117,3 +117,25 @@ bool OpcodeTable::isIMMLabel(Opcode o)
     return false;
   return myArray[o].immLabel;
 }
+string OpcodeTable::getInstName(int i)
+{
+  if(i == 0){
+	return "ADD";}
+  if(i == 1){
+        return "ADDI";}
+  if(i == 2){
+        return "SUB";}
+  if(i == 3){
+        return "LW";}
+  if(i == 4){
+        return "SW";}
+  if(i == 5){
+        return "BEQ";}
+  if(i == 6){
+        return "SLT";}
+  if(i == 7){
+        return "J";
+}
+  return "UNDEFINED";
+  
+}
