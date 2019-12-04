@@ -32,7 +32,7 @@ class InstructionMemory{
 
   // Iterator that returns the next Instruction in the list of Instructions.
   Instruction getNextInstruction();
-  Instruction getNextInstruciton(string position);
+  Instruction getNextInstruction1(string position);
 
  private:
   vector<Instruction> myInstructions;      // list of Instructions

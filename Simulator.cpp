@@ -76,15 +76,15 @@ void Simulator::simulate(){
     alu1.conductOperation();
     string add4toPC = alu1.getResult();
     if(debug_mode){
-	    cout << " The result of adding 4 to the address using ALU is: :" << newAddr << endl;
+	    cout << " The result of adding 4 to the address using ALU is: :" << add4toPC << endl;
     }
 
 
     //reset control and values in control
-    control.setValues(i);
+    control.setInstruction(i);
     multi1.setControlInput(control.getValue("regDest"));
-    multi2.setControlInput(controlgetValue("aluSrc"));
-    multi3.setControlInput(control.getValue("memToReg");
+    multi2.setControlInput(control.getValue("aluSrc"));
+    multi3.setControlInput(control.getValue("memToReg"));
     multi4.setControlInput(control.getValue("jump"));
     multi5.setControlInput(control.getValue("branch"));
     /*if(debug_mode){
@@ -105,7 +105,7 @@ void Simulator::simulate(){
        if(multi4.getControlInput() == 1)
        {
             pc.setAddress(combined);
-            i = inst.getNextInstruction(pc.nextInstruction(combined));  //calculates which instruction in the instrution vector i should be
+            i = instMem->getNextInstruction1(combined);  //calculates which instruction in the instrution vector i should be
        }
 
 
