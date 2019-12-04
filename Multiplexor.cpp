@@ -48,7 +48,7 @@ std::string Multiplexor::setSecondInput(std::string secondInput)
 
 
 //calls mux and returns the result chosen
-std::string Multiplexor::mux()
+std::string Multiplexor::getResult()
 {
 	if(this->controlInput == 0)
 	{

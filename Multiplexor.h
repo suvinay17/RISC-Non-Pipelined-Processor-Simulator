@@ -24,7 +24,7 @@ class Multiplexor
 
         std::string setSecondInput(std::string secondInput);
 
-        std::string mux();
+        std::string getResult();
 
         void setControlInput(int controlInput);
 
