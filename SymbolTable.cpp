@@ -33,7 +33,7 @@ void SymbolTable::readASM(string filename)
         if(place != -1) {
             int decAddress = track + startMem;     //finds decimal value of mem location
             //Symbols temp = {help.dectoHex(to_string(decAddress)), line.substr(0,place)};
-            Symbols temp = {help.dectoHex("" + decAddress), line.substr(0,place)};
+            Symbols temp = {help.dectoHex(to_string(decAddress)), line.substr(0,place)};
             mySymbol.push_back(temp);
         }
         track += 4;
