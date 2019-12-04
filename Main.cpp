@@ -22,10 +22,6 @@
 #include <string>
 #include <fstream>
 #include <iostream>
-
-
-
-
 using namespace std;
 
 /* This file reads in a MIPS assembly file specified at the command line.
@@ -35,34 +31,21 @@ using namespace std;
  *
  */
 
+ #include "Stimulator.h"
+
  int main(int argc, char *argv[])
  {
-   Simulator *parser;
+ 	Stimulator* stim ;
 
    if(argc < 2){
-     cerr << "Need to specify an assembly file to translate."<<endl;
+     cerr << "Need to specify a configuration file to stimulate the processr."<<endl;
      exit(1);
    }
+ 	stim =new Stimulation (argv[1]);
+ 	stim->simulate();
 
-   parser = new Simulator(argv[1]);
-
-/*   if(parser->isFormatCorrect() == false){
-     cerr << "Format of input file is incorrect " << endl;
-     exit(1);
-   }
-
-   Instruction i;
-
-   //Iterate through instructions, printing each encoding.
-   i = parser->getNextInstruction();
-   while( i.getOpcode() != UNDEFINED){
-     // cout << i.getString() << endl;
-     cout << i.getEncoding() << endl;
-     i = parser->getNextInstruction();
-   }
-*/
-   delete parser;
- }
+ 	delete stim;
+ };
 
 
 
