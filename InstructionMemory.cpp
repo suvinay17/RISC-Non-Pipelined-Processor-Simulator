@@ -69,9 +69,12 @@ Instruction InstructionMemory::getNextInstruction()
 }
 
 
-Instruction InstructionMemory::getNextInstruction(int place)
+Instruction InstructionMemory::getNextInstruction(string position)
   // Returns the next Instruction in the list of Instructions.
 {
+  HelperFunction help;
+  string start = "0x400000";
+  int place = help.hextoDec(position) - help.hextoDec(start);
   if(myInstructions.size() < place) {
     Instruction i;
     return i;
