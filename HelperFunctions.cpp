@@ -33,7 +33,7 @@ string HelperFunctions::dectoBin(string input){
 
 }
 
-string HelperFunction::hexToDec(string input){
+string HelperFunction::hextoDec(string input){
   std::string newStr = HelperFunctions::dectoBin(input);
   std::string stri = HelperFunctions::bintoHex(newStr);
   return stri;
