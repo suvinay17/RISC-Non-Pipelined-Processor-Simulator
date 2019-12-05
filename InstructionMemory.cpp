@@ -19,6 +19,7 @@ InstructionMemory::InstructionMemory(string filename)
     string line;
     while( getline(in, line)){
       cout << line << endl;
+      i.setAsmString(line);
       string opcode("");
       string operand[80];
       int operand_count = 0;
