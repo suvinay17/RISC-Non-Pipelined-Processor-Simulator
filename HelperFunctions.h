@@ -10,7 +10,7 @@ using namespace std;
 class HelperFunctions{
 
   public:
-    double binaryToDecimal(string input);
+    int binaryToDecimal(string input);
     string dectoBin(string input);
     string dectoHex(string input);
     string hextoBin(string input);

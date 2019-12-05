@@ -18,7 +18,7 @@ enum Opcode {
   SW,           //5
   BEQ,          //6
   J,            //7
-  UNDEFINED
+  UNDEFINED     //8
 };
 
 // Different types of MIPS encodings

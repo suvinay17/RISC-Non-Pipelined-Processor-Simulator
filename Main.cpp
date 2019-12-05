@@ -34,16 +34,20 @@ using namespace std;
 
  int main(int argc, char *argv[])
  {
- 	Simulator* stim ;
+ 	Simulator* sim ;
 
    if(argc < 2){
      cerr << "Need to specify a configuration file to stimulate the processr."<<endl;
      exit(1);
    }
- 	stim =new Simulator (argv[1]);
- 	stim->simulate();
+ 	
+ 
 
- 	delete stim;
+ 	sim =new Simulator (argv[1]);
+ 	sim->simulate();
+
+
+ 	delete sim;
  };
 
 

@@ -46,6 +46,12 @@ int Instruction::getName()
     return (int)myOpcode;   
 }
 
+string Instruction::getFunctionField()
+{
+    OpcodeTable o;
+    return o.getFunctField(myOpcode);
+}
+
 string Instruction::getString()
 // Returns a string which represents all of the fields 
 {

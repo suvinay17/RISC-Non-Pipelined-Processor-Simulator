@@ -208,16 +208,16 @@ string HelperFunctions::bintoHex(string bin){
 
 }
 
-double HelperFunctions::binaryToDecimal(string input) {
+int HelperFunctions::binaryToDecimal(string input) {
 
-	double decimal = 0.0;
+	int decimal = 0;
 	int power = 0;
 
 	// For each char in the given 32-bit input
 	for(int i = input.length() - 1; i >= 0; i--) {
 
 		if (input.at(i) == '1') {
-			decimal += pow(2.0, power);
+			decimal += pow(2, power);
 		}
 		power++;
 	}

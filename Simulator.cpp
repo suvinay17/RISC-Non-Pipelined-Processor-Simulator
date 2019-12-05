@@ -118,7 +118,7 @@ void Simulator::simulate(){
     if(i.getName() == 7)
     {
        //we need to check if the immediate is a hex or dec number
-       string shifted = sll1.shift(help.hextoBin(""+i.getImmediate()));
+       string shifted = sll1.shift(help.hextoBin(i.getImmediate()));
        string combined = addrBin.substr(0,4);       //combine first 4 bits of current address with the shifted jump value
        combined.append(shifted);
 
@@ -165,15 +165,21 @@ void Simulator::simulate(){
         }
         int r1_Int = help.binaryToDecimal(r1); //move to helper functions
         int r2_Int = help.binaryToDecimal(r2); //move to helper functions
+        cout << "test" << endl;
+        cout << r1_Int << endl;
+        string test = registry.getRegValue("2");
+        cout << test << endl;
+        string valatr1 = registry.getRegValue(to_string(r1_Int));
+        string valAtR2 = registry.getRegValue(to_string(r2_Int));
 
-        string valatr1 = registry.getRegValue("" + r1);
-        string valAtR2 = registry.getRegValue(""  + r2);
-
+        cout << "test" << endl;
         string ext = signext.extend(immediate);
 
+        cout << "test" << endl;
         multi2.setFirstInput(help.hextoBin(valAtR2));
         multi2.setSecondInput(ext);
 
+        cout << "test" << endl;
 
         string AluInput = multi2.getResult();
 
@@ -183,11 +189,15 @@ void Simulator::simulate(){
 
         alu3.setInput_1(help.hextoBin(valatr1));
         alu3.setInput_2(AluInput);
-
+        cout << "test" << endl;
 
         //alucontrol.setControl(control.getValue("aluOp1"), control.getValue("aluOp2"));
-        string funct;
+        string funct = i.getFunctionField();
         string op = alucontrol.getControlOutput(control.getValue("aluOp1"), control.getValue("aluOp2"), funct);
+
+        if(debug_mode) {
+            cout << "ALU Control result is: " << op << endl;
+        }
 
         alu3.setOperation(op);
 
@@ -230,7 +240,7 @@ void Simulator::simulate(){
 
         int writeint = help.hextoDec(registry.getRegValue(writeRegister));
 
-        registry.setRegValueByNumber("" + writeint, writeData);
+        registry.setRegValueByNumber(to_string(writeint), writeData);
 
         }
 

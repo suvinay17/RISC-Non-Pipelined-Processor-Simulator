@@ -44,7 +44,7 @@ RegisterTable::RegisterTable()
   myRegisters[i].name = "$30";  myRegisters[i].number = i; myRegisters[i].value = "0x0000"; i++;
   myRegisters[i].name = "$31";  myRegisters[i].number = i; myRegisters[i].value = "0x0000"; i++;
 
-  myRegisters[i].name = "$zero";  myRegisters[i].number = 0; myRegisters[i].value = "0x0000"; i++;
+  /*myRegisters[i].name = "$zero";  myRegisters[i].number = 0; myRegisters[i].value = "0x0000"; i++;
   myRegisters[i].name = "$v0";  myRegisters[i].number = 2; myRegisters[i].value = "0x0000"; i++;
   myRegisters[i].name = "$v1";  myRegisters[i].number = 3; myRegisters[i].value = "0x0000"; i++;
   myRegisters[i].name = "$a0";  myRegisters[i].number = 4; myRegisters[i].value = "0x0000"; i++;
@@ -80,14 +80,14 @@ RegisterTable::RegisterTable()
   myRegisters[i].name = "$fp";  myRegisters[i].number = 30; myRegisters[i].value = "0x0000"; i++;
 
   myRegisters[i].name = "$ra";  myRegisters[i].number = 31; myRegisters[i].value = "0x0000"; i++;
-
+*/
 }
 
 Register RegisterTable::getNum(string reg)
   // Given a string representing a MIPS register operand, returns the number associated
   // with that register.  If string is not a valid register, returns NumRegisters.
 {
-  for(int i = 0; i < 2*NumRegisters; i++){
+  for(int i = 0; i < 32; i++){
     if(myRegisters[i].name == reg){
       return myRegisters[i].number;
     }
@@ -99,7 +99,7 @@ Register RegisterTable::getNum(string reg)
 
 void RegisterTable::setRegValueByName(string reg, string data)
 {
-  for(int i = 0; i < 2*NumRegisters; i++){
+  for(int i = 0; i < 32; i++){
     if(myRegisters[i].name == reg){
       myRegisters[i].value = data;
     }
@@ -108,7 +108,7 @@ void RegisterTable::setRegValueByName(string reg, string data)
 }
 void RegisterTable::setRegValueByNumber(string regNum, string data)
 {
-  for(int i = 0; i < 2*NumRegisters; i++){
+  for(int i = 0; i < 32; i++){
     if((to_string(myRegisters[i].number)) == regNum){
       myRegisters[i].value = data;
     }
@@ -118,8 +118,9 @@ void RegisterTable::setRegValueByNumber(string regNum, string data)
 
 string RegisterTable::getRegValue(string reg)
 {
-  for(int i = 0; i < 2*NumRegisters; i++){
-    if(myRegisters[i].name == reg){
+  for(int i = 0; i < 32; i++){
+    //if(myRegisters[i].name == reg){
+    if(to_string(myRegisters[i].number) == reg){
       return myRegisters[i].value;
     }
 
