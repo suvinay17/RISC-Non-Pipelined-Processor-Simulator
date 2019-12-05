@@ -28,7 +28,7 @@ class Instruction{
   Register getRS()     { return myRS; };
   Register getRD()     { return myRD; };
   Register getRT()     { return myRT; };
-  string getImmediate()   { return "" + myImmediate; };
+  string getImmediate()   { return to_string(myImmediate); };
 
   // Returns a string which represents all of the fields 
   string getString();

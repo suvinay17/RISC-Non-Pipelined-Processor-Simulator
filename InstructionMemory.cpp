@@ -39,9 +39,13 @@ InstructionMemory::InstructionMemory(string filename)
       }
 
       bool success = getOperands(i, o, operand, operand_count);
-      if(!success){
+      if(!success)
+      {
+        cout << (int)o << endl;
+        cout << operand << endl;
+        cout << operand_count << endl;;
 	    myFormatCorrect = false;
-        cout << "break" << endl;
+        cout << "myFormat = false" << endl;
 	    break;
       }
 
@@ -231,7 +235,7 @@ bool InstructionMemory::getOperands(Instruction &i, Opcode o,
   if(rs_p != -1){
     rs = registers.getNum(operand[rs_p]);
     if(rs == NumRegisters){
-        cout << "break1" << endl;       
+        cout << "break 1" << endl;
         return false;
     }
   }
@@ -239,8 +243,8 @@ bool InstructionMemory::getOperands(Instruction &i, Opcode o,
   if(rt_p != -1){
     rt = registers.getNum(operand[rt_p]);
     if(rt == NumRegisters){
-        cout << "break2" << endl;       
-      return false;
+        cout << "break 2" << endl;
+        return false;
     }
 
   }
@@ -248,8 +252,8 @@ bool InstructionMemory::getOperands(Instruction &i, Opcode o,
   if(rd_p != -1){
     rd = registers.getNum(operand[rd_p]);
     if(rd == NumRegisters) {
-        cout << "break3" << endl;       
-      return false;
+        cout << "break 3" << endl;
+        return false;
     }
 
   }
@@ -258,19 +262,19 @@ bool InstructionMemory::getOperands(Instruction &i, Opcode o,
     if(isNumberString(operand[imm_p])){  // does it have a numeric immediate field?
       imm = cvtNumString2Number(operand[imm_p]);
       if(((abs(imm) & 0xFFFF0000)<<1)) { // too big a number to fit
-        cout << "break4" << endl;       
-	return false;
+        cout << "break 4" << endl;
+	    return false;
       }
     }
-    else{ 
+    else{
       if(opcodes.isIMMLabel(o)){  // Can the operand be a label?
-	// Assign the immediate field an address
-	imm = myLabelAddress;
-	myLabelAddress += 4;  // increment the label generator
+	    // Assign the immediate field an address
+	    imm = myLabelAddress;
+	    myLabelAddress += 4;  // increment the label generator
       }
       else {  // There is an error
-        cout << "break5" << endl;       
-	return false;
+        cout << "break 5" << endl;
+	    return false;
       }
     }
 
@@ -286,6 +290,7 @@ string InstructionMemory::encode(Instruction i)
   // Given a valid instruction, returns a string representing the 32 bit MIPS binary encoding
   // of that instruction.
 {
+  HelperFunctions help;
   string inst = "";	//string to store 32 bit address in
   Opcode op = i.getOpcode();	//get the opcode of Instruction i
   InstType type = opcodes.getInstType(op);	//get the instType for the switch
@@ -295,7 +300,8 @@ string InstructionMemory::encode(Instruction i)
   {
     case JTYPE: {
 	inst.append(opcodes.getOpcodeField(op));	//Appends the opcode
-	int imm = stoi(i.getImmediate());			//gets the immediate value and translates it into 26 bit binary
+    //string temp = (help.hextoDec(i.getImmediate()));
+    int imm = help.hextoDec(i.getImmediate());			//gets the immediate value and translates it into 26 bit binary
 	bitset<26> bitImm(imm);
 	inst.append(bitImm.to_string());		//appends immediate field
  	}	
