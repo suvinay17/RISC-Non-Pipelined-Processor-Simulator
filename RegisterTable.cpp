@@ -11,7 +11,7 @@ RegisterTable::RegisterTable()
   myRegisters[i].name = "$3";  myRegisters[i].number = i; myRegisters[i].value = "0x0000"; i++;
 
   myRegisters[i].name = "$4";  myRegisters[i].number = i; myRegisters[i].value = "0x0000"; i++;
-  myRegisters[i].name = "$5";  myRegisters[i].number = i; myRegisters[i].value = "0x000000000"; i++;
+  myRegisters[i].name = "$5";  myRegisters[i].number = i; myRegisters[i].value.reserve(20); myRegisters[i].value = "0x000000000"; i++;
   myRegisters[i].name = "$6";  myRegisters[i].number = i; myRegisters[i].value = "0x0000"; i++;
   myRegisters[i].name = "$7";  myRegisters[i].number = i; myRegisters[i].value = "0x0000"; i++;
 
@@ -117,21 +117,30 @@ void RegisterTable::setRegValueByNumber(string regNum, string data)
   }
 }
 
-void RegisterTable::setRegValueByNum(int regNum, string data)
+/*void RegisterTable::setRegValueByNum(int regNum, string data)
 {
   for(int i = 0; i < 32; i++){
-    if(myRegisters[i].number == regNum){
-      cout << data << endl;
-      cout << i << endl;
-      cout << regNum << endl;
-      cout << myRegisters[i].number << endl;
+    if(i == regNum){
       myRegisters[i].value = data;
       cout << "test"<< endl;
     }
 
   }
+    cout << regNum << endl;
+    myRegisters[regNum].value = data;
+}*/
+
+
+void RegisterTable::setRegValueByNum(int regNum, string data)
+{
+    cout << regNum << endl;
+    changeValue(&myRegisters[regNum], data);
 }
 
+void RegisterTable::changeValue(RegisterEntry *change, string data)
+{
+    change->value = data;
+}
 
 //string RegisterTable::getRegValue(string reg)
 string RegisterTable::getRegValue(int reg)
