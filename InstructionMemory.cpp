@@ -64,7 +64,7 @@ InstructionMemory::InstructionMemory(string filename)
 Instruction InstructionMemory::getNextInstruction()
   // Iterator that returns the next Instruction in the list of Instructions.
 {
-  if(myIndex < (int)(myInstructions.size())){
+  if(myIndex <= (int)(myInstructions.size())){
     myIndex++;
     return myInstructions[myIndex-1];
   }
