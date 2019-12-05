@@ -35,5 +35,5 @@ string ALUControl::getControlOutput(int input1, int input2, string funct)
        else if(last4 == "1010")
            return "lessThan";
    }
-   return "failed";
+   return "load/store";
 }
