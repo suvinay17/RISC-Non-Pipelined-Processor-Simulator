@@ -9,11 +9,11 @@ OpcodeTable::OpcodeTable()
  
     myArray[SUB].name = "sub";  myArray[SUB].numOps = 3;   myArray[SUB].rdPos = 0;  myArray[SUB].rsPos = 1;  myArray[SUB].rtPos = 2;   myArray[SUB].immPos = -1;  myArray[SUB].instType = RTYPE; myArray[SUB].op_field = "000000"; myArray[SUB].funct_field = "100010";
     
-    myArray[LW].name = "lw";  myArray[LW].numOps = 3;   myArray[LW].rdPos = -1;  myArray[LW].rsPos = 2;  myArray[LW].rtPos = 1;   myArray[LW].immPos = 0;  myArray[LW].instType = ITYPE; myArray[LW].op_field = "100011"; myArray[LW].funct_field = "000000";
+    myArray[LW].name = "lw";  myArray[LW].numOps = 3;   myArray[LW].rdPos = -1;  myArray[LW].rsPos = 0;  myArray[LW].rtPos = 2;   myArray[LW].immPos = 1;  myArray[LW].instType = ITYPE; myArray[LW].op_field = "100011"; myArray[LW].funct_field = "000000";
     
-    myArray[SW].name = "sw";  myArray[SW].numOps = 3;   myArray[SW].rdPos = -1;  myArray[SW].rsPos = 2;  myArray[SW].rtPos = 1;   myArray[SW].immPos = 0;  myArray[SW].instType = ITYPE; myArray[SW].op_field = "101011"; myArray[SW].funct_field = "000000";
+    myArray[SW].name = "sw";  myArray[SW].numOps = 3;   myArray[SW].rdPos = -1;  myArray[SW].rsPos = 0;  myArray[SW].rtPos = 2;   myArray[SW].immPos = 1;  myArray[SW].instType = ITYPE; myArray[SW].op_field = "101011"; myArray[SW].funct_field = "000000";
     
-    myArray[BEQ].name = "beq";  myArray[BEQ].numOps = 3;   myArray[BEQ].rdPos = -1;  myArray[BEQ].rsPos = 0;  myArray[BEQ].rtPos = 1;   myArray[BEQ].immPos = 2;  myArray[BEQ].instType = JTYPE; myArray[BEQ].op_field = "000100"; myArray[BEQ].funct_field = "000000";
+    myArray[BEQ].name = "beq";  myArray[BEQ].numOps = 3;   myArray[BEQ].rdPos = -1;  myArray[BEQ].rsPos = 0;  myArray[BEQ].rtPos = 1;   myArray[BEQ].immPos = 2;  myArray[BEQ].instType = JTYPE; myArray[BEQ].op_field = "000100"; myArray[BEQ].funct_field = "000000", myArray[BEQ].immLabel = true;
     
     myArray[SLT].name = "slt";  myArray[SLT].numOps = 3;   myArray[SLT].rdPos = 0;  myArray[SLT].rsPos = 1;  myArray[SLT].rtPos = 2;   myArray[SLT].immPos = -1;  myArray[SLT].instType = RTYPE; myArray[SLT].op_field = "000000"; myArray[SLT].funct_field = "101010";
  
@@ -113,26 +113,27 @@ bool OpcodeTable::isIMMLabel(Opcode o)
 // Given an Opcode, returns true if instruction expects a label in the instruction.
 // See "J".
 {
-  if(o < 0 || o > UNDEFINED)
+  if(o < 0 || o > UNDEFINED){
     return false;
+  }
   return myArray[o].immLabel;
 }
 string OpcodeTable::getInstName(int i)
 {
   if(i == 0){
-	return "ADD";}
+	    return "ADD";}
   if(i == 1){
         return "ADDI";}
   if(i == 2){
         return "SUB";}
   if(i == 3){
-        return "LW";}
-  if(i == 4){
-        return "SW";}
-  if(i == 5){
-        return "BEQ";}
-  if(i == 6){
         return "SLT";}
+  if(i == 4){
+        return "LW";}
+  if(i == 5){
+        return "SW";}
+  if(i == 6){
+        return "BEQ";}
   if(i == 7){
         return "J";
 }
