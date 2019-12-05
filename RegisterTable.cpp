@@ -147,3 +147,23 @@ string RegisterTable::getRegValue(string reg)
   return myReg[reg];
 
 }
+void  RegisterTable::printRegisters()
+{
+    for(int i = 0; i < 32; i++)
+    {
+        string j = to_string(i);
+        cout << i << ":" << myReg[j] << endl;
+    }
+  }
+void  RegisterTable::printFinalRegisters(string regFile)
+{
+  ofstream file;
+  file.open(regFile);
+    for(int i = 0; i < 32; i++)
+    {
+        string j = to_string(i);   
+        file << i << ":" << myReg[j] << endl;
+    }
+    file.close();      
+}
+
