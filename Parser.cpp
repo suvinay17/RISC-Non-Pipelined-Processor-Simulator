@@ -31,7 +31,7 @@ bool Parser::getWrite_to_file() { return write_to_file; }
 string Parser::getOutput_file(){ return output_file; }
 
 
-void Parser::ParseRegFile(string filename, RegisterTable table){
+void Parser::ParseRegFile(string filename, RegisterTable &table){
   ifstream in;
   in.open(filename.c_str());
   if(in.bad()){
@@ -48,12 +48,13 @@ void Parser::ParseRegFile(string filename, RegisterTable table){
       size_t pos = line.find(":");
       string param = line.substr(0, pos);
       string value = line.substr(pos+1);
+      cout << param << "\t" << value << endl;
       table.setRegValueByNumber(param, value); 
     }
   }
 }       
 
-void Parser::ParseMemFile(string filename, DataMemory mem){
+void Parser::ParseMemFile(string filename, DataMemory &mem){
 ifstream in;
   in.open(filename.c_str());
   if(in.bad()){

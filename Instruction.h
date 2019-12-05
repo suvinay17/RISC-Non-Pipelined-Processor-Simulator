@@ -39,6 +39,8 @@ class Instruction{
   // Returns the name of the instruction
   int getName();
 
+  string getFunctionField();
+
   // Returns string representing the 32 binary encoding of MIPS instruction
   string getEncoding() { return myEncoding; };
 
