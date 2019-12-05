@@ -26,22 +26,23 @@ InstructionMemory::InstructionMemory(string filename)
       getTokens(line, opcode, operand, operand_count);
 
       if(opcode.length() == 0 && operand_count != 0){
-	// No opcode but operands
-	myFormatCorrect = false;
-	break;
+	    // No opcode but operands
+	    myFormatCorrect = false;
+	    break;
       }
 
       Opcode o = opcodes.getOpcode(opcode);      
       if(o == UNDEFINED){
-	// invalid opcode specified
-	myFormatCorrect = false;
-	break;
+	    // invalid opcode specified
+	    myFormatCorrect = false;
+	    break;
       }
 
       bool success = getOperands(i, o, operand, operand_count);
       if(!success){
-	myFormatCorrect = false;
-	break;
+	    myFormatCorrect = false;
+        cout << "break" << endl;
+	    break;
       }
 
       string encoding = encode(i);
@@ -229,29 +230,37 @@ bool InstructionMemory::getOperands(Instruction &i, Opcode o,
 
   if(rs_p != -1){
     rs = registers.getNum(operand[rs_p]);
-    if(rs == NumRegisters)
-      return false;
+    if(rs == NumRegisters){
+        cout << "break1" << endl;       
+        return false;
+    }
   }
 
   if(rt_p != -1){
     rt = registers.getNum(operand[rt_p]);
-    if(rt == NumRegisters)
+    if(rt == NumRegisters){
+        cout << "break2" << endl;       
       return false;
+    }
 
   }
   
   if(rd_p != -1){
     rd = registers.getNum(operand[rd_p]);
-    if(rd == NumRegisters)
+    if(rd == NumRegisters) {
+        cout << "break3" << endl;       
       return false;
+    }
 
   }
 
   if(imm_p != -1){
     if(isNumberString(operand[imm_p])){  // does it have a numeric immediate field?
       imm = cvtNumString2Number(operand[imm_p]);
-      if(((abs(imm) & 0xFFFF0000)<<1))  // too big a number to fit
+      if(((abs(imm) & 0xFFFF0000)<<1)) { // too big a number to fit
+        cout << "break4" << endl;       
 	return false;
+      }
     }
     else{ 
       if(opcodes.isIMMLabel(o)){  // Can the operand be a label?
@@ -259,8 +268,10 @@ bool InstructionMemory::getOperands(Instruction &i, Opcode o,
 	imm = myLabelAddress;
 	myLabelAddress += 4;  // increment the label generator
       }
-      else  // There is an error
+      else {  // There is an error
+        cout << "break5" << endl;       
 	return false;
+      }
     }
 
   }
