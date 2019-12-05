@@ -8,13 +8,17 @@ SignExtend::SignExtend()
 string SignExtend::extend(string input)
 {
     HelperFunctions help;
-    string binary =  help.hextoBin(input);
-    string posneg = binary.substr(0,1);
-    string output;
-    for(int i = 0; i < 16; i++)
-        output.append(posneg.substr(0,1));   output.append(input);
-    output.append(binary);
+    //string binary =  help.hextoBin(input);
+    string one = "1111111111111111";
+    string zero = "0000000000000000";
+    
+    char posneg = input[0];
+    string output = "";
+    if(posneg == '1')
+        output += one;
+    else
+        output += zero;
+
+    output.append(input);
     return output;
-    //string outputHex = help.bintoHex(output);
-    //return outputHex;
 }

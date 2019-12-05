@@ -89,11 +89,8 @@ void Simulator::simulate(){
       }
     }
 
-    if(debug_mode)
-    {
-        cout << "printing the next instruction to see if it was fetched correctly: " << i.getName() << endl;
+  cout << "printing the next instruction to see if it was fetched correctly: " << i.getName() << endl;
 
-    }
 
   addr = pc.getCurrentAddress();
   addrBin = help.hextoBin(addr);
@@ -105,9 +102,9 @@ void Simulator::simulate(){
     alu1.setOperation("add");
     alu1.conductOperation();
     string incrementedPC = alu1.getResult();
-    if(debug_mode){
-	    cout << " The result of adding 4 to the address using ALU is :" << incrementedPC << endl;
-    }
+    cout << "ALU1 input_1: " << addrBin << endl;
+    cout << "ALU1 input_2: " << "100" << endl;
+    cout << " The result of adding 4 to the address using ALU is :" << incrementedPC << endl;
 
     control.setInstruction(i);
     cout << "Control Signals: " << endl;
@@ -128,9 +125,8 @@ void Simulator::simulate(){
     multi3.setControlInput(control.getValue("memToReg"));
     multi4.setControlInput(control.getValue("jump"));
     multi5.setControlInput(control.getValue("branch"));
-    if(debug_mode){
-	    cout << " Instruction in 32 bit format is: " << instMem->encode(i) << endl;
-    }
+    cout << " Instruction in 32 bit format is: " << instMem->encode(i) << endl;
+    
 
     if(i.getName() == 7)
     {
@@ -138,7 +134,8 @@ void Simulator::simulate(){
        string shifted = sll1.shift(help.hextoBin(i.getImmediate()));
        string combined = addrBin.substr(0,4);       //combine first 4 bits of current address with the shifted jump value
        combined.append(shifted);
-
+       cout << "SLL1 input: " << help.hextoBin(i.getImmediate()) << endl;
+       cout << "SLL1 output: " << shifted << endl;
        if(multi4.getControlInput() == 1)
        {
             pc.setAddress(combined);
@@ -158,14 +155,13 @@ void Simulator::simulate(){
         string jumpAddr = encoded.substr(6,26);
         string functCode = encoded.substr(26,6);
         string jsll = sll1.shift(jumpAddr);
-
-        if(debug_mode){
+        cout << "SLL1 input: " << jumpAddr << endl;
+        cout << "SLL1 output: " << jsll << endl;
         cout << "Address for Jump in binary: " << jumpAddr << endl;
         cout << "immediate value in binary: " << immediate << endl;
         cout << "r1,r2,r3 are: " << r1 << "," << r2 << "," << r3 << endl;
         cout << "function code is: " << functCode << endl;
         cout << "Jump shifted left by 2 is" << jumpAddr << endl;
-      }
 
 
 
@@ -173,13 +169,14 @@ void Simulator::simulate(){
 
 
         multi4.setSecondInput(jsll);
+        cout << "multi4 second input: " << jsll << endl;
         multi1.setFirstInput(r2);
         multi1.setSecondInput(r3);
+        cout << "multi1 first input: " << r2 << endl;
+        cout << "multi second input: " << r3 << endl;
 
         string writeRegister = multi1.getResult();
-        if(debug_mode){
-    	    cout << " Multiplexor 1 result is : " << writeRegister << endl;
-        }
+    	cout << " Multiplexor 1 result is : " << writeRegister << endl;
         int r1_Int = help.binaryToDecimal(r1); //move to helper functions
         int r2_Int = help.binaryToDecimal(r2); //move to helper functions
         string r1_Str= to_string(r1_Int);
@@ -189,22 +186,23 @@ void Simulator::simulate(){
         string valAtR2 = registry.getRegValue(r2_Str);
         
         string ext = signext.extend(immediate);
-
+        cout << "sign extend input: " << immediate << endl;
+        cout << "sign extend output: " << ext << endl;
         multi2.setFirstInput(help.hextoBin(valAtR2));
         multi2.setSecondInput(ext);
-
+        cout << "multi2 first input: " << help.hextoBin(valAtR2) << endl;
+        cout << "multi2 second input: " << ext << endl;
+     
 
         string AluInput = multi2.getResult();
 
-        if(debug_mode){
     	    cout << " Multiplexor 2 result is : " << AluInput << endl;
-        }
 
         alu3.setInput_1(help.hextoBin(valatr1));
         alu3.setInput_2(AluInput);
 
-
-
+        cout << "ALU3 input_1 : " << help.hextoBin(valatr1) << endl;
+        cout << "ALU3 input_2: " << AluInput << endl;
 
 
 
@@ -214,18 +212,14 @@ void Simulator::simulate(){
         cout << control.getValue("aluOp1") << "\t" << control.getValue("aluOp2") << endl;
         string op = alucontrol.getControlOutput(control.getValue("aluOp1"), control.getValue("aluOp2"), funct);
         cout << op << endl;
-        if(debug_mode) {
             cout << "ALU Control result is: " << op << endl;
-        }
 
         alu3.setOperation(op);
 
         alu3.conductOperation();
 
         string alu3_Result = alu3.getResult();
-        if(debug_mode) {
             cout << "ALU 3 result: " << alu3_Result << endl;
-        }
 
 
         if(control.getValue("branch") == 1 && alu3_Result == "equal")
@@ -239,20 +233,19 @@ void Simulator::simulate(){
         if(control.getValue("memWrite") == 1)
         {
             string hexMemWrite = help.bintoHex(alu3_Result);
-            if(debug_mode) {
                 cout << "Write to mem: " << valAtR2 << "\tat: " << hexMemWrite << endl;
-            }
             memory.setData(hexMemWrite, valAtR2);
         }
         
         string alu3_ResultHex = help.bintoHex(alu3_Result);
 
         multi3.setFirstInput(alu3_ResultHex);
-
+        cout << "multi3 first input: " << alu3_ResultHex << endl;
         if(control.getValue("memRead") == 1)
         {
             string dataFromMem = memory.getData(alu3_ResultHex); //consider removing 0x
             multi3.setSecondInput(dataFromMem); //Data from mem here should not have 0x
+            cout << "multi3 second input: " << dataFromMem << endl;
         }
 
         //maybe think about removing 0x
@@ -270,20 +263,26 @@ void Simulator::simulate(){
         }
         cout << "test2" << endl;
         string instructionSLL = sll2.shift(ext);
-
+        cout << "SLL2 input: " << ext << endl;
+        cout << "Sll2 output: " << instructionSLL << endl;
         alu2.setInput_1(incrementedPC);
         alu2.setInput_2(instructionSLL);
         alu2.setOperation("add");
         alu2.conductOperation();
         string alu2_Result = alu2.getResult();
-
+        cout << "ALU2 input_1: " << incrementedPC << endl;
+        cout << "ALU2 input_2: " << instructionSLL << endl;
+        cout << "ALU2 result: " << alu2_Result << endl;
         multi5.setFirstInput(incrementedPC);
         multi5.setSecondInput(alu2_Result);
         string multi5_Result = multi5.getResult();
-
+        cout << "multi5 first input: " << incrementedPC << endl;
+        cout << "multi5  secodn input: " << alu2_Result << endl;
         multi4.setFirstInput(multi5_Result);
+        cout << "Multi4 first input: " << multi5_Result << endl;
 
         string multi4_Result = multi4.getResult();
+        cout << "multi4 result: " << multi4_Result << endl;
 
         string hexResult = help.bintoHex(multi4_Result);
         pc.setAddress(hexResult);
