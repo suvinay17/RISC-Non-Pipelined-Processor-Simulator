@@ -35,10 +35,9 @@ string HelperFunctions::dectoBin(string input){
 }
 
 int HelperFunctions::hextoDec(string input){
-  std::string newStr = HelperFunctions::dectoBin(input);
-  std::string stri = HelperFunctions::bintoHex(newStr);
-  int x = stoi(stri);
-  return x;
+  std::string newStr = HelperFunctions::hextoBin(input);
+  int stri = HelperFunctions::binaryToDecimal(newStr);
+  return stri;
 
 }
 
