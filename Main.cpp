@@ -40,7 +40,7 @@ using namespace std;
      cerr << "Need to specify a configuration file to stimulate the processr."<<endl;
      exit(1);
    }
- 	stim =new Simulatior (argv[1]);
+ 	stim =new Simulator (argv[1]);
  	stim->simulate();
 
  	delete stim;
