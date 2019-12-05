@@ -39,6 +39,8 @@ class Simulator{
   //The actual driver of the program
     void simulate();
 
+    void testRegSet(RegisterTable &registry, int number, string data);
+
 private:
 
     std::string configurationFile; //Default

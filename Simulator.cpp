@@ -17,6 +17,13 @@ output_file = par.getOutput_file();
 }
 
 
+void Simulator::testRegSet(RegisterTable &registry, int number, string data)
+{
+    cout << "side 1" << endl;
+    registry.setRegValueByNum(0, "fasd");
+    cout << "side 2"<< endl;
+}
+
 void Simulator::simulate(){
   getFiles();
   Parser parser;
@@ -254,12 +261,22 @@ void Simulator::simulate(){
         {
             string writeData = multi3.getResult();
             int writeRegisterNum = help.binaryToDecimal(writeRegister);
-            cout << "writeData: " << writeData << "\tregNum: " << writeRegisterNum << endl; 
+
+            //--------------
+            // testing 
+            // All lines of unworking code have been commented so that we can work on other issues
+            //--------------
+            cout << "writeData: " << writeData << "\tregNum: " << writeRegisterNum << endl;
+            //testRegSet(registry, 5, writeData); 
+            //registry.setRegValueByNumber("5", writeData);
+            cout << "tester" << endl;
             int x;
             x = 5;
-            registry.setRegValueByNum(5, writeData);
+            //registry.setRegValueByNum(5, writeData);
             cout << "past" << endl;
-            registry.setRegValueByNum(writeRegisterNum, writeData);
+            //--------------
+
+            //registry.setRegValueByNum(writeRegisterNum, writeData);
 
         }
         cout << "test2" << endl;
@@ -283,7 +300,9 @@ void Simulator::simulate(){
         pc.setAddress(hexResult);
 
         cout << hexResult << endl;
-        i = instMem->getNextInstruction1(incrementedPC);
+   
+        i = instMem->getNextInstruction1(hexResult);
+        //i = instMem->getNextInstruction1(incrementedPC);
 
     }
 

@@ -11,7 +11,7 @@ RegisterTable::RegisterTable()
   myRegisters[i].name = "$3";  myRegisters[i].number = i; myRegisters[i].value = "0x0000"; i++;
 
   myRegisters[i].name = "$4";  myRegisters[i].number = i; myRegisters[i].value = "0x0000"; i++;
-  myRegisters[i].name = "$5";  myRegisters[i].number = i; myRegisters[i].value.reserve(20); myRegisters[i].value = "0x000000000"; i++;
+  myRegisters[i].name = "$5";  myRegisters[5].number = i; myRegisters[i].value.reserve(20); myRegisters[i].value = "0x000000000"; i++;
   myRegisters[i].name = "$6";  myRegisters[i].number = i; myRegisters[i].value = "0x0000"; i++;
   myRegisters[i].name = "$7";  myRegisters[i].number = i; myRegisters[i].value = "0x0000"; i++;
 
@@ -139,7 +139,9 @@ void RegisterTable::setRegValueByNum(int regNum, string data)
 
 void RegisterTable::changeValue(RegisterEntry *change, string data)
 {
+    cout << "test" << endl;
     change->value = data;
+    cout << "test" << endl;
 }
 
 //string RegisterTable::getRegValue(string reg)

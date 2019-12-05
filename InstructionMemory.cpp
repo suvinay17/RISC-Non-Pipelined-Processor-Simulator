@@ -18,6 +18,7 @@ InstructionMemory::InstructionMemory(string filename)
   else{
     string line;
     while( getline(in, line)){
+      cout << line << endl;
       string opcode("");
       string operand[80];
       int operand_count = 0;
@@ -45,7 +46,7 @@ InstructionMemory::InstructionMemory(string filename)
 
       string encoding = encode(i);
       i.setEncoding(encoding);
-
+      cout << encoding << endl;
       myInstructions.push_back(i);
 
     }
@@ -72,6 +73,7 @@ Instruction InstructionMemory::getNextInstruction()
 Instruction InstructionMemory::getNextInstruction1(string position)
   // Returns the next Instruction in the list of Instructions.
 {
+  return myInstructions[1];
   HelperFunctions help;
   string start = "0x400000";
   unsigned int place = (help.hextoDec(position) - help.hextoDec(start))/4;
