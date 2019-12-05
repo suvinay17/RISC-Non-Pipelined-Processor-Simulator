@@ -87,6 +87,7 @@ void Simulator::simulate(){
             exit(1);
           }
       }
+       cout << endl;
     }
 
   cout << "printing the next instruction to see if it was fetched correctly: " << i.getName() << endl;
@@ -211,15 +212,14 @@ void Simulator::simulate(){
         string funct = i.getFunctionField();
         cout << control.getValue("aluOp1") << "\t" << control.getValue("aluOp2") << endl;
         string op = alucontrol.getControlOutput(control.getValue("aluOp1"), control.getValue("aluOp2"), funct);
-        cout << op << endl;
-            cout << "ALU Control result is: " << op << endl;
+        cout << "ALU Control result is: " << op << endl;
 
         alu3.setOperation(op);
 
         alu3.conductOperation();
 
         string alu3_Result = alu3.getResult();
-            cout << "ALU 3 result: " << alu3_Result << endl;
+        cout << "ALU 3 result: " << alu3_Result << endl;
 
 
         if(control.getValue("branch") == 1 && alu3_Result == "equal")
@@ -251,13 +251,12 @@ void Simulator::simulate(){
         //maybe think about removing 0x
 
 
-        cout << "test1" << endl;
         if(control.getValue("regWrite") == 1)
         {
             string writeData = multi3.getResult();
             int writeRegisterNum = help.binaryToDecimal(writeRegister);
             string regNum= to_string(writeRegisterNum);
-
+            cout << "writedata test: " << writeData << endl;
             registry.setRegValueByNumber(regNum, writeData);
 
         }
@@ -290,6 +289,9 @@ void Simulator::simulate(){
         cout << hexResult << endl;
    
         i = instMem->getNextInstruction1(hexResult);
+        if(print_memory_contents)
+            cout << endl;
+            registry.printRegisters();
         //i = instMem->getNextInstruction1(incrementedPC);
         cout << endl << endl;
 
