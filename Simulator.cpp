@@ -20,7 +20,7 @@ output_file = par.getOutput_file();
 void Simulator::testRegSet(RegisterTable &registry, int number, string data)
 {
     cout << "side 1" << endl;
-    registry.setRegValueByNum(0, "fasd");
+    registry.setRegValueByNumber("0", "fasd");
     cout << "side 2"<< endl;
 }
 
@@ -181,10 +181,11 @@ void Simulator::simulate(){
         }
         int r1_Int = help.binaryToDecimal(r1); //move to helper functions
         int r2_Int = help.binaryToDecimal(r2); //move to helper functions
+        string r1_Str= to_string(r1_Int);
+	string r2_Str= to_string(r2_Int);
         
-        
-        string valatr1 = registry.getRegValue(r1_Int);
-        string valAtR2 = registry.getRegValue(r2_Int);
+        string valatr1 = registry.getRegValue(r1_Str);
+        string valAtR2 = registry.getRegValue(r2_Str);
         
         string ext = signext.extend(immediate);
 
@@ -261,6 +262,8 @@ void Simulator::simulate(){
         {
             string writeData = multi3.getResult();
             int writeRegisterNum = help.binaryToDecimal(writeRegister);
+            string regNum= to_string(writeRegisterNum);
+
 
             //--------------
             // testing 
@@ -270,13 +273,13 @@ void Simulator::simulate(){
             //testRegSet(registry, 5, writeData); 
             //registry.setRegValueByNumber("5", writeData);
             cout << "tester" << endl;
-            int x;
-            x = 5;
+            
+            
             //registry.setRegValueByNum(5, writeData);
             cout << "past" << endl;
             //--------------
 
-            //registry.setRegValueByNum(writeRegisterNum, writeData);
+            registry.setRegValueByNumber(regNum, writeData);
 
         }
         cout << "test2" << endl;

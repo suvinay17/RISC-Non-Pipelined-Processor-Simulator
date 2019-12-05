@@ -5,45 +5,45 @@ RegisterTable::RegisterTable()
 {
   int i = 0;
 
-  myRegisters[i].name = "$0";  myRegisters[i].number = i; myRegisters[i].value = "0x0000"; i++;
-  myRegisters[i].name = "$1";  myRegisters[i].number = i; myRegisters[i].value = "0x0000"; i++;
-  myRegisters[i].name = "$2";  myRegisters[i].number = i; myRegisters[i].value = "0x0000"; i++;
-  myRegisters[i].name = "$3";  myRegisters[i].number = i; myRegisters[i].value = "0x0000"; i++;
+  myRegisters[i].name = "$0";  myRegisters[i].number = i; /* myRegisters[i].value = "0x0000"; */i++;
+  myRegisters[i].name = "$1";  myRegisters[i].number = i;/*  myRegisters[i].value = "0x0000";*/ i++;
+  myRegisters[i].name = "$2";  myRegisters[i].number = i;/*  myRegisters[i].value = "0x0000";*/ i++;
+  myRegisters[i].name = "$3";  myRegisters[i].number = i;/*  myRegisters[i].value = "0x0000"; */i++;
 
-  myRegisters[i].name = "$4";  myRegisters[i].number = i; myRegisters[i].value = "0x0000"; i++;
-  myRegisters[i].name = "$5";  myRegisters[5].number = i; myRegisters[i].value.reserve(20); myRegisters[i].value = "0x000000000"; i++;
-  myRegisters[i].name = "$6";  myRegisters[i].number = i; myRegisters[i].value = "0x0000"; i++;
-  myRegisters[i].name = "$7";  myRegisters[i].number = i; myRegisters[i].value = "0x0000"; i++;
+  myRegisters[i].name = "$4";  myRegisters[i].number = i;/*  myRegisters[i].value = "0x0000";*/ i++;
+  myRegisters[i].name = "$5";  myRegisters[5].number = i;/*  myRegisters[i].value.reserve(20); myRegisters[i].value = "0x000000000";*/ i++;
+  myRegisters[i].name = "$6";  myRegisters[i].number = i;/*  myRegisters[i].value = "0x0000";*/ i++;
+  myRegisters[i].name = "$7";  myRegisters[i].number = i;/*  myRegisters[i].value = "0x0000";*/ i++;
 
-  myRegisters[i].name = "$8";  myRegisters[i].number = i; myRegisters[i].value = "0x0000"; i++;
-  myRegisters[i].name = "$9";  myRegisters[i].number = i; myRegisters[i].value = "0x0000"; i++;
-  myRegisters[i].name = "$10";  myRegisters[i].number = i; myRegisters[i].value = "0x0000"; i++;
-  myRegisters[i].name = "$11";  myRegisters[i].number = i; myRegisters[i].value = "0x0000"; i++;
+  myRegisters[i].name = "$8";  myRegisters[i].number = i;/*  myRegisters[i].value = "0x0000";*/ i++;
+  myRegisters[i].name = "$9";  myRegisters[i].number = i;/*  myRegisters[i].value = "0x0000";*/ i++;
+  myRegisters[i].name = "$10";  myRegisters[i].number = i;/*  myRegisters[i].value = "0x0000";*/ i++;
+  myRegisters[i].name = "$11";  myRegisters[i].number = i;/*  myRegisters[i].value = "0x0000";*/ i++;
 
-  myRegisters[i].name = "$12";  myRegisters[i].number = i; myRegisters[i].value = "0x0000"; i++;
-  myRegisters[i].name = "$13";  myRegisters[i].number = i; myRegisters[i].value = "0x0000"; i++;
-  myRegisters[i].name = "$14";  myRegisters[i].number = i; myRegisters[i].value = "0x0000"; i++;
-  myRegisters[i].name = "$15";  myRegisters[i].number = i; myRegisters[i].value = "0x0000"; i++;
+  myRegisters[i].name = "$12";  myRegisters[i].number = i;/*  myRegisters[i].value = "0x0000";*/ i++;
+  myRegisters[i].name = "$13";  myRegisters[i].number = i;/*  myRegisters[i].value = "0x0000";*/ i++;
+  myRegisters[i].name = "$14";  myRegisters[i].number = i;/*  myRegisters[i].value = "0x0000";*/ i++;
+  myRegisters[i].name = "$15";  myRegisters[i].number = i;/*  myRegisters[i].value = "0x0000";*/ i++;
 
-  myRegisters[i].name = "$16";  myRegisters[i].number = i; myRegisters[i].value = "0x0000"; i++;
-  myRegisters[i].name = "$17";  myRegisters[i].number = i; myRegisters[i].value = "0x0000"; i++;
-  myRegisters[i].name = "$18";  myRegisters[i].number = i; myRegisters[i].value = "0x0000"; i++;
-  myRegisters[i].name = "$19";  myRegisters[i].number = i; myRegisters[i].value = "0x0000"; i++;
+  myRegisters[i].name = "$16";  myRegisters[i].number = i;/*  myRegisters[i].value = "0x0000";*/ i++;
+  myRegisters[i].name = "$17";  myRegisters[i].number = i;/*  myRegisters[i].value = "0x0000";*/ i++;
+  myRegisters[i].name = "$18";  myRegisters[i].number = i;/*  myRegisters[i].value = "0x0000";*/ i++;
+  myRegisters[i].name = "$19";  myRegisters[i].number = i;/*  myRegisters[i].value = "0x0000";*/ i++;
 
-  myRegisters[i].name = "$20";  myRegisters[i].number = i; myRegisters[i].value = "0x0000"; i++;
-  myRegisters[i].name = "$21";  myRegisters[i].number = i; myRegisters[i].value = "0x0000"; i++;
-  myRegisters[i].name = "$22";  myRegisters[i].number = i; myRegisters[i].value = "0x0000"; i++;
-  myRegisters[i].name = "$23";  myRegisters[i].number = i; myRegisters[i].value = "0x0000"; i++;
+  myRegisters[i].name = "$20";  myRegisters[i].number = i;/*  myRegisters[i].value = "0x0000";*/ i++;
+  myRegisters[i].name = "$21";  myRegisters[i].number = i;/*  myRegisters[i].value = "0x0000";*/ i++;
+  myRegisters[i].name = "$22";  myRegisters[i].number = i;/*  myRegisters[i].value = "0x0000";*/ i++;
+  myRegisters[i].name = "$23";  myRegisters[i].number = i;/*  myRegisters[i].value = "0x0000";*/ i++;
 
-  myRegisters[i].name = "$24";  myRegisters[i].number = i; myRegisters[i].value = "0x0000"; i++;
-  myRegisters[i].name = "$25";  myRegisters[i].number = i; myRegisters[i].value = "0x0000"; i++;
-  myRegisters[i].name = "$26";  myRegisters[i].number = i; myRegisters[i].value = "0x0000"; i++;
-  myRegisters[i].name = "$27";  myRegisters[i].number = i; myRegisters[i].value = "0x0000"; i++;
+  myRegisters[i].name = "$24";  myRegisters[i].number = i;/*  myRegisters[i].value = "0x0000";*/ i++;
+  myRegisters[i].name = "$25";  myRegisters[i].number = i;/*  myRegisters[i].value = "0x0000";*/ i++;
+  myRegisters[i].name = "$26";  myRegisters[i].number = i;/*  myRegisters[i].value = "0x0000";*/ i++;
+  myRegisters[i].name = "$27";  myRegisters[i].number = i; /* myRegisters[i].value = "0x0000"; */i++;
 
-  myRegisters[i].name = "$28";  myRegisters[i].number = i; myRegisters[i].value = "0x0000"; i++;
-  myRegisters[i].name = "$29";  myRegisters[i].number = i; myRegisters[i].value = "0x0000"; i++;
-  myRegisters[i].name = "$30";  myRegisters[i].number = i; myRegisters[i].value = "0x0000"; i++;
-  myRegisters[i].name = "$31";  myRegisters[i].number = i; myRegisters[i].value = "0x0000"; i++;
+  myRegisters[i].name = "$28";  myRegisters[i].number = i;/*  myRegisters[i].value = "0x0000";*/ i++;
+  myRegisters[i].name = "$29";  myRegisters[i].number = i;/*  myRegisters[i].value = "0x0000";*/ i++;
+  myRegisters[i].name = "$30";  myRegisters[i].number = i;/*  myRegisters[i].value = "0x0000";*/ i++;
+  myRegisters[i].name = "$31";  myRegisters[i].number = i;/*  myRegisters[i].value = "0x0000";*/ i++;
 
   /*myRegisters[i].name = "$zero";  myRegisters[i].number = 0; myRegisters[i].value = "0x0000"; i++;
   myRegisters[i].name = "$v0";  myRegisters[i].number = 2; myRegisters[i].value = "0x0000"; i++;
@@ -109,12 +109,9 @@ void RegisterTable::setRegValueByName(string reg, string data)
 }
 void RegisterTable::setRegValueByNumber(string regNum, string data)
 {
-  for(int i = 0; i < 32; i++){
-    if((to_string(myRegisters[i].number)) == regNum){
-      myRegisters[i].value = data;
-    }
+     myReg[regNum] = data;
 
-  }
+ 
 }
 
 /*void RegisterTable::setRegValueByNum(int regNum, string data)
@@ -131,28 +128,22 @@ void RegisterTable::setRegValueByNumber(string regNum, string data)
 }*/
 
 
-void RegisterTable::setRegValueByNum(int regNum, string data)
+/*void RegisterTable::setRegValueByNum(int regNum, string data)
 {
     cout << regNum << endl;
     changeValue(&myRegisters[regNum], data);
 }
-
-void RegisterTable::changeValue(RegisterEntry *change, string data)
+*/
+/*void RegisterTable::changeValue(RegisterEntry *change, string data)
 {
     cout << "test" << endl;
     change->value = data;
     cout << "test" << endl;
-}
+}*/
 
 //string RegisterTable::getRegValue(string reg)
-string RegisterTable::getRegValue(int reg)
+string RegisterTable::getRegValue(string reg)
 {
-  for(int i = 0; i < 32; i++){
-    if(i == reg) {
-      return myRegisters[i].value;
-    }
-
-  }
-  return "";
+  return myReg[reg];
 
 }
