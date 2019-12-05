@@ -59,7 +59,7 @@ void Simulator::simulate(){
   Instruction i;
   string addrBin = "";
   i = instMem->getNextInstruction();
-  if(debug_mode)
+    if(debug_mode)
   {
     cout << "printing the next instruction to see if it was fetched correctly" << i.getName() << endl;
 
@@ -87,11 +87,9 @@ void Simulator::simulate(){
     }
 
 
-    addr = pc.getCurrentAddress();
-    addrBin = help.hextoBin(addr);
-    //Instruction j = instMem->getNextInstruction(); // new addition
-    //cout << "The above instruction is " <<  << endl;
-
+  addr = pc.getCurrentAddress();
+  addrBin = help.hextoBin(addr);
+  //Instruction j = instMem->getNextInstruction(); // new addition
 
     //adds 4 to the PC
     alu1.setInput_1(addrBin);
@@ -103,9 +101,20 @@ void Simulator::simulate(){
 	    cout << " The result of adding 4 to the address using ALU is :" << incrementedPC << endl;
     }
 
+    control.setInstruction(i);
+    cout << "Control Signals: " << endl;
+    cout << "Control Signal sent to regDest: " << control.getValue("regDest") << endl;                          
+    cout << "Control Signal sent to jump: " << control.getValue("jump") << endl;                          
+    cout << "Control Signal sent to branch: " << control.getValue("branch") << endl;                          
+    cout << "Control Signal sent to memRead: " << control.getValue("memRead") << endl;                          
+    cout << "Control Signal sent to memWrite: " << control.getValue("memWrite") << endl;                          
+    cout << "Control Signal sent to aluSrc: " << control.getValue("aluSrc") << endl;                          
+    cout << "Control Signal sent to regWrite: " << control.getValue("regWrite") << endl;                          
+    cout << "Control Signal sent to memToRead: " << control.getValue("memToReg") << endl;                          
+    cout << "Control Signal 1 sent to ALUControl: " << control.getValue("aluOp1") << endl;                          
+    cout << "Control Signal 2 sent to ALUControl: " << control.getValue("aluOp2") << endl;
 
     //reset control and values in control
-    control.setInstruction(i);
     multi1.setControlInput(control.getValue("regDest"));
     multi2.setControlInput(control.getValue("aluSrc"));
     multi3.setControlInput(control.getValue("memToReg"));
@@ -169,8 +178,6 @@ void Simulator::simulate(){
         
         string valatr1 = registry.getRegValue(r1_Int);
         string valAtR2 = registry.getRegValue(r2_Int);
-        //string valAtR2 = registry.getRegValue(to_string(r2_Int));
-        //string valAtR2 = registry.getRegValue(to_string(r2_Int));
         
         string ext = signext.extend(immediate);
 
@@ -186,7 +193,6 @@ void Simulator::simulate(){
 
         alu3.setInput_1(help.hextoBin(valatr1));
         alu3.setInput_2(AluInput);
-        cout << "test" << endl;
 
 
 
@@ -197,7 +203,6 @@ void Simulator::simulate(){
         //alucontrol.setControl(control.getValue("aluOp1"), control.getValue("aluOp2"));
         string funct = i.getFunctionField();
         cout << control.getValue("aluOp1") << "\t" << control.getValue("aluOp2") << endl;
-        cout << funct.substr(2) << endl;
         string op = alucontrol.getControlOutput(control.getValue("aluOp1"), control.getValue("aluOp2"), funct);
         cout << op << endl;
         if(debug_mode) {
@@ -209,6 +214,10 @@ void Simulator::simulate(){
         alu3.conductOperation();
 
         string alu3_Result = alu3.getResult();
+        if(debug_mode) {
+            cout << "ALU 3 result: " << alu3_Result << endl;
+        }
+
 
         if(control.getValue("branch") == 1 && alu3_Result == "equal")
         {
@@ -221,9 +230,12 @@ void Simulator::simulate(){
         if(control.getValue("memWrite") == 1)
         {
             string hexMemWrite = help.bintoHex(alu3_Result);
+            if(debug_mode) {
+                cout << "Write to mem: " << valAtR2 << "\tat: " << hexMemWrite << endl;
+            }
             memory.setData(hexMemWrite, valAtR2);
         }
-
+        
         string alu3_ResultHex = help.bintoHex(alu3_Result);
 
         multi3.setFirstInput(alu3_ResultHex);
@@ -237,18 +249,20 @@ void Simulator::simulate(){
         //maybe think about removing 0x
 
 
-
+        cout << "test1" << endl;
         if(control.getValue("regWrite") == 1)
         {
             string writeData = multi3.getResult();
             int writeRegisterNum = help.binaryToDecimal(writeRegister);
-            //int writeint = help.hextoDec(registry.getRegValue(writeRegister));
-            int writeint = help.hextoDec(registry.getRegValue(writeRegisterNum));
-
-            registry.setRegValueByNumber(to_string(writeint), writeData);
+            cout << "writeData: " << writeData << "\tregNum: " << writeRegisterNum << endl; 
+            int x;
+            x = 5;
+            registry.setRegValueByNum(5, writeData);
+            cout << "past" << endl;
+            registry.setRegValueByNum(writeRegisterNum, writeData);
 
         }
-
+        cout << "test2" << endl;
         string instructionSLL = sll2.shift(ext);
 
         alu2.setInput_1(incrementedPC);

@@ -28,6 +28,7 @@ class RegisterTable{
   string getRegValue(int reg);                   //returnts the registers data
   void setRegValueByName(string reg, string data);        //updates the registers data by its reg name
   void setRegValueByNumber(string regNum, string data);   //updates the registers data by its reg number  
+  void setRegValueByNum(int regNum, string data);   //updates the registers data by its reg number  
 
  private:
   RegisterEntry myRegisters[64];
