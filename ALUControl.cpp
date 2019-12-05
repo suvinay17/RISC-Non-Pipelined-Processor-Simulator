@@ -28,11 +28,12 @@ string ALUControl::getControlOutput(int input1, int input2, string funct)
    }
    else if(input1 == 1 && input2 == 0)
    {
-       if(funct == "0000")
+       if(last4 == "0000")
            return "add";
-       else if(funct == "0010")
+       else if(last4 == "0010")
            return "sub";
-       else if(funct == "1010")
+       else if(last4 == "1010")
            return "lessThan";
    }
+   return "failed";
 }

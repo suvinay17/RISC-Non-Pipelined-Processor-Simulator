@@ -1,4 +1,5 @@
 #include "RegisterTable.h"
+#include <iostream>
 
 RegisterTable::RegisterTable()
 {
@@ -116,15 +117,17 @@ void RegisterTable::setRegValueByNumber(string regNum, string data)
   }
 }
 
-string RegisterTable::getRegValue(string reg)
+//string RegisterTable::getRegValue(string reg)
+string RegisterTable::getRegValue(int reg)
 {
   for(int i = 0; i < 32; i++){
-    //if(myRegisters[i].name == reg){
-    if(to_string(myRegisters[i].number) == reg){
+      cout << i;
+    if(i == reg) {
       return myRegisters[i].value;
     }
 
   }
+  cout << endl;
   return "";
 
 }

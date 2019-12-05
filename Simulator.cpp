@@ -31,7 +31,7 @@ void Simulator::simulate(){
   InstructionMemory *instMem;
   instMem = new InstructionMemory(program_input);
 
-  ProgramCounter pc("04000000");
+  ProgramCounter pc("00400000");
 
   ALU alu1;                 //Adds 4 to PC
   ALU alu2;                 //Add and ALU Result
@@ -165,21 +165,18 @@ void Simulator::simulate(){
         }
         int r1_Int = help.binaryToDecimal(r1); //move to helper functions
         int r2_Int = help.binaryToDecimal(r2); //move to helper functions
-        cout << "test" << endl;
-        cout << r1_Int << endl;
-        string test = registry.getRegValue("2");
-        cout << test << endl;
-        string valatr1 = registry.getRegValue(to_string(r1_Int));
-        string valAtR2 = registry.getRegValue(to_string(r2_Int));
-
-        cout << "test" << endl;
+        
+        
+        string valatr1 = registry.getRegValue(r1_Int);
+        string valAtR2 = registry.getRegValue(r2_Int);
+        //string valAtR2 = registry.getRegValue(to_string(r2_Int));
+        //string valAtR2 = registry.getRegValue(to_string(r2_Int));
+        
         string ext = signext.extend(immediate);
 
-        cout << "test" << endl;
         multi2.setFirstInput(help.hextoBin(valAtR2));
         multi2.setSecondInput(ext);
 
-        cout << "test" << endl;
 
         string AluInput = multi2.getResult();
 
@@ -191,10 +188,18 @@ void Simulator::simulate(){
         alu3.setInput_2(AluInput);
         cout << "test" << endl;
 
+
+
+
+
+
+
         //alucontrol.setControl(control.getValue("aluOp1"), control.getValue("aluOp2"));
         string funct = i.getFunctionField();
+        cout << control.getValue("aluOp1") << "\t" << control.getValue("aluOp2") << endl;
+        cout << funct.substr(2) << endl;
         string op = alucontrol.getControlOutput(control.getValue("aluOp1"), control.getValue("aluOp2"), funct);
-
+        cout << op << endl;
         if(debug_mode) {
             cout << "ALU Control result is: " << op << endl;
         }
@@ -236,11 +241,11 @@ void Simulator::simulate(){
         if(control.getValue("regWrite") == 1)
         {
             string writeData = multi3.getResult();
+            int writeRegisterNum = help.binaryToDecimal(writeRegister);
+            //int writeint = help.hextoDec(registry.getRegValue(writeRegister));
+            int writeint = help.hextoDec(registry.getRegValue(writeRegisterNum));
 
-
-        int writeint = help.hextoDec(registry.getRegValue(writeRegister));
-
-        registry.setRegValueByNumber(to_string(writeint), writeData);
+            registry.setRegValueByNumber(to_string(writeint), writeData);
 
         }
 
@@ -263,7 +268,7 @@ void Simulator::simulate(){
         string hexResult = help.bintoHex(multi4_Result);
         pc.setAddress(hexResult);
 
-
+        cout << hexResult << endl;
         i = instMem->getNextInstruction1(incrementedPC);
 
     }
