@@ -22,7 +22,8 @@ class Instruction{
 
   // Allows you to specify all the fields of the Instruction
   void setValues(Opcode op, Register rs, Register rt, Register rd, int imm);
-
+  void setAsmString(string str);
+  string getAsmString();
   // Returns the various fields for the Instruction
   Opcode getOpcode()   { return myOpcode;}
   Register getRS()     { return myRS; };
@@ -45,6 +46,7 @@ class Instruction{
   string getEncoding() { return myEncoding; };
 
  private:
+  string asmStr;
   Opcode myOpcode;
   Register myRS;
   Register myRT;

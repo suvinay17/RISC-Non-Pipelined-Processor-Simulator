@@ -14,6 +14,16 @@ Instruction::Instruction(Opcode op, Register rs, Register rt, Register rd, int i
   setValues(op, rs, rt, rd, imm);
 }
 
+void Instruction::setAsmString(string str)
+{
+  asmStr = str;
+}
+
+string Instruction::getAsmString()
+{
+  return asmStr;
+}
+
 void Instruction::setValues(Opcode op, Register rs, Register rt, Register rd, int imm)
 // You can specify all the fields to initialize the Instruction
 {
