@@ -37,7 +37,7 @@ class Instruction{
   void setEncoding(string s) { myEncoding = s;};
 
   // Returns the name of the instruction
-  int getName();
+  Opcode getName();
 
   string getFunctionField();
 

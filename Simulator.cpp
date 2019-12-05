@@ -66,14 +66,10 @@ void Simulator::simulate(){
   Instruction i;
   string addrBin = "";
   i = instMem->getNextInstruction();
-    if(debug_mode)
-  {
-    cout << "printing the next instruction to see if it was fetched correctly" << i.getName() << endl;
-
-  }
 
 
   while(i.getOpcode() != UNDEFINED) {
+
 
     if(output_mode == "single_step"){ //new addition
 
@@ -93,6 +89,11 @@ void Simulator::simulate(){
       }
     }
 
+    if(debug_mode)
+    {
+        cout << "printing the next instruction to see if it was fetched correctly: " << i.getName() << endl;
+
+    }
 
   addr = pc.getCurrentAddress();
   addrBin = help.hextoBin(addr);
@@ -264,21 +265,6 @@ void Simulator::simulate(){
             int writeRegisterNum = help.binaryToDecimal(writeRegister);
             string regNum= to_string(writeRegisterNum);
 
-
-            //--------------
-            // testing 
-            // All lines of unworking code have been commented so that we can work on other issues
-            //--------------
-            cout << "writeData: " << writeData << "\tregNum: " << writeRegisterNum << endl;
-            //testRegSet(registry, 5, writeData); 
-            //registry.setRegValueByNumber("5", writeData);
-            cout << "tester" << endl;
-            
-            
-            //registry.setRegValueByNum(5, writeData);
-            cout << "past" << endl;
-            //--------------
-
             registry.setRegValueByNumber(regNum, writeData);
 
         }
@@ -306,6 +292,7 @@ void Simulator::simulate(){
    
         i = instMem->getNextInstruction1(hexResult);
         //i = instMem->getNextInstruction1(incrementedPC);
+        cout << endl << endl;
 
     }
 

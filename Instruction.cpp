@@ -41,9 +41,9 @@ void Instruction::setValues(Opcode op, Register rs, Register rt, Register rd, in
 
 }
 
-int Instruction::getName()
+Opcode Instruction::getName()
 {
-    return (int)myOpcode;   
+    return myOpcode;   
 }
 
 string Instruction::getFunctionField()

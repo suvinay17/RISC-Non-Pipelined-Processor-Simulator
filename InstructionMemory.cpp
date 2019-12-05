@@ -78,10 +78,12 @@ Instruction InstructionMemory::getNextInstruction()
 Instruction InstructionMemory::getNextInstruction1(string position)
   // Returns the next Instruction in the list of Instructions.
 {
-  return myInstructions[1];
   HelperFunctions help;
   string start = "0x400000";
+  cout << help.hextoDec(position) << "\t" << help.hextoDec(start) << endl;
   unsigned int place = (help.hextoDec(position) - help.hextoDec(start))/4;
+  cout << place << endl;
+  cout << myInstructions.size() << endl;
   if(myInstructions.size() < place) {
     Instruction i;
     return i;
