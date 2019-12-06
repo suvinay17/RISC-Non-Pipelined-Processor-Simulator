@@ -30,6 +30,7 @@ class Instruction{
   Register getRD()     { return myRD; };
   Register getRT()     { return myRT; };
   string getImmediate()   { return to_string(myImmediate); };
+  //void setImm(string imm);  {  };
 
   // Returns a string which represents all of the fields 
   string getString();

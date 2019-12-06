@@ -277,7 +277,8 @@ bool InstructionMemory::getOperands(Instruction &i, Opcode o,
     else{
       if(opcodes.isIMMLabel(o)){  // Can the operand be a label?
 	    // Assign the immediate field an address
-	    imm = myLabelAddress;
+	    //imm = myLabelAddress;
+        imm = 0x100001;
         cout << "ImmLabel: " << myLabelAddress << endl;
 	    //myLabelAddress += 4;  // increment the label generator
       }
@@ -286,7 +287,7 @@ bool InstructionMemory::getOperands(Instruction &i, Opcode o,
 	    return false;
       }
     }
-	    myLabelAddress += 4;  // increment the label generator
+	    //myLabelAddress += 4;  // increment the label generator
 
   }
 

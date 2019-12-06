@@ -154,7 +154,7 @@ void Simulator::simulate(){
         string r2 = encoded.substr(11,5);
         string r3 = encoded.substr(16,5);
         string immediate = encoded.substr(17,15);
-        string jumpAddr = encoded.substr(6,26);
+        string jumpAddr = encoded.substr(6);
         string functCode = encoded.substr(26,6);
         //shifting the jump address
         string jsll = sll1.shift(jumpAddr);
@@ -314,5 +314,17 @@ void Simulator::simulate(){
         cout << "end" << endl;
 
   }
-    cout << "end all" << endl;
+    if(write_to_file)
+  {
+  
+  cout<<"The final register contents have been output to registerOutput"<<endl;
+  registry.printFinalRegisters("registerOutput.memory");
+   /*cout<<"The Instructionmemory has been written to outinstruction.memory"<<endl;
+ *     instMem->imemPrintFinal("instructionMemoryOutput");*/
+    cout<<"The final data memory has been output to dataMemoryOutput"<<endl;
+      memory.dataMemoryPrintFinal("dataMemoryOutput.memory");
+      
+  }
+
+  
 }
