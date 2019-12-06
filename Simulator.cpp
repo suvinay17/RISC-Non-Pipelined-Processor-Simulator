@@ -298,10 +298,15 @@ void Simulator::simulate(){
         cout << "multi4 result: " << multi4_Result << endl;
 
         string hexResult = help.bintoHex(multi4_Result);
+       // if(control.getValue("branch") == 1){
+        //    hexResult = 
         pc.setAddress(hexResult);
 
         cout << "Next Address" << hexResult << endl;
         i = instMem->getNextInstruction1(hexResult);
+
+        cout << "getImmLabel: " << i.getimmLabel() << endl;
+
         if(print_memory_contents)
             cout << endl;
             registry.printRegisters();

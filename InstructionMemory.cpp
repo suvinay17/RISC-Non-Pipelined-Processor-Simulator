@@ -58,9 +58,11 @@ InstructionMemory::InstructionMemory(string filename, SymbolTable &symbolTable)
           string param2 = firstCom.substr(pos1+1);
           cout << "SecondCom " << param2 << endl;
           if((param2[0] == ' ')){
-            param2 = param2.substr(1);
+            param2 = param2.substr(1);          
           }
 
+          i.setimmLabelData(symbolTable.getSymbol(param2));
+            cout << "SETTINGGGGGGGG" << endl;
           immLabel = param2;
           cout << "IMMLABLE from param2: " << immLabel << endl;
 
