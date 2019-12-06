@@ -314,5 +314,17 @@ void Simulator::simulate(){
         cout << "end" << endl;
 
   }
-    cout << "end all" << endl;
+    if(write_to_file)
+  {
+  
+  cout<<"The final register contents have been output to registerOutput"<<endl;
+  registry.printFinalRegisters("registerOutput.memory");
+   /*cout<<"The Instructionmemory has been written to outinstruction.memory"<<endl;
+ *     instMem->imemPrintFinal("instructionMemoryOutput");*/
+    cout<<"The final data memory has been output to dataMemoryOutput"<<endl;
+      memory.dataMemoryPrintFinal("dataMemoryOutput.memory");
+      
+  }
+
+  
 }
