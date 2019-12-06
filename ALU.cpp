@@ -19,7 +19,7 @@ if (check) {
 return "not_equal";
 }
 
-	// Subtracts input2 from input1 (binary numbers represented as strings) and returns the result
+// Subtracts input2 from input1 (binary numbers represented as strings) and returns the result
 string ALU::subtract(string input_1, string input_2) {
 
 	double input1_dec = binaryToDecimal(input_1);
@@ -41,13 +41,13 @@ string sum_bin = decimalToBinary(sum_dec);
 return sum_bin;
 }
 
-	/// Return "00000000000000000000000000000001" if input1 is less than input2, else return"00000000000000000000000000000000"
+// Return "00000000000000000000000000000001" if input1 is less than input2, else return"00000000000000000000000000000000"
 string ALU::lessThan(string input_1, string input_2) {
 	double input1_dec = binaryToDecimal(input_1);
 	double input2_dec = binaryToDecimal(input_2);
-	double diff_dec = input1_dec - input2_dec;
+	double difference = input1_dec - input2_dec;
 	// If difference is negative, input1 < input2, return 1
-	if (diff_dec < 0) {
+	if (difference < 0) {
 		return "00000000000000000000000000000001";
 	}
 	// Otherwise, return 0
@@ -56,7 +56,7 @@ string ALU::lessThan(string input_1, string input_2) {
 	}
 }
 
-//conducts the ALU operation: addi, add,sub, beq, less than
+//conducts the ALU operation: addi, add,sub, beq, less than, load/store
 void ALU::conductOperation(DataMemory &dm) {
 
 	// Add takes care of add and addi
@@ -80,7 +80,7 @@ void ALU::conductOperation(DataMemory &dm) {
                 //DataMemory dm;
         HelperFunctions help;
         string result1;
-		result1 = add(input_1, input_2);
+	result1 = add(input_1, input_2);
         string hexResult = help.bintoHex(result1);
         result = hexResult.substr(2);
         cout << hexResult << endl;
@@ -113,6 +113,6 @@ double ALU::binaryToDecimal(string input) {
 
 	// Converts decimal input to its 32-bit binary string
 string ALU::decimalToBinary(double value) {
-	bitset<32> bits = value;
-	return bits.to_string();
+	bitset<32> val = value;
+	return val.to_string();
 }
