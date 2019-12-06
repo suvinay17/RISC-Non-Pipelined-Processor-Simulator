@@ -28,7 +28,7 @@ class DataMemory
 
       //setData will set the data in the specified address
       void    setData(std::string address, std::string data);
-      void dataMemoryPrintFinal(string memoryFile);
+      void dataMemoryPrintFinal(std::string memoryFile);
       void dataMemoryPrint();
 };
 

@@ -43,7 +43,7 @@ void DataMemory::dataMemoryPrint()
 
   map<string,string>::iterator itr = mapping.begin();
   itr++;
-  while(it != mapping.end())
+  while(itr != mapping.end())
   {
     cout<< itr->first << ":" << itr->second <<endl;
     itr++;
@@ -61,7 +61,7 @@ void DataMemory::dataMemoryPrint()
                        file<< itr->first << ":" << itr->second <<endl;
                        itr++;
                    }
-              file.close()   
+              file.close();   
              }
                                      
 #endif
