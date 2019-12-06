@@ -289,6 +289,7 @@ void Simulator::simulate(){
         string multi5_Result = multi5.getResult();
         cout << "multi5 first input: " << incrementedPC << endl;
         cout << "multi5  secodn input: " << alu2_Result << endl;
+        cout << "multi5 result: "<< multi5_Result << endl;
         multi4.setFirstInput(multi5_Result);
         cout << "Multi4 first input: " << multi5_Result << endl;
 
