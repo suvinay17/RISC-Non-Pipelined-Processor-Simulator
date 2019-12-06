@@ -5,6 +5,9 @@
 #define __DATA_MEMORY_H__
 #include <string>
 #include <map>
+#include <fstream>
+#include <iostream>
+#include <sstream>
 //This h file creates the guidelines for the data memory
 
 
@@ -25,7 +28,8 @@ class DataMemory
 
       //setData will set the data in the specified address
       void    setData(std::string address, std::string data);
-
+      void dataMemoryPrintFinal(string memoryFile);
+      void dataMemoryPrint();
 };
 
 #endif
