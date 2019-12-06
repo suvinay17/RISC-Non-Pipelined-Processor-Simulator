@@ -1,13 +1,13 @@
 #include "InstructionMemory.h"
 #include <bits/stdc++.h>
 
-InstructionMemory::InstructionMemory(string filename)
+InstructionMemory::InstructionMemory(string filename, SymbolTable &symbolTable)
   // Specify a text file containing MIPS assembly instructions. Function
   // checks syntactic correctness of file and creates a list of Instructions.
 {
   Instruction i;
   myFormatCorrect = true;
-
+  mySymbolTable = symbolTable;
   myLabelAddress = 0x400000;
 
   ifstream in;
@@ -18,7 +18,7 @@ InstructionMemory::InstructionMemory(string filename)
   else{
     string line;
     while( getline(in, line)){
-      cout << line << endl;
+      cout << "Instruction: " << line << endl;
       if(line.length() > 2)
       {
       i.setAsmString(line);
@@ -277,17 +277,20 @@ bool InstructionMemory::getOperands(Instruction &i, Opcode o,
     else{
       if(opcodes.isIMMLabel(o)){  // Can the operand be a label?
 	    // Assign the immediate field an address
-	    imm = myLabelAddress;
-	    myLabelAddress += 4;  // increment the label generator
+	    //imm = myLabelAddress;
+        //imm = 0x100001;
+         cout << "IMM: " << imm << endl;
+        cout << "ImmLabel: " << myLabelAddress << endl;
+	    //myLabelAddress += 4;  // increment the label generator
       }
       else {  // There is an error
         cout << "break 5" << endl;
 	    return false;
       }
     }
+	    //myLabelAddress += 4;  // increment the label generator
 
   }
-
   i.setValues(o, rs, rt, rd, imm);
 
   return true;

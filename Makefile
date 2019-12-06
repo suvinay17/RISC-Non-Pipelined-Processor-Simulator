@@ -13,7 +13,7 @@ Simulator.o: Simulator.h ProgramCounter.h Multiplexor.h ALU.h DataMemory.h ALUCo
 
 ControlUnit.o: ControlUnit.h Instruction.h Opcode.h RegisterTable.h
 
-InstructionMemory.o: InstructionMemory.h HelperFunctions.h Instruction.h Opcode.h RegisterTable.h
+InstructionMemory.o: InstructionMemory.h HelperFunctions.h Instruction.h Opcode.h RegisterTable.h SymbolTable.h
 
 Instruction.o: Instruction.h Opcode.h RegisterTable.h
 

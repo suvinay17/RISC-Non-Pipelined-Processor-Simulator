@@ -36,7 +36,7 @@ void Simulator::simulate(){
   symbolTable.readASM(program_input);        //populates symbolTable
 
   InstructionMemory *instMem;
-  instMem = new InstructionMemory(program_input); //sending program input to the instruction memory to set it
+  instMem = new InstructionMemory(program_input, symbolTable); //sending program input to the instruction memory to set it
 
   ProgramCounter pc("00400000"); //Intitializing PC with initital address "00400000"
 
@@ -154,7 +154,7 @@ void Simulator::simulate(){
         string r2 = encoded.substr(11,5);
         string r3 = encoded.substr(16,5);
         string immediate = encoded.substr(17,15);
-        string jumpAddr = encoded.substr(6,26);
+        string jumpAddr = encoded.substr(6);
         string functCode = encoded.substr(26,6);
         //shifting the jump address
         string jsll = sll1.shift(jumpAddr);
