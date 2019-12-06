@@ -235,16 +235,24 @@ void Simulator::simulate(){
             string hexMemWrite = help.bintoHex(alu3_Result);
                 cout << "Write to mem: " << valAtR2 << "\tat: " << hexMemWrite << endl;
             memory.setData(hexMemWrite, valAtR2);
-        }
         
-        string alu3_ResultHex = help.bintoHex(alu3_Result);
+        }
 
+        string alu3_ResultHex;
+        if(op == "load/store"){
+            alu3_ResultHex = alu3_Result;
+            cout << "ALU3 result: " << alu3_ResultHex << endl;
+        }
+        else{
+            alu3_ResultHex = help.bintoHex(alu3_Result);        
+            cout << "ALU3 result: " << alu3_ResultHex << endl;
+        }
         multi3.setFirstInput(alu3_ResultHex);
         cout << "multi3 first input: " << alu3_ResultHex << endl;
-        if(control.getValue("memRead") == 1)
+        if(control.getValue("memRead") == 1)        
         {
-            string dataFromMem = memory.getData(alu3_ResultHex); //consider removing 0x
-            multi3.setSecondInput(dataFromMem); //Data from mem here should not have 0x
+            string dataFromMem = memory.getData(alu3_ResultHex); 
+            multi3.setSecondInput(dataFromMem); 
             cout << "multi3 second input: " << dataFromMem << endl;
         }
 

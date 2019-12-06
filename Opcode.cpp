@@ -9,7 +9,7 @@ OpcodeTable::OpcodeTable()
  
     myArray[SUB].name = "sub";  myArray[SUB].numOps = 3;   myArray[SUB].rdPos = 0;  myArray[SUB].rsPos = 1;  myArray[SUB].rtPos = 2;   myArray[SUB].immPos = -1;  myArray[SUB].instType = RTYPE; myArray[SUB].op_field = "000000"; myArray[SUB].funct_field = "100010";
     
-    myArray[LW].name = "lw";  myArray[LW].numOps = 3;   myArray[LW].rdPos = -1;  myArray[LW].rsPos = 0;  myArray[LW].rtPos = 2;   myArray[LW].immPos = 1;  myArray[LW].instType = ITYPE; myArray[LW].op_field = "100011"; myArray[LW].funct_field = "000000";
+    myArray[LW].name = "lw";  myArray[LW].numOps = 3;   myArray[LW].rdPos = -1;  myArray[LW].rsPos = 2;  myArray[LW].rtPos = 0;   myArray[LW].immPos = 1;  myArray[LW].instType = ITYPE; myArray[LW].op_field = "100011"; myArray[LW].funct_field = "000000";
     
     myArray[SW].name = "sw";  myArray[SW].numOps = 3;   myArray[SW].rdPos = -1;  myArray[SW].rsPos = 0;  myArray[SW].rtPos = 2;   myArray[SW].immPos = 1;  myArray[SW].instType = ITYPE; myArray[SW].op_field = "101011"; myArray[SW].funct_field = "000000";
     
