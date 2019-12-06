@@ -153,9 +153,10 @@ void Simulator::simulate(){
         string r1 = encoded.substr(6,5);
         string r2 = encoded.substr(11,5);
         string r3 = encoded.substr(16,5);
-        string immediate = encoded.substr(17,15);
+        string immediate = encoded.substr(16);
+        cout << "Imm: " << immediate << endl;
         string jumpAddr = encoded.substr(6);
-        string functCode = encoded.substr(26,6);
+        string functCode = encoded.substr(26);
         //shifting the jump address
         string jsll = sll1.shift(jumpAddr);
         cout << "SLL1 input: " << jumpAddr << endl;
@@ -300,7 +301,6 @@ void Simulator::simulate(){
         pc.setAddress(hexResult);
 
         cout << "Next Address" << hexResult << endl;
-
         i = instMem->getNextInstruction1(hexResult);
         if(print_memory_contents)
             cout << endl;
