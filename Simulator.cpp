@@ -251,7 +251,8 @@ void Simulator::simulate(){
         cout << "multi3 first input: " << alu3_ResultHex << endl;
         if(control.getValue("memRead") == 1)        
         {
-            string dataFromMem = memory.getData(alu3_ResultHex); 
+            //string dataFromMem = memory.getData(alu3_ResultHex); 
+            string dataFromMem = "10000000"; 
             multi3.setSecondInput(dataFromMem); 
             cout << "multi3 second input: " << dataFromMem << endl;
         }
