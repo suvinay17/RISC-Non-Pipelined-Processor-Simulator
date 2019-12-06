@@ -309,12 +309,9 @@ string InstructionMemory::encode(Instruction i)
     case JTYPE: {
 	inst.append(opcodes.getOpcodeField(op));	//Appends the opcode
     //string temp = (help.hextoDec(i.getImmediate()));
-    int imm = help.hextoDec(i.getImmediate());			//gets the immediate value and translates it into 26 bit binary
-	bitset<26> bitImm(imm);
-  cout << i.getImmediate() << endl;
-  cout << "JTYPE imm " << imm << endl;
-  cout << "JTYPE immbin " << bitImm << endl;
-	inst.append(bitImm.to_string());		//appends immediate field
+  string bit = help.dectoBin(i.getImmediate());
+  cout << "JTYPE immbin " << bit << endl;
+	inst.append(bit);		//appends immediate field
  	}
     break;
 
