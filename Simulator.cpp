@@ -181,11 +181,11 @@ void Simulator::simulate(){
         //Putting the result from the multiplexor 1 into write register
         string writeRegister = multi1.getResult();
     	cout << " Multiplexor 1 result is : " << writeRegister << endl;
-        int r1_Int = help.binaryToDecimal(r1); 
-        int r2_Int = help.binaryToDecimal(r2); 
+        int r1_Int = help.binaryToDecimal(r1);
+        int r2_Int = help.binaryToDecimal(r2);
         string r1_Str= to_string(r1_Int);
         string r2_Str= to_string(r2_Int);
-        
+
         string valatr1 = registry.getRegValue(r1_Str);
         string valAtR2 = registry.getRegValue(r2_Str);
         //Sign extending the immediate value
@@ -193,7 +193,7 @@ void Simulator::simulate(){
         cout << "sign extend input: " << immediate << endl;
         cout << "sign extend output: " << ext << endl;
         multi2.setFirstInput(help.hextoBin(valAtR2));
-        multi2.setSecondInput(ext);//putting the immediate extended value to the second multiplexer  
+        multi2.setSecondInput(ext);//putting the immediate extended value to the second multiplexer
         cout << "multi2 first input: " << help.hextoBin(valAtR2) << endl;
         cout << "multi2 second input: " << ext << endl;
 
@@ -315,10 +315,10 @@ void Simulator::simulate(){
         cout << "end" << endl;
  //Print the contents of register, data memory, and instrction memory per instruction
      if(print_memory_contents)
-   { 
+   {
        cout << "Printing the  registers:" << endl;
        registry.printRegisters();
-       
+
        cout << "Printing the contents of the data memory:" << endl;
        memory.dataMemoryPrint();
     }
@@ -330,15 +330,15 @@ void Simulator::simulate(){
 //Print the final contents of registers, data memory, and instruction memory per instruction
     if(write_to_file)
   {
-  
+
   cout<<"The final register contents have been output to registerOutput"<<endl;
   registry.printFinalRegisters("registerOutput.memory");
    /*cout<<"The Instructionmemory has been written to outinstruction.memory"<<endl;
  *     instMem->imemPrintFinal("instructionMemoryOutput");*/
     cout<<"The final data memory has been output to dataMemoryOutput"<<endl;
       memory.dataMemoryPrintFinal("dataMemoryOutput.memory");
-      
+
   }
 
-  
+
 }

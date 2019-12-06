@@ -7,10 +7,9 @@ SymbolTable::SymbolTable()
 }
 
 //First pass through the .asm file to assign memory
-//addresses to the symbols 
+//addresses to the symbols
 void SymbolTable::readASM(string filename)
 {
-    HelperFunctions help;
     ifstream infile;
     infile.open(filename.c_str());
 
@@ -37,7 +36,7 @@ void SymbolTable::readASM(string filename)
             //Symbols temp = {help.dectoHex(to_string(decAddress)), line.substr(0,place)};
             Symbols temp = {line.substr(0,place), startMem};
             mySymbol.push_back(temp);
-            cout << temp.name << "\t"<< temp.address << endl; 
+            cout << temp.name << "\t"<< temp.address << endl;
         }
         //track += 4;
         startMem += 1;
