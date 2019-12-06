@@ -25,20 +25,20 @@ void Simulator::testRegSet(RegisterTable &registry, int number, string data)
 }
 
 void Simulator::simulate(){
-  getFiles();
-  Parser parser;
-  DataMemory memory;
-  RegisterTable registry;
-  HelperFunctions help;
+  getFiles(); // calling method to parse required configurations based on input
+  Parser parser;// inititalizing an instance of the parser
+  DataMemory memory;//initializing the data memory
+  RegisterTable registry;// initializing the register table that has all the registers
+  HelperFunctions help; //Initializing Helper functions for decimal hex and binary conversions
 
 
-  SymbolTable symbolTable;
+  SymbolTable symbolTable; //initializing an instance of the sybmol table
   symbolTable.readASM(program_input);        //populates symbolTable
 
-  InstructionMemory *instMem;
-  instMem = new InstructionMemory(program_input);
+  InstructionMemory *instMem;  
+  instMem = new InstructionMemory(program_input); //sending program input to the instruction memory to set it
 
-  ProgramCounter pc("00400000");
+  ProgramCounter pc("00400000"); //Intitializing PC with initital address "00400000"
 
   ALU alu1;                 //Adds 4 to PC
   ALU alu2;                 //Add and ALU Result
@@ -50,39 +50,39 @@ void Simulator::simulate(){
   Multiplexor multi4;       //Jump
   Multiplexor multi5;       //To branch AND
 
-  ControlUnit control;
-  ALUControl alucontrol;
+  ControlUnit control;      //Creating an instance of the control unit 
+  ALUControl alucontrol;    //creating an instance of alu control
 
   SLL sll1;                 //for jump instructions
   SLL sll2;                 //for branch instructions
 
-  SignExtend signext;
+  SignExtend signext;      //creating an instance of sign extend
 
-  parser.ParseRegFile(register_file_input, registry);
-  parser.ParseMemFile(memory_contents_input, memory);
+  parser.ParseRegFile(register_file_input, registry); //parsing the register file 
+  parser.ParseMemFile(memory_contents_input, memory);// parsing the memory contents input
   string addr;
 
 
-  Instruction i;
+  Instruction i; //instance of an Instruction
   string addrBin = "";
-  i = instMem->getNextInstruction();
+  i = instMem->getNextInstruction(); // i has instruction to be executed
 
 
-  while(i.getOpcode() != UNDEFINED) {
+  while(i.getOpcode() != UNDEFINED) { //Execute as long as the OpCode is not undefined, check for the end
 
 
-    if(output_mode == "single_step"){ //new addition
+    if(output_mode == "single_step"){ //single step output mode, takes user input to execute one instruction at a time
 
        while(true)
        {
-          string x;
+          string in;
           cout << "Enter y to go to the next step , press n to exit" << endl;
-          cin >> x;
-          if(x == "y")
+          cin >> in;
+          if(in == "y")
           {
             break;
           }
-          if(x == "n")
+          if(in == "n")
           {
             exit(1);
           }
@@ -93,12 +93,12 @@ void Simulator::simulate(){
   cout << "printing the next instruction to see if it was fetched correctly: " << i.getAsmString() << endl;
 
 
-  addr = pc.getCurrentAddress();
+  addr = pc.getCurrentAddress();//getting the current address in the program counter
   addrBin = help.hextoBin(addr);
   //Instruction j = instMem->getNextInstruction(); // new addition
 
-    //adds 4 to the PC
-    alu1.setInput_1(addrBin);
+    //ALU adds 4 to the PC
+    alu1.setInput_1(addrBin); 
     alu1.setInput_2("100");
     alu1.setOperation("add");
     alu1.conductOperation(memory);
@@ -120,7 +120,7 @@ void Simulator::simulate(){
     cout << "Control Signal 1 sent to ALUControl: " << control.getValue("aluOp1") << endl;                          
     cout << "Control Signal 2 sent to ALUControl: " << control.getValue("aluOp2") << endl;
 
-    //reset control and values in control
+    //Setting control input from the control unit to the different multiplexors
     multi1.setControlInput(control.getValue("regDest"));
     multi2.setControlInput(control.getValue("aluSrc"));
     multi3.setControlInput(control.getValue("memToReg"));
@@ -147,14 +147,16 @@ void Simulator::simulate(){
     }
     else
     {*/
+        //binary encoding of mips instruction
         string encoded = instMem->encode(i);
-
+        //taking substrings to get various components from the encoding
         string r1 = encoded.substr(6,5);
         string r2 = encoded.substr(11,5);
         string r3 = encoded.substr(16,5);
         string immediate = encoded.substr(17,15);
         string jumpAddr = encoded.substr(6,26);
         string functCode = encoded.substr(26,6);
+        //shifting the jump address
         string jsll = sll1.shift(jumpAddr);
         cout << "SLL1 input: " << jumpAddr << endl;
         cout << "SLL1 output: " << jsll << endl;
