@@ -82,11 +82,11 @@ void ALU::conductOperation(DataMemory &dm) {
         string result1;
 		result1 = add(input_1, input_2);
         string hexResult = help.bintoHex(result1);
-        hexResult = hexResult.substr(2);
+        result = hexResult.substr(2);
         cout << hexResult << endl;
-        result = dm.getData("10000000");
+        //result = dm.getData("10000000");
         //result = dm.getData(hexResult);
-        cout << result << endl;
+        //cout << "result from getData: "<< result << endl;
                 
 }
 

@@ -164,7 +164,7 @@ string HelperFunctions::bintoHex(string bin){
 
   int l = bin.size();
   int t = bin.find_first_of('.');
-
+ cout << "AAAAAAAAAAAA" << l << endl;
   int len_left = t != -1 ? t : l;
 
   for (int i = 1; i <= (4 - len_left % 4) % 4; i++)
@@ -184,7 +184,7 @@ string HelperFunctions::bintoHex(string bin){
 
   int i = 0;
   //string hex = "0x";
-  string hex;
+  string hex = "";
 
   while (1)
   {
@@ -199,7 +199,7 @@ string HelperFunctions::bintoHex(string bin){
       i++;
     }
   }
-
+    cout << "HEX " << hex << endl;
   return hex;
 
 }
