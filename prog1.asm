@@ -13,7 +13,7 @@ j target1
 add	$3, $4, $8
 target2: addi $1, $1, -1
 beq $0, $20, target3
-target1: sub $0, $0, $20 # $20 gets value 0
+target1: sub $0, $0, $20
 j target2
 target3: add $22, $0, $0,
 

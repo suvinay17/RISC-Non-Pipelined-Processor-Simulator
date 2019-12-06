@@ -53,7 +53,7 @@ class Instruction{
   Register myRT;
   Register myRD;
   int myImmediate;
-
+  string immLabel;
   string myEncoding;
 };
 

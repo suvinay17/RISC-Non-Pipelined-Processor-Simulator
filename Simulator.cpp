@@ -297,7 +297,7 @@ void Simulator::simulate(){
         string hexResult = help.bintoHex(multi4_Result);
         pc.setAddress(hexResult);
 
-        cout << hexResult << endl;
+        cout << "Next Address" << hexResult << endl;
 
         i = instMem->getNextInstruction1(hexResult);
         if(print_memory_contents)

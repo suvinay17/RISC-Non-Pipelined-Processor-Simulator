@@ -21,9 +21,9 @@ void SymbolTable::readASM(string filename)
     }
 
     //int startMem = 4194304;     //starting address of symbols program
-    int startMem = 0x400000;     //starting address of symbols program
+    int startMem = 0x100000;     //starting address of symbols program
                                 //equals hex value 0x400000
-    int track = 0;
+    //int track = 0;
     int place;
     string line;
     string hexAddress;
@@ -32,7 +32,7 @@ void SymbolTable::readASM(string filename)
         getline(infile, line);
         place = line.find(":");
         if(place != -1) {
-            int decAddress = track + startMem;     //finds decimal value of mem location
+            //int decAddress = track + startMem;     //finds decimal value of mem location
             //Symbols temp = {help.dectoHex(to_string(decAddress)), line.substr(0,place)};
             //Symbols temp = {help.dectoHex(to_string(decAddress)), line.substr(0,place)};
             Symbols temp = {line.substr(0,place), startMem};
@@ -40,7 +40,7 @@ void SymbolTable::readASM(string filename)
             cout << temp.name << "\t"<< temp.address << endl; 
         }
         //track += 4;
-        startMem += 4;
+        startMem += 1;
     }
     infile.close();
 }

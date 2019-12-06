@@ -41,7 +41,7 @@ class InstructionMemory{
   SymbolTable mySymbolTable;
   int myIndex;                             // iterator index
   bool myFormatCorrect;
-
+    string immLabel;
   RegisterTable registers;                 // encodings for registers
   OpcodeTable opcodes;                     // encodings of opcodes
   int myLabelAddress;   // Used to assign labels addresses

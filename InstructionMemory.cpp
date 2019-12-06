@@ -21,10 +21,16 @@ InstructionMemory::InstructionMemory(string filename, SymbolTable &symbolTable)
       cout << "Instruction: " << line << endl;
       if(line.length() > 2)
       {
+          int place = line.find(":");
+          if(place != -1)
+          {
+              line = line.substr(place+1);
+          }
       i.setAsmString(line);
       string opcode("");
       string operand[80];
       int operand_count = 0;
+
 
       getTokens(line, opcode, operand, operand_count);
 
@@ -39,6 +45,19 @@ InstructionMemory::InstructionMemory(string filename, SymbolTable &symbolTable)
 	    // invalid opcode specified
 	    myFormatCorrect = false;
 	    break;
+      }
+      if(o == 7){
+          immLabel = line.substr(2);
+          cout << "IMMLABLE: " << immLabel << endl;
+      }
+      if(o == 6){
+          int pos = line.find(",");
+          string param = line.substr(pos);
+          pos = param.find(",");
+          param = line.substr(pos);
+          immLabel = param;
+          cout << "IMMLABLE: " << immLabel << endl;
+          
       }
 
       bool success = getOperands(i, o, operand, operand_count);
@@ -279,6 +298,7 @@ bool InstructionMemory::getOperands(Instruction &i, Opcode o,
 	    // Assign the immediate field an address
 	    //imm = myLabelAddress;
         //imm = 0x100001;
+        imm = mySymbolTable.getSymbol(immLabel);
          cout << "IMM: " << imm << endl;
         cout << "ImmLabel: " << myLabelAddress << endl;
 	    //myLabelAddress += 4;  // increment the label generator

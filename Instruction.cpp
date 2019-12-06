@@ -6,6 +6,7 @@ Instruction::Instruction()
 {
   myOpcode = UNDEFINED;
   myRS = myRT = myRD = NumRegisters;
+  immLabel = "";
 }
 
 Instruction::Instruction(Opcode op, Register rs, Register rt, Register rd, int imm)
