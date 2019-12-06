@@ -19,6 +19,8 @@ InstructionMemory::InstructionMemory(string filename)
     string line;
     while( getline(in, line)){
       cout << line << endl;
+      if(line.length() > 2)
+      {
       i.setAsmString(line);
       string opcode("");
       string operand[80];
@@ -55,6 +57,7 @@ InstructionMemory::InstructionMemory(string filename)
       cout << encoding << endl;
       myInstructions.push_back(i);
 
+    }
     }
   }
 

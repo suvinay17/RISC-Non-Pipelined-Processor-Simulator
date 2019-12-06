@@ -16,6 +16,8 @@ Instruction::Instruction(Opcode op, Register rs, Register rt, Register rd, int i
 
 void Instruction::setAsmString(string str)
 {
+  cout << "test" << endl;
+  cout << str << endl;
   asmStr = str;
 }
 
