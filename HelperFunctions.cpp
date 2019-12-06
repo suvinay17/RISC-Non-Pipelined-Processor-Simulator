@@ -1,7 +1,3 @@
-#include "HelperFunctions.h"
-#include <cmath>
-/*
-int main(int argc, char *argv[]){
   HelperFuntions *help;
   help = new HelperFuntions();
   string bin = help->dectoBin("12");
