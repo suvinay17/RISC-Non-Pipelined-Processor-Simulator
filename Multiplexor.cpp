@@ -6,8 +6,7 @@ The controlInput is set by the control unit and the inputs are sent to each
 multiplexor in the datapath.  Depending on the ControlInput set by the control,
 the multiplexor sends the value to continue in the datapath.
 */
-#ifndef __MULTIPLEXOR_CPP__
-#define __MULTIPLEXOR_CPP__
+
 
 #include "Multiplexor.h"
 #include <iostream>
@@ -61,4 +60,4 @@ std::string Multiplexor::getResult()
 
 }
 
-#endif
+

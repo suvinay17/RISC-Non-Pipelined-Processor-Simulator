@@ -1,3 +1,5 @@
+#ifndef _SIMULATOR_H
+#define _SIMULATOR_H
 //.h file for Simulator that drives main
 // Written by Suvinay, Caleb , Jimmy
 
@@ -55,4 +57,4 @@ private:
   
 
 };
-
+#endif
