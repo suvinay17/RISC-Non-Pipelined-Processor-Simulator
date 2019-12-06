@@ -76,6 +76,12 @@ void ALU::conductOperation() {
 	else if (operation.compare("lessThan") == 0) {
 		result = lessThan(input_1, input_2);
 	}
+	else if (operation.compare("load/store") == 0) {
+                DataMemory dm;
+		result = add(input_1, input_2);
+                result = dm.getData(result);
+                
+}
 
 }
 

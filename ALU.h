@@ -11,7 +11,7 @@
 #include <stdexcept>
 #include <iostream>
 #include <fstream>
-
+#include "DataMemory.h"
 
 using namespace std;
 
