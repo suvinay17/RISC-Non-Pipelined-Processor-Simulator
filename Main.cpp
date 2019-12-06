@@ -1,7 +1,6 @@
 //The main class that simulates the operation of the processor
-//Written by Suvinay, Jimmy, Caleb
-#ifndef __MAIN_CPP__
-#define __MAIN_CPP__
+//Written by Suvinay, Jimmy, Caleb_
+
 
 #include "ProgramCounter.h"
 #include "Multiplexor.h"
@@ -51,4 +50,4 @@ using namespace std;
 
 
 
-#endif
+

@@ -312,8 +312,21 @@ void Simulator::simulate(){
             break;
         }
         cout << "end" << endl;
+ //Print the contents of register, data memory, and instrction memory per instruction
+     if(print_memory_contents)
+   { 
+       cout << "Printing the  registers:" << endl;
+       registry.printRegisters();
+       
+       cout << "Printing the contents of the data memory:" << endl;
+       memory.dataMemoryPrint();
+    }
+    /*  cout << "Printing the contents of the instruction memory"<<endl;
+      im->printContents(); */
+
 
   }
+//Print the final contents of registers, data memory, and instruction memory per instruction
     if(write_to_file)
   {
   
