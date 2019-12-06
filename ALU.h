@@ -11,7 +11,8 @@
 #include <stdexcept>
 #include <iostream>
 #include <fstream>
-
+#include "DataMemory.h"
+#include "HelperFunctions.h"
 
 using namespace std;
 
@@ -35,7 +36,7 @@ class ALU {
 		inline void setOperation(string op) { operation = op; }
 
 		// Performs operation on the ALU inputs
-		void conductOperation();
+		void conductOperation(DataMemory &dm);
 
 		// Returns the output of the operation performed on the given inputs
 		// 32-bit binary string result of operation is returned

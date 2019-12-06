@@ -57,7 +57,7 @@ string ALU::lessThan(string input_1, string input_2) {
 }
 
 //conducts the ALU operation: addi, add,sub, beq, less than
-void ALU::conductOperation() {
+void ALU::conductOperation(DataMemory &dm) {
 
 	// Add takes care of add and addi
 	if (operation.compare("add") == 0) {
@@ -74,8 +74,21 @@ void ALU::conductOperation() {
 		result = compare(input_1, input_2);
 	}
 	else if (operation.compare("lessThan") == 0) {
-		result = lessThan(input_1, input_2);	
-   }
+		result = lessThan(input_1, input_2);
+	}
+	else if (operation.compare("load/store") == 0) {
+                //DataMemory dm;
+        HelperFunctions help;
+        string result1;
+		result1 = add(input_1, input_2);
+        string hexResult = help.bintoHex(result1);
+        hexResult = hexResult.substr(2);
+        cout << hexResult << endl;
+        result = dm.getData("10000000");
+        //result = dm.getData(hexResult);
+        cout << result << endl;
+                
+}
 
 
 }

@@ -187,7 +187,8 @@ string HelperFunctions::bintoHex(string bin){
   createMap(&bin_hex_map);
 
   int i = 0;
-  string hex = "0x";
+  //string hex = "0x";
+  string hex;
 
   while (1)
   {

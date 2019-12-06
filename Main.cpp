@@ -45,8 +45,7 @@ using namespace std;
 
  	sim =new Simulator (argv[1]);
  	sim->simulate();
-
-
+    cout << "sim" << endl;
  	delete sim;
  };
 

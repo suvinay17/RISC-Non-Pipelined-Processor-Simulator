@@ -23,7 +23,7 @@ ProgramCounter.o: ProgramCounter.h
 
 Multiplexor.o: Multiplexor.h
 
-ALU.o: ALU.h
+ALU.o: ALU.h HelperFunctions.h
 
 DataMemory.o: DataMemory.h
 

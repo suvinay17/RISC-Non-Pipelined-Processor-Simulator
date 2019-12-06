@@ -90,7 +90,7 @@ void Simulator::simulate(){
        cout << endl;
     }
 
-  cout << "printing the next instruction to see if it was fetched correctly: " << i.getName() << endl;
+  cout << "printing the next instruction to see if it was fetched correctly: " << i.getAsmString() << endl;
 
 
   addr = pc.getCurrentAddress();
@@ -101,7 +101,7 @@ void Simulator::simulate(){
     alu1.setInput_1(addrBin);
     alu1.setInput_2("100");
     alu1.setOperation("add");
-    alu1.conductOperation();
+    alu1.conductOperation(memory);
     string incrementedPC = alu1.getResult();
     cout << "ALU1 input_1: " << addrBin << endl;
     cout << "ALU1 input_2: " << "100" << endl;
@@ -129,7 +129,7 @@ void Simulator::simulate(){
     cout << " Instruction in 32 bit format is: " << instMem->encode(i) << endl;
     
 
-    if(i.getName() == 7)
+    /*if(i.getName() == 7)
     {
        //we need to check if the immediate is a hex or dec number
        string shifted = sll1.shift(help.hextoBin(i.getImmediate()));
@@ -146,7 +146,7 @@ void Simulator::simulate(){
 
     }
     else
-    {
+    {*/
         string encoded = instMem->encode(i);
 
         string r1 = encoded.substr(6,5);
@@ -181,7 +181,7 @@ void Simulator::simulate(){
         int r1_Int = help.binaryToDecimal(r1); //move to helper functions
         int r2_Int = help.binaryToDecimal(r2); //move to helper functions
         string r1_Str= to_string(r1_Int);
-	string r2_Str= to_string(r2_Int);
+	    string r2_Str= to_string(r2_Int);
         
         string valatr1 = registry.getRegValue(r1_Str);
         string valAtR2 = registry.getRegValue(r2_Str);
@@ -216,7 +216,7 @@ void Simulator::simulate(){
 
         alu3.setOperation(op);
 
-        alu3.conductOperation();
+        alu3.conductOperation(memory);
 
         string alu3_Result = alu3.getResult();
         cout << "ALU 3 result: " << alu3_Result << endl;
@@ -267,7 +267,7 @@ void Simulator::simulate(){
         alu2.setInput_1(incrementedPC);
         alu2.setInput_2(instructionSLL);
         alu2.setOperation("add");
-        alu2.conductOperation();
+        alu2.conductOperation(memory);
         string alu2_Result = alu2.getResult();
         cout << "ALU2 input_1: " << incrementedPC << endl;
         cout << "ALU2 input_2: " << instructionSLL << endl;
@@ -294,17 +294,14 @@ void Simulator::simulate(){
             registry.printRegisters();
         //i = instMem->getNextInstruction1(incrementedPC);
         cout << endl << endl;
-        
-        if(i.getOpcode() == 8)
-        {  
+        cout << i.getOpcode() << endl; 
+        if((int)i.getOpcode() == 8)
+        { 
+            cout << "break" << endl; 
             break;
         }
-    }
-
-
-  //i.getNextInstruction();
-
-
+        cout << "end" << endl;
+    
   }
-
+    cout << "end all" << endl;
 }

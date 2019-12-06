@@ -49,7 +49,7 @@ void ControlUnit::setInstruction(Instruction inst)
             myControls[i].value = 0; i++;
             myControls[i].value = 0; i++;
             myControls[i].value = 0; i++;
-            myControls[i].value = 0; i++;
+            myControls[i].value = 1; i++;
             myControls[i].value = 0; i++;
             myControls[i].value = 0; i++;
             myControls[i].value = 1; i++;
