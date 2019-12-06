@@ -36,7 +36,7 @@ void Simulator::simulate(){
   symbolTable.readASM(program_input);        //populates symbolTable
 
   InstructionMemory *instMem;
-  instMem = new InstructionMemory(program_input); //sending program input to the instruction memory to set it
+  instMem = new InstructionMemory(program_input, symbolTable); //sending program input to the instruction memory to set it
 
   ProgramCounter pc("00400000"); //Intitializing PC with initital address "00400000"
 

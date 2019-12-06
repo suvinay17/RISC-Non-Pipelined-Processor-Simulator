@@ -8,6 +8,7 @@ using namespace std;
 #include "Instruction.h"
 #include "HelperFunctions.h"
 #include "RegisterTable.h"
+#include "SymbolTable.h"
 #include "Opcode.h"
 #include <vector>
 #include <sstream>
@@ -24,7 +25,7 @@ class InstructionMemory{
  public:
   // Specify a text file containing MIPS assembly instructions. Function
   // checks syntactic correctness of file and creates a list of Instructions.
-  InstructionMemory(string filename);
+  InstructionMemory(string filename, SymbolTable &symbolTable);
 
   // Returns true if the file specified was syntactically correct.  Otherwise,
   // returns false.
@@ -37,6 +38,7 @@ class InstructionMemory{
   string encode(Instruction i);
  private:
   vector<Instruction> myInstructions;      // list of Instructions
+  SymbolTable mySymbolTable;
   int myIndex;                             // iterator index
   bool myFormatCorrect;
 

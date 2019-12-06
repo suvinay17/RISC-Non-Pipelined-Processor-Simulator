@@ -6,11 +6,12 @@
 #include <vector>
 #include <stdlib.h>
 
+
 using namespace std;
 
 struct Symbols{
     string name;
-    string address;
+    int address;
 };
 
 class SymbolTable{
@@ -18,7 +19,7 @@ class SymbolTable{
         SymbolTable();
 
         void readASM(string filename);
-        string getSymbol(string symbol);
+        int getSymbol(string symbol);
 
     private:
         vector<Symbols> mySymbol;
