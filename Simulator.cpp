@@ -127,7 +127,7 @@ void Simulator::simulate(){
     multi4.setControlInput(control.getValue("jump"));
     multi5.setControlInput(control.getValue("branch"));
     cout << " Instruction in 32 bit format is: " << instMem->encode(i) << endl;
-
+    cout << i.getString() << endl;
 
     /*if(i.getName() == 7)
     {

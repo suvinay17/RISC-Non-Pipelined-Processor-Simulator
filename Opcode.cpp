@@ -116,6 +116,8 @@ bool OpcodeTable::isIMMLabel(Opcode o)
   if(o < 0 || o > UNDEFINED){
     return false;
   }
+  cout << "IMMMM" << endl;
+  cout << myArray[o].immLabel << endl;
   return myArray[o].immLabel;
 }
 string OpcodeTable::getInstName(int i)
