@@ -294,7 +294,11 @@ void Simulator::simulate(){
             registry.printRegisters();
         //i = instMem->getNextInstruction1(incrementedPC);
         cout << endl << endl;
-
+        
+        if(i.getOpcode() == 8)
+        {  
+            break;
+        }
     }
 
 

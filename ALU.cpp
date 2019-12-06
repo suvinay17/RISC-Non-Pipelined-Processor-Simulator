@@ -74,8 +74,9 @@ void ALU::conductOperation() {
 		result = compare(input_1, input_2);
 	}
 	else if (operation.compare("lessThan") == 0) {
-		result = lessThan(input_1, input_2);
-	}
+		result = lessThan(input_1, input_2);	
+   }
+
 
 }
 

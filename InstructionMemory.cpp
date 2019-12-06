@@ -88,8 +88,10 @@ Instruction InstructionMemory::getNextInstruction1(string position)
   unsigned int place = (help.hextoDec(position) - help.hextoDec(start))/4;
   cout << place << endl;
   cout << myInstructions.size() << endl;
-  if(myInstructions.size() < place) {
+  if(myInstructions.size() <= place) {
+      cout << "at the end" << endl;
     Instruction i;
+    cout << i.getOpcode() << endl;
     return i;
   }
  
