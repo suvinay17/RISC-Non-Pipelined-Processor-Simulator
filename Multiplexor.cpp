@@ -24,7 +24,7 @@ int Multiplexor::getControlInput()
     return controlInput;
 }
 
-//used by the Control Unit, which sends true or false based on whether or not the mux is needed.
+//used by the Control Unit, which sends 0 or 1  based on whether or not the multiplexor is selected.
 void Multiplexor::setControlInput(int controlInput)
 {
     this->controlInput = controlInput;
@@ -38,7 +38,7 @@ std::string Multiplexor::setFirstInput(std::string firstInput)
 	return this->firstInput;
 }
 
-//Sets input at 1 that coincides with 1 on the picture
+//Sets input two in the multiplexor
 
 std::string Multiplexor::setSecondInput(std::string secondInput)
 {
@@ -47,7 +47,7 @@ std::string Multiplexor::setSecondInput(std::string secondInput)
 }
 
 
-//calls mux and returns the result chosen
+//calls multiplexor and returns the result chosen
 std::string Multiplexor::getResult()
 {
 	if(this->controlInput == 0)

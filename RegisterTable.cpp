@@ -147,6 +147,8 @@ string RegisterTable::getRegValue(string reg)
   return myReg[reg];
 
 }
+
+//print the current values of register
 void  RegisterTable::printRegisters()
 {
     for(int i = 0; i < 32; i++)
@@ -155,6 +157,8 @@ void  RegisterTable::printRegisters()
         cout << i << ":" << myReg[j] << endl;
     }
   }
+
+//prints the final values of the register file to the outputfile
 void  RegisterTable::printFinalRegisters(string regFile)
 {
   ofstream file;

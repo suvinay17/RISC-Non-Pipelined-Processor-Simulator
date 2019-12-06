@@ -32,10 +32,13 @@ class RegisterTable{
   //void changeValue(RegisterEntry *change, string data);
  void setRegValueByNumber(string regNum, string data);   //updates the registers data by its reg number  
  // void setRegValueByNum(int regNum, string data);   //updates the registers data by its reg number  
+ // Outputs the contents of the register to terminal
  void printRegisters();
+//outputs the final contents of register to output file
  void printFinalRegisters(string regFile);
  private:
   RegisterEntry myRegisters[64];
+//map defined to store values of registers , the key is the register number, and the value is the data vlaue
   map<string, string> myReg;
 };
 
