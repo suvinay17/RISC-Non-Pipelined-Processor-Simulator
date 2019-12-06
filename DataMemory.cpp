@@ -41,13 +41,13 @@ void DataMemory::setData(std::string address, std::string data)
 //Printing the contents of the data memory
 void DataMemory::dataMemoryPrint()
 {
-
+//using an iterator to get contents of the data memory
   map<string,string>::iterator itr = mapping.begin();
   itr++;
   while(itr != mapping.end())
   {
 
-    cout<< itr->first << ":" << itr->second <<endl;
+    cout<< itr->first << ": " << "0x" <<  itr->second <<endl;
     itr++;
 
   }
@@ -56,14 +56,14 @@ void DataMemory::dataMemoryPrint()
 //Priting the contents of the data memory to the output file            
  void DataMemory::dataMemoryPrintFinal(string memoryFile)
             {
-
+//using an iterator to get contents of the data memory
               ofstream file;
               file.open(memoryFile);
               map<string,string>::iterator itr = mapping.begin();
               itr++;
               while(itr != mapping.end())
                    {
-                       file<< itr->first << ":" << itr->second <<endl;
+                       file<< itr->first << ": " << "0x" << itr->second <<endl;
                        itr++;
                    }
               file.close();

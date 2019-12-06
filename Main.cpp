@@ -33,19 +33,23 @@ using namespace std;
  int main(int argc, char *argv[])
  {
 
-   Simulator* sim ;
+   Simulator* sim; //creating an instance of simulator
 
-
+//If we have less than 2 arguments, it means the config file was not included
    if(argc < 2){
-     cerr << "Need to specify a configuration file to stimulate the processr."<<endl;
+
+     cerr << "Cannot run program without configuration file, please include a configuration file"<<endl;
      exit(1);
+
    }
 
-
+   //Pass the configuration file into the simulator
  	sim =new Simulator (argv[1]);
+   //Run the driver method
  	sim->simulate();
-        cout << "sim" << endl;
+       
  	delete sim;
+
  };
 
 
