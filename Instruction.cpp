@@ -49,13 +49,13 @@ void Instruction::setValues(Opcode op, Register rs, Register rt, Register rd, in
   myImmediate = imm;
 
   //  if(!( (imm & 0xFFFF0000) << 1))  // make sure it has nothing in upper 16 bits
-  //    myImmediate = imm;  
+  //    myImmediate = imm;
 
 }
 
 Opcode Instruction::getName()
 {
-    return myOpcode;   
+    return myOpcode;
 }
 
 string Instruction::getFunctionField()
@@ -65,14 +65,14 @@ string Instruction::getFunctionField()
 }
 
 string Instruction::getString()
-// Returns a string which represents all of the fields 
+// Returns a string which represents all of the fields
 {
   stringstream s ;
-  s << "OP: \t" << myOpcode << "\t" << "RD: " << myRD << "\t" << 
+  s << "OP: \t" << myOpcode << "\t" << "RD: " << myRD << "\t" <<
     "RS: " << myRS << "\t" << "RT: " << "\t" << myRT << "\t" <<
     "Imm: " << myImmediate;
-  
+
   return s.str();
-  
+
 }
 

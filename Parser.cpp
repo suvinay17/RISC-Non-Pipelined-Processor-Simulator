@@ -49,10 +49,10 @@ void Parser::ParseRegFile(string filename, RegisterTable &table){
       string param = line.substr(0, pos);
       string value = line.substr(pos+1);
       cout << param << "\t" << value << endl;
-      table.setRegValueByNumber(param, value); 
+      table.setRegValueByNumber(param, value);
     }
   }
-}       
+}
 
 void Parser::ParseMemFile(string filename, DataMemory &mem){
 ifstream in;
@@ -71,7 +71,7 @@ ifstream in;
       size_t pos = line.find(":");
       string param = line.substr(0, pos);
       string value = line.substr(pos+1);
-      mem.setData(param, value); 
+      mem.setData(param, value);
 
     }
 
@@ -130,9 +130,9 @@ void Parser::ParseConfigFile(string filename){
         }
       }
       else if(param.compare("output_file") == 0){
-        output_file = value; 
+        output_file = value;
         }
-      
+
     }
     cout << "program_input: "<< program_input << endl;
     cout << "memory_contents_input: "<< memory_contents_input << endl;

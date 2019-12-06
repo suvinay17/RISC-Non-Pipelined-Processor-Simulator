@@ -34,7 +34,7 @@ InstructionMemory::InstructionMemory(string filename)
 	    break;
       }
 
-      Opcode o = opcodes.getOpcode(opcode);      
+      Opcode o = opcodes.getOpcode(opcode);
       if(o == UNDEFINED){
 	    // invalid opcode specified
 	    myFormatCorrect = false;
@@ -72,7 +72,7 @@ Instruction InstructionMemory::getNextInstruction()
     myIndex++;
     return myInstructions[myIndex-1];
   }
-  
+
   Instruction i;
   return i;
 
@@ -94,7 +94,7 @@ Instruction InstructionMemory::getNextInstruction1(string position)
     cout << i.getOpcode() << endl;
     return i;
   }
- 
+
   return myInstructions[place];
 }
 
@@ -102,7 +102,7 @@ void InstructionMemory::getTokens(string line,
 			       string &opcode,
 			       string *operand,
 			       int &numOperands)
-  // Decomposes a line of assembly code into strings for the opcode field and operands, 
+  // Decomposes a line of assembly code into strings for the opcode field and operands,
   // checking for syntax errors and counting the number of operands.
 {
     // locate the start of a comment
@@ -151,23 +151,23 @@ void InstructionMemory::getTokens(string line,
       i++;
     }
 
-    
+
     idx = operand[numOperands-1].find('(');
     string::size_type idx2 = operand[numOperands-1].find(')');
-    
+
     if (idx == string::npos || idx2 == string::npos ||
 	((idx2 - idx) < 2 )){ // no () found
     }
     else{ // split string
       string offset = operand[numOperands-1].substr(0,idx);
       string regStr = operand[numOperands-1].substr(idx+1, idx2-idx-1);
-      
+
       operand[numOperands-1] = offset;
       operand[numOperands] = regStr;
       numOperands++;
     }
-    
-    
+
+
 
     // ignore anything after the whitespace after the operand
     // We could do a further look and generate an error message
@@ -220,11 +220,11 @@ int InstructionMemory::cvtNumString2Number(string s)
     }
     return val;
 }
-		
 
-bool InstructionMemory::getOperands(Instruction &i, Opcode o, 
+
+bool InstructionMemory::getOperands(Instruction &i, Opcode o,
 			    string *operand, int operand_count)
-  // Given an Opcode, a string representing the operands, and the number of operands, 
+  // Given an Opcode, a string representing the operands, and the number of operands,
   // breaks operands apart and stores fields into Instruction.
 {
 
@@ -256,7 +256,7 @@ bool InstructionMemory::getOperands(Instruction &i, Opcode o,
     }
 
   }
-  
+
   if(rd_p != -1){
     rd = registers.getNum(operand[rd_p]);
     if(rd == NumRegisters) {
@@ -311,8 +311,11 @@ string InstructionMemory::encode(Instruction i)
     //string temp = (help.hextoDec(i.getImmediate()));
     int imm = help.hextoDec(i.getImmediate());			//gets the immediate value and translates it into 26 bit binary
 	bitset<26> bitImm(imm);
+  cout << i.getImmediate() << endl;
+  cout << "JTYPE imm " << imm << endl;
+  cout << "JTYPE immbin " << bitImm << endl;
 	inst.append(bitImm.to_string());		//appends immediate field
- 	}	
+ 	}
     break;
 
     case RTYPE: {
@@ -374,11 +377,11 @@ string InstructionMemory::encode(Instruction i)
 	inst.append(bitImm.to_string());
 	}
     break;
-    
+
     default:
 	break;
   }
- 
+
   return inst;	//returns the 32 bit amount
 }
 

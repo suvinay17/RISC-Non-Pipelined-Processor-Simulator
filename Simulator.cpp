@@ -35,7 +35,7 @@ void Simulator::simulate(){
   SymbolTable symbolTable; //initializing an instance of the sybmol table
   symbolTable.readASM(program_input);        //populates symbolTable
 
-  InstructionMemory *instMem;  
+  InstructionMemory *instMem;
   instMem = new InstructionMemory(program_input); //sending program input to the instruction memory to set it
 
   ProgramCounter pc("00400000"); //Intitializing PC with initital address "00400000"
@@ -50,7 +50,7 @@ void Simulator::simulate(){
   Multiplexor multi4;       //Jump
   Multiplexor multi5;       //To branch AND
 
-  ControlUnit control;      //Creating an instance of the control unit 
+  ControlUnit control;      //Creating an instance of the control unit
   ALUControl alucontrol;    //creating an instance of alu control
 
   SLL sll1;                 //for jump instructions
@@ -58,7 +58,7 @@ void Simulator::simulate(){
 
   SignExtend signext;      //creating an instance of sign extend
 
-  parser.ParseRegFile(register_file_input, registry); //parsing the register file 
+  parser.ParseRegFile(register_file_input, registry); //parsing the register file
   parser.ParseMemFile(memory_contents_input, memory);// parsing the memory contents input
   string addr;
 
@@ -98,7 +98,7 @@ void Simulator::simulate(){
   //Instruction j = instMem->getNextInstruction(); // new addition
 
     //ALU adds 4 to the PC
-    alu1.setInput_1(addrBin); 
+    alu1.setInput_1(addrBin);
     alu1.setInput_2("100");
     alu1.setOperation("add");
     alu1.conductOperation(memory);
@@ -109,15 +109,15 @@ void Simulator::simulate(){
 
     control.setInstruction(i);
     cout << "Control Signals: " << endl;
-    cout << "Control Signal sent to regDest: " << control.getValue("regDest") << endl;                          
-    cout << "Control Signal sent to jump: " << control.getValue("jump") << endl;                          
-    cout << "Control Signal sent to branch: " << control.getValue("branch") << endl;                          
-    cout << "Control Signal sent to memRead: " << control.getValue("memRead") << endl;                          
-    cout << "Control Signal sent to memWrite: " << control.getValue("memWrite") << endl;                          
-    cout << "Control Signal sent to aluSrc: " << control.getValue("aluSrc") << endl;                          
-    cout << "Control Signal sent to regWrite: " << control.getValue("regWrite") << endl;                          
-    cout << "Control Signal sent to memToRead: " << control.getValue("memToReg") << endl;                          
-    cout << "Control Signal 1 sent to ALUControl: " << control.getValue("aluOp1") << endl;                          
+    cout << "Control Signal sent to regDest: " << control.getValue("regDest") << endl;
+    cout << "Control Signal sent to jump: " << control.getValue("jump") << endl;
+    cout << "Control Signal sent to branch: " << control.getValue("branch") << endl;
+    cout << "Control Signal sent to memRead: " << control.getValue("memRead") << endl;
+    cout << "Control Signal sent to memWrite: " << control.getValue("memWrite") << endl;
+    cout << "Control Signal sent to aluSrc: " << control.getValue("aluSrc") << endl;
+    cout << "Control Signal sent to regWrite: " << control.getValue("regWrite") << endl;
+    cout << "Control Signal sent to memToRead: " << control.getValue("memToReg") << endl;
+    cout << "Control Signal 1 sent to ALUControl: " << control.getValue("aluOp1") << endl;
     cout << "Control Signal 2 sent to ALUControl: " << control.getValue("aluOp2") << endl;
 
     //Setting control input from the control unit to the different multiplexors
@@ -127,7 +127,7 @@ void Simulator::simulate(){
     multi4.setControlInput(control.getValue("jump"));
     multi5.setControlInput(control.getValue("branch"));
     cout << " Instruction in 32 bit format is: " << instMem->encode(i) << endl;
-    
+
 
     /*if(i.getName() == 7)
     {
@@ -184,10 +184,10 @@ void Simulator::simulate(){
         int r2_Int = help.binaryToDecimal(r2); //move to helper functions
         string r1_Str= to_string(r1_Int);
 	    string r2_Str= to_string(r2_Int);
-        
+
         string valatr1 = registry.getRegValue(r1_Str);
         string valAtR2 = registry.getRegValue(r2_Str);
-        
+
         string ext = signext.extend(immediate);
         cout << "sign extend input: " << immediate << endl;
         cout << "sign extend output: " << ext << endl;
@@ -195,7 +195,7 @@ void Simulator::simulate(){
         multi2.setSecondInput(ext);
         cout << "multi2 first input: " << help.hextoBin(valAtR2) << endl;
         cout << "multi2 second input: " << ext << endl;
-     
+
 
         string AluInput = multi2.getResult();
 
@@ -237,7 +237,7 @@ void Simulator::simulate(){
             string hexMemWrite = help.bintoHex(alu3_Result);
                 cout << "Write to mem: " << valAtR2 << "\tat: " << hexMemWrite << endl;
             memory.setData(hexMemWrite, valAtR2);
-        
+
         }
 
         string alu3_ResultHex;
@@ -246,16 +246,16 @@ void Simulator::simulate(){
             cout << "ALU3 result: " << alu3_ResultHex << endl;
         }
         else{
-            alu3_ResultHex = help.bintoHex(alu3_Result);        
+            alu3_ResultHex = help.bintoHex(alu3_Result);
             cout << "ALU3 result: " << alu3_ResultHex << endl;
         }
         multi3.setFirstInput(alu3_ResultHex);
         cout << "multi3 first input: " << alu3_ResultHex << endl;
-        if(control.getValue("memRead") == 1)        
+        if(control.getValue("memRead") == 1)
         {
-            //string dataFromMem = memory.getData(alu3_ResultHex); 
-            string dataFromMem = "10000000"; 
-            multi3.setSecondInput(dataFromMem); 
+            //string dataFromMem = memory.getData(alu3_ResultHex);
+            string dataFromMem = "10000000";
+            multi3.setSecondInput(dataFromMem);
             cout << "multi3 second input: " << dataFromMem << endl;
         }
 
@@ -298,21 +298,21 @@ void Simulator::simulate(){
         pc.setAddress(hexResult);
 
         cout << hexResult << endl;
-   
+
         i = instMem->getNextInstruction1(hexResult);
         if(print_memory_contents)
             cout << endl;
             registry.printRegisters();
         //i = instMem->getNextInstruction1(incrementedPC);
         cout << endl << endl;
-        cout << i.getOpcode() << endl; 
+        cout << i.getOpcode() << endl;
         if((int)i.getOpcode() == 8)
-        { 
-            cout << "break" << endl; 
+        {
+            cout << "break" << endl;
             break;
         }
         cout << "end" << endl;
-    
+
   }
     cout << "end all" << endl;
 }
