@@ -34,8 +34,8 @@ class Instruction{
 
   // Returns a string which represents all of the fields 
   string getString();
-  int getimmLabel() { return immLabel; };
-  void setimmLabelData(int label) { immLabel = label; };
+  string getimmLabel() { return immLabel; };
+  void setimmLabelData(string label) { immLabel = label; };
   // Stores the 32 bit binary encoding of MIPS instruction passed in
   void setEncoding(string s) { myEncoding = s;};
 
@@ -54,7 +54,7 @@ class Instruction{
   Register myRT;
   Register myRD;
   int myImmediate;
-  int immLabel;
+  string immLabel;
   string myEncoding;
 };
 

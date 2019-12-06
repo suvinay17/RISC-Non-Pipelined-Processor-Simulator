@@ -6,13 +6,14 @@ Instruction::Instruction()
 {
   myOpcode = UNDEFINED;
   myRS = myRT = myRD = NumRegisters;
-  immLabel = 0x0;
+  immLabel = "";
 }
 
 Instruction::Instruction(Opcode op, Register rs, Register rt, Register rd, int imm)
 // You can specify all the fields to initialize the Instruction
 {
   setValues(op, rs, rt, rd, imm);
+  immLabel = "";
 }
 
 void Instruction::setAsmString(string str)

@@ -19,11 +19,12 @@ void SymbolTable::readASM(string filename)
         exit(0);
     }
 
-    //int startMem = 4194304;     //starting address of symbols program
-    int startMem = 0x100000;     //starting address of symbols program
+    int startMem = 4194304;
+    //string startMem = "400000";     //starting address of symbols program
                                 //equals hex value 0x400000
-    //int track = 0;
+    int track = 0;
     int place;
+    HelperFunctions help;
     string line;
     string hexAddress;
     while(!infile.eof())
@@ -31,25 +32,26 @@ void SymbolTable::readASM(string filename)
         getline(infile, line);
         place = line.find(":");
         if(place != -1) {
-            //int decAddress = track + startMem;     //finds decimal value of mem location
+            int decAddress = track + startMem;     //finds decimal value of mem location
+            Symbols temp = {line.substr(0,place), help.dectoHex(to_string(decAddress))};
             //Symbols temp = {help.dectoHex(to_string(decAddress)), line.substr(0,place)};
-            //Symbols temp = {help.dectoHex(to_string(decAddress)), line.substr(0,place)};
-            Symbols temp = {line.substr(0,place), startMem};
+            //Symbols temp = {line.substr(0,place), startMem};
             mySymbol.push_back(temp);
             cout << temp.name << "\t"<< temp.address << endl;
         }
         //track += 4;
-        startMem += 1;
+        startMem += 4;
     }
     infile.close();
 }
 
-int SymbolTable::getSymbol(string symbol)
+string SymbolTable::getSymbol(string symbol)
 {
     for(unsigned int i = 0; i < mySymbol.size(); i++)
     {
+        cout << mySymbol[i].address << endl;
         if(mySymbol[i].name == symbol)
             return mySymbol[i].address;
     }
-    return -1;
+    return "";
 }

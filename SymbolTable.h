@@ -11,7 +11,7 @@ using namespace std;
 
 struct Symbols{
     string name;
-    int address;
+    string address;
 };
 
 class SymbolTable{
@@ -19,7 +19,7 @@ class SymbolTable{
         SymbolTable();
 
         void readASM(string filename);
-        int getSymbol(string symbol);
+        string getSymbol(string symbol);
 
     private:
         vector<Symbols> mySymbol;

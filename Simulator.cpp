@@ -298,19 +298,25 @@ void Simulator::simulate(){
         cout << "multi4 result: " << multi4_Result << endl;
 
         string hexResult = help.bintoHex(multi4_Result);
-       // if(control.getValue("branch") == 1){
-        //    hexResult = 
-        pc.setAddress(hexResult);
 
-        cout << "Next Address" << hexResult << endl;
-        i = instMem->getNextInstruction1(hexResult);
 
-        cout << "getImmLabel: " << i.getimmLabel() << endl;
+
+        if((int)i.getOpcode() == 7 || (int)i.getOpcode() == 6)
+        {
+            cout << "Next Address: " << i.getimmLabel() << endl;
+            i = instMem->getNextInstruction1(i.getimmLabel());
+            pc.setAddress(i.getimmLabel());
+        }
+        else {
+            cout << "Next Address: " << hexResult << endl;
+            i = instMem->getNextInstruction1(hexResult);
+            pc.setAddress(hexResult);
+        }
 
         if(print_memory_contents)
             cout << endl;
             registry.printRegisters();
-        //i = instMem->getNextInstruction1(incrementedPC);
+        
         cout << endl << endl;
         cout << i.getOpcode() << endl;
         if((int)i.getOpcode() == 8)

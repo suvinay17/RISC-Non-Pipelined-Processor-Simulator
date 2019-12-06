@@ -8,7 +8,7 @@ InstructionMemory::InstructionMemory(string filename, SymbolTable &symbolTable)
   Instruction i;
   myFormatCorrect = true;
   mySymbolTable = symbolTable;
-  myLabelAddress = 0x400000;
+  myLabelAddress = 400000;
 
   ifstream in;
   in.open(filename.c_str());
@@ -49,6 +49,7 @@ InstructionMemory::InstructionMemory(string filename, SymbolTable &symbolTable)
       if(o == 7){
           immLabel = line.substr(2);
           cout << "IMMLABLE: " << immLabel << endl;
+          i.setimmLabelData(symbolTable.getSymbol(immLabel));
       }
       if(o == 6){
           int pos = line.find(",");
@@ -306,7 +307,10 @@ bool InstructionMemory::getOperands(Instruction &i, Opcode o,
 	    // Assign the immediate field an address
 	    //imm = myLabelAddress;
         //imm = 0x100001;
-        imm = mySymbolTable.getSymbol(immLabel);
+        HelperFunctions help;
+        imm = help.hextoDec(mySymbolTable.getSymbol(immLabel));
+        cout << mySymbolTable.getSymbol(immLabel) << endl;
+        cout << "immmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm: " << imm << endl;
          cout << "IMMLabel: " << immLabel << endl;
          cout << "Symbol using immLabel: " << imm << endl;
 	    //myLabelAddress += 4;  // increment the label generator
@@ -338,11 +342,13 @@ string InstructionMemory::encode(Instruction i)
   switch(type)	//switch based on the type of instruction
   {
     case JTYPE: {
-	inst.append(opcodes.getOpcodeField(op));	//Appends the opcode
-    //string temp = (help.hextoDec(i.getImmediate()));
-  string bit = help.dectoBin(i.getImmediate());
-  cout << "JTYPE immbin " << bit << endl;
-	inst.append(bit);		//appends immediate field
+	    inst.append(opcodes.getOpcodeField(op));	//Appends the opcode
+        //string temp = (help.hextoDec(i.getImmediate()));
+        string bit = help.dectoBin(i.getImmediate());
+        int len = bit.length();
+        cout << "JTYPE immbin " << bit << endl;
+        cout << bit.length() << endl;
+	    inst.append(bit.substr(4, 30));		//appends immediate field
  	}
     break;
 
