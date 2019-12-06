@@ -1,5 +1,5 @@
 #include "SLL.h"
-
+//Written by caleb suvinay Jimmy, the SLL emulates the SLL portion of a processor
 
 /*int main(int argc, char *argv[]){
   SLL *sl;
@@ -10,10 +10,14 @@
 
 }
 */
+
+//Mutator method for setting the input to SLL
 void SLL::setInput(string input){
   myInput = input;
 }
 
+
+//The method that shifts the binary string to the left
 string SLL::shift(string input){
   //cout << input.length() << endl;
   if(input.length() == 32){

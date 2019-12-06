@@ -1,5 +1,6 @@
+//Written by Jimmy, control unit.cpp
 #include "ControlUnit.h"
-
+//Constructor for control unit
 ControlUnit::ControlUnit()
 {
     int i = 0;
@@ -30,6 +31,7 @@ int ControlUnit::getValue(string control)
 void ControlUnit::setInstruction(Instruction inst)
 {
     int i = 0;
+    //the instruction name is returned as an enum from 0-7
     switch(inst.getName())
     {
         case 0:

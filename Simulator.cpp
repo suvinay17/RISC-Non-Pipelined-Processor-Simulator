@@ -170,33 +170,34 @@ void Simulator::simulate(){
 
 
 
-
+        //putting the shifted jump address into multiplexor 4 as a second input
         multi4.setSecondInput(jsll);
         cout << "multi4 second input: " << jsll << endl;
+        //putting register 2 as first input and reister 3 as second input for mulitplexor 1
         multi1.setFirstInput(r2);
         multi1.setSecondInput(r3);
         cout << "multi1 first input: " << r2 << endl;
         cout << "multi second input: " << r3 << endl;
-
+        //Putting the result from the multiplexor 1 into write register
         string writeRegister = multi1.getResult();
     	cout << " Multiplexor 1 result is : " << writeRegister << endl;
-        int r1_Int = help.binaryToDecimal(r1); //move to helper functions
-        int r2_Int = help.binaryToDecimal(r2); //move to helper functions
+        int r1_Int = help.binaryToDecimal(r1); 
+        int r2_Int = help.binaryToDecimal(r2); 
         string r1_Str= to_string(r1_Int);
-	    string r2_Str= to_string(r2_Int);
-
+        string r2_Str= to_string(r2_Int);
+        
         string valatr1 = registry.getRegValue(r1_Str);
         string valAtR2 = registry.getRegValue(r2_Str);
-
+        //Sign extending the immediate value
         string ext = signext.extend(immediate);
         cout << "sign extend input: " << immediate << endl;
         cout << "sign extend output: " << ext << endl;
         multi2.setFirstInput(help.hextoBin(valAtR2));
-        multi2.setSecondInput(ext);
+        multi2.setSecondInput(ext);//putting the immediate extended value to the second multiplexer  
         cout << "multi2 first input: " << help.hextoBin(valAtR2) << endl;
         cout << "multi2 second input: " << ext << endl;
 
-
+        //getting the multiplexor 2 result which will be the input 2 for the ALU 3
         string AluInput = multi2.getResult();
 
     	    cout << " Multiplexor 2 result is : " << AluInput << endl;
