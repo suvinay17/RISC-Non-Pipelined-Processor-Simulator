@@ -224,11 +224,12 @@ void Simulator::simulate(){
 
         string alu3_Result = alu3.getResult();
         cout << "ALU 3 result: " << alu3_Result << endl;
-
+        
 
         if(control.getValue("branch") == 1 && alu3_Result == "equal")
         {
             multi5.setControlInput(control.getValue("branch"));
+
         }
         else {
             multi5.setControlInput(0);
@@ -301,17 +302,25 @@ void Simulator::simulate(){
 
 
 
-        if((int)i.getOpcode() == 7 || (int)i.getOpcode() == 6)
+        if((int)i.getOpcode() == 7)
         {
-            cout << "Next Address: " << i.getimmLabel() << endl;
-            i = instMem->getNextInstruction1(i.getimmLabel());
-            pc.setAddress(i.getimmLabel());
+            string immlabel = i.getimmLabel();
+            cout << "Next Address: " << immlabel << endl;
+            i = instMem->getNextInstruction1(immlabel);
+            pc.setAddress(immlabel);
+        }
+        else if(control.getValue("branch") == 1 && alu3_Result == "equal") {
+            string immlabel = i.getimmLabel();
+            cout << "Next Address: " << immlabel << endl;
+            i = instMem->getNextInstruction1(immlabel);
+            pc.setAddress(immlabel);
         }
         else {
             cout << "Next Address: " << hexResult << endl;
             i = instMem->getNextInstruction1(hexResult);
             pc.setAddress(hexResult);
         }
+        cout << "testing addr: " << pc.getCurrentAddress() << endl;
 
         if(print_memory_contents)
             cout << endl;

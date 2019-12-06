@@ -1,7 +1,7 @@
 lw $8, 0($23)
 addi $2, $0, 1
 addi $3, $0, 26
-loop:beq $2, $2, end
+loop:beq $2, $3, end
 lw $4, 0($8)
 add $4, $0, $0
 sw $4, 0($8)

@@ -13,6 +13,7 @@ string ALU::compare(string input_1, string input_2) {
 double input1_dec = binaryToDecimal(input_1);
 double input2_dec = binaryToDecimal(input_2);
 bool check = (input1_dec == input2_dec);
+cout << "Check compare: " << input1_dec << "\t" << input2_dec << endl;
 if (check) {
 	return "equal";
 }
