@@ -52,12 +52,18 @@ InstructionMemory::InstructionMemory(string filename, SymbolTable &symbolTable)
       }
       if(o == 6){
           int pos = line.find(",");
-          string param = line.substr(pos);
-          pos = param.find(",");
-          param = line.substr(pos);
-          immLabel = param;
-          cout << "IMMLABLE: " << immLabel << endl;
-          
+          string firstCom = line.substr(pos+1);
+          cout << "firstCom " << firstCom << endl;
+          int pos1 = firstCom.find(",");
+          string param2 = firstCom.substr(pos1+1);
+          cout << "SecondCom " << param2 << endl;
+          if((param2[0] == ' ')){
+            param2 = param2.substr(1);
+          }
+
+          immLabel = param2;
+          cout << "IMMLABLE from param2: " << immLabel << endl;
+
       }
 
       bool success = getOperands(i, o, operand, operand_count);
@@ -299,8 +305,8 @@ bool InstructionMemory::getOperands(Instruction &i, Opcode o,
 	    //imm = myLabelAddress;
         //imm = 0x100001;
         imm = mySymbolTable.getSymbol(immLabel);
-         cout << "IMM: " << imm << endl;
-        cout << "ImmLabel: " << myLabelAddress << endl;
+         cout << "IMMLabel: " << immLabel << endl;
+         cout << "Symbol using immLabel: " << imm << endl;
 	    //myLabelAddress += 4;  // increment the label generator
       }
       else {  // There is an error

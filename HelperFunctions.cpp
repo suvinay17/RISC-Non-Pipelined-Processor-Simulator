@@ -1,3 +1,4 @@
+//Helper Functions, written by caleb
 #include "HelperFunctions.h"
 #include <cmath>
 
@@ -15,6 +16,8 @@
 }
 
 */
+
+//Converts a decimal string to a binary string
 string HelperFunctions::dectoBin(string input){
 
   stringstream dec(input);
@@ -34,6 +37,8 @@ string HelperFunctions::dectoBin(string input){
 
 }
 
+
+//Converts a hex string to a decimal strin
 int HelperFunctions::hextoDec(string input){
   std::string newStr = HelperFunctions::hextoBin(input);
   int stri = HelperFunctions::binaryToDecimal(newStr);
@@ -41,6 +46,8 @@ int HelperFunctions::hextoDec(string input){
 
 }
 
+
+//converts a decimal string to a hex string
 string HelperFunctions::dectoHex(string input){
 
   char hexaDeciNum[100];
@@ -72,6 +79,8 @@ string HelperFunctions::dectoHex(string input){
   return asd;
 }
 
+
+//converts a hex string to a binary string
 string HelperFunctions::hextoBin(string input){
   stringstream ss;
   if((string(1, input[0]) == "0") && (string(1, input[1]) == "x")){
@@ -145,6 +154,7 @@ string HelperFunctions::hextoBin(string input){
 
 
 //void HelperFuntions::createMap(unordered_map<string, char> *um)
+//Helper function for creating an unordered map
 void HelperFunctions::createMap(map<string, char> *um)
 {
     (*um)["0000"] = '0';
@@ -164,6 +174,9 @@ void HelperFunctions::createMap(map<string, char> *um)
     (*um)["1110"] = 'E';
     (*um)["1111"] = 'F';
 }
+
+
+//Helper function for converting binary string to hex string
 string HelperFunctions::bintoHex(string bin){
 
   int l = bin.size();
@@ -208,6 +221,9 @@ string HelperFunctions::bintoHex(string bin){
 
 }
 
+
+
+//helper function for converting a binary string to a decimal string
 int HelperFunctions::binaryToDecimal(string input) {
 
 	int decimal = 0;

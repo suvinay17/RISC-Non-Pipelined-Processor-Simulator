@@ -20,7 +20,7 @@ Parser::Parser(){
   //write_to_file = false;
   //output_file = false;
 }
-
+//Accessor methods that return the input configurations
 string Parser::getProgram_input(){ return program_input; }
 string Parser::getMemory_contents_input(){ return memory_contents_input; }
 string Parser::getRegister_file_input(){ return register_file_input; }
@@ -31,6 +31,7 @@ bool Parser::getWrite_to_file() { return write_to_file; }
 string Parser::getOutput_file(){ return output_file; }
 
 
+//This methods parses the register file line by line
 void Parser::ParseRegFile(string filename, RegisterTable &table){
   ifstream in;
   in.open(filename.c_str());
@@ -48,12 +49,12 @@ void Parser::ParseRegFile(string filename, RegisterTable &table){
       size_t pos = line.find(":");
       string param = line.substr(0, pos);
       string value = line.substr(pos+1);
-      cout << param << "\t" << value << endl;
       table.setRegValueByNumber(param, value);
     }
   }
 }
 
+//THis method parses the memory file
 void Parser::ParseMemFile(string filename, DataMemory &mem){
 ifstream in;
   in.open(filename.c_str());
@@ -77,6 +78,9 @@ ifstream in;
 
   }
 }
+
+
+//This method parses the configuration file
 void Parser::ParseConfigFile(string filename){
   ifstream in;
   in.open(filename.c_str());

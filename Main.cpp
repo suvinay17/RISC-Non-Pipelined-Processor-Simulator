@@ -23,28 +23,28 @@
 #include <iostream>
 using namespace std;
 
-/* This file reads in a MIPS assembly file specified at the command line.
- * If the file is correct syntactically, each instruction in the file
- * will be translated into its 32 bit MIPS binary encoding and printed
- * to stdout, one per line.
+/* 
+ * The main class gets an input configuration file which send it to simulator which is the driver
+ * class of the NON pipelined processor simulator
  *
  */
 
 
  int main(int argc, char *argv[])
  {
- 	Simulator* sim ;
+
+   Simulator* sim ;
+
 
    if(argc < 2){
      cerr << "Need to specify a configuration file to stimulate the processr."<<endl;
      exit(1);
    }
- 	
- 
+
 
  	sim =new Simulator (argv[1]);
  	sim->simulate();
-    cout << "sim" << endl;
+        cout << "sim" << endl;
  	delete sim;
  };
 
