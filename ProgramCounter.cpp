@@ -40,12 +40,5 @@ string    ProgramCounter::setAddress(string newAddress)
             return currentAddress;
     }
 
-/*//returns the value in the instruction vector that will be the next instruction
-int       ProgramCounter::nextInstruction(string address)
-{
-    HelperFunction help;
-    string start = "0x400000";
-    return help.hextoDec(address) - help.hextoDec(start);
-}*/
 
 #endif

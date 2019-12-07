@@ -105,10 +105,12 @@ void Simulator::simulate(){
     alu1.setOperation("add");
     alu1.conductOperation(memory);
     string incrementedPC = alu1.getResult();
+
     cout << "ALU1 input_1: " << addrBin << endl;
     cout << "ALU1 input_2: " << "100" << endl;
     cout << " The result of adding 4 to the address using ALU is :" << incrementedPC << endl;
 
+    //sets control input based on what the instruction is
     control.setInstruction(i);
     cout << "Control Signals: " << endl;
     cout << "Control Signal sent to regDest: " << control.getValue("regDest") << endl;
@@ -122,7 +124,7 @@ void Simulator::simulate(){
     cout << "Control Signal 1 sent to ALUControl: " << control.getValue("aluOp1") << endl;
     cout << "Control Signal 2 sent to ALUControl: " << control.getValue("aluOp2") << endl;
 
-    //Setting control input from the control unit to the different multiplexors
+    //gets control input from the control unit to the different multiplexors
     multi1.setControlInput(control.getValue("regDest"));
     multi2.setControlInput(control.getValue("aluSrc"));
     multi3.setControlInput(control.getValue("memToReg"));
@@ -131,24 +133,7 @@ void Simulator::simulate(){
     cout << " Instruction in 32 bit format is: " << instMem->encode(i) << endl;
     cout << i.getString() << endl;
 
-    /*if(i.getName() == 7)
-    {
-       //we need to check if the immediate is a hex or dec number
-       string shifted = sll1.shift(help.hextoBin(i.getImmediate()));
-       string combined = addrBin.substr(0,4);       //combine first 4 bits of current address with the shifted jump value
-       combined.append(shifted);
-       cout << "SLL1 input: " << help.hextoBin(i.getImmediate()) << endl;
-       cout << "SLL1 output: " << shifted << endl;
-       if(multi4.getControlInput() == 1)
-       {
-            pc.setAddress(combined);
-            i = instMem->getNextInstruction1(combined);  //calculates which instruction in the instrution vector i should be
-       }
-
-
-    }
-    else
-    {*/
+        
         //binary encoding of mips instruction
         string encoded = instMem->encode(i);
         //taking substrings to get various components from the encoding
@@ -203,8 +188,9 @@ void Simulator::simulate(){
         //getting the multiplexor 2 result which will be the input 2 for the ALU 3
         string AluInput = multi2.getResult();
 
-    	    cout << " Multiplexor 2 result is : " << AluInput << endl;
+    	cout << " Multiplexor 2 result is : " << AluInput << endl;
 
+        //sets the input for alu 3
         alu3.setInput_1(help.hextoBin(valatr1));
         alu3.setInput_2(AluInput);
 
@@ -220,6 +206,7 @@ void Simulator::simulate(){
         string op = alucontrol.getControlOutput(control.getValue("aluOp1"), control.getValue("aluOp2"), funct);
         cout << "ALU Control result is: " << op << endl;
 
+        //sets operation for alu3
         alu3.setOperation(op);
 
         alu3.conductOperation(memory);
@@ -228,6 +215,7 @@ void Simulator::simulate(){
         cout << "ALU 3 result: " << alu3_Result << endl;
         
 
+        //inputs control for branch based on if it will be taken
         if(control.getValue("branch") == 1 && alu3_Result == "equal")
         {
             multi5.setControlInput(control.getValue("branch"));
@@ -237,14 +225,17 @@ void Simulator::simulate(){
             multi5.setControlInput(0);
         }
 
+        //checks if memory needs to be written to
         if(control.getValue("memWrite") == 1)
         {
+            //writes to memory
             string hexMemWrite = help.bintoHex(alu3_Result);
-                cout << "Write to mem: " << valAtR2 << "\tat: " << hexMemWrite << endl;
+            cout << "Write to mem: " << valAtR2 << "\tat: " << hexMemWrite << endl;
             memory.setData(hexMemWrite, valAtR2);
 
         }
 
+        //handles load store instructions that are passed through alu3
         string alu3_ResultHex;
         if(op == "load/store"){
             alu3_ResultHex = alu3_Result;
@@ -254,6 +245,8 @@ void Simulator::simulate(){
             alu3_ResultHex = help.bintoHex(alu3_Result);
             cout << "ALU3 result: " << alu3_ResultHex << endl;
         }
+
+        //sets inputs for multiplexor 3 
         multi3.setFirstInput(alu3_ResultHex);
         cout << "multi3 first input: " << alu3_ResultHex << endl;
         if(control.getValue("memRead") == 1)
@@ -264,9 +257,8 @@ void Simulator::simulate(){
             cout << "multi3 second input: " << dataFromMem << endl;
         }
 
-        //maybe think about removing 0x
 
-
+        //writes to a register if it is needed
         if(control.getValue("regWrite") == 1)
         {
             string writeData = multi3.getResult();
@@ -276,10 +268,13 @@ void Simulator::simulate(){
             registry.setRegValueByNumber(regNum, writeData);
 
         }
-        cout << "test2" << endl;
+        
+        //shifts the branch instructions value
         string instructionSLL = sll2.shift(ext);
         cout << "SLL2 input: " << ext << endl;
         cout << "Sll2 output: " << instructionSLL << endl;
+
+        //sets inputs and conducts operation for alu 2
         alu2.setInput_1(incrementedPC);
         alu2.setInput_2(instructionSLL);
         alu2.setOperation("add");
@@ -288,22 +283,27 @@ void Simulator::simulate(){
         cout << "ALU2 input_1: " << incrementedPC << endl;
         cout << "ALU2 input_2: " << instructionSLL << endl;
         cout << "ALU2 result: " << alu2_Result << endl;
+
+        //sets the inputs for multiplexor 5 and gets output
         multi5.setFirstInput(incrementedPC);
         multi5.setSecondInput(alu2_Result);
         string multi5_Result = multi5.getResult();
         cout << "multi5 first input: " << incrementedPC << endl;
         cout << "multi5  secodn input: " << alu2_Result << endl;
         cout << "multi5 result: "<< multi5_Result << endl;
+
+        //sets inputs for muliplexor 4 and gets output
         multi4.setFirstInput(multi5_Result);
         cout << "Multi4 first input: " << multi5_Result << endl;
-
         string multi4_Result = multi4.getResult();
         cout << "multi4 result: " << multi4_Result << endl;
 
+        //translates the next address to hex
         string hexResult = help.bintoHex(multi4_Result);
 
 
 
+        //handles the next instruction on jump
         if((int)i.getOpcode() == 7)
         {
             string immlabel = i.getimmLabel();
@@ -311,25 +311,24 @@ void Simulator::simulate(){
             i = instMem->getNextInstruction1(immlabel);
             pc.setAddress(immlabel);
         }
+        //handles the next instruction on taken branch
         else if(control.getValue("branch") == 1 && alu3_Result == "equal") {
             string immlabel = i.getimmLabel();
             cout << "Next Address: " << immlabel << endl;
             i = instMem->getNextInstruction1(immlabel);
             pc.setAddress(immlabel);
         }
+        //handles next instruction in memory
         else {
             cout << "Next Address: " << hexResult << endl;
             i = instMem->getNextInstruction1(hexResult);
             pc.setAddress(hexResult);
         }
-        cout << "testing addr: " << pc.getCurrentAddress() << endl;
 
-        if(print_memory_contents)
-            cout << endl;
-            registry.printRegisters();
-        
         cout << endl << endl;
         cout << i.getOpcode() << endl;
+
+        //detects end of code
         if((int)i.getOpcode() == 8)
         {
             cout << "break" << endl;
@@ -337,32 +336,29 @@ void Simulator::simulate(){
             break;
         }
         cout << "end" << endl;
- //Print the contents of register, data memory, and instrction memory per instruction
-     if(print_memory_contents)
-   {
-       cout << "Printing the  registers:" << endl;
-       registry.printRegisters();
 
-       cout << "Printing the contents of the data memory:" << endl;
-       memory.dataMemoryPrint();
+        //Print the contents of register, data memory, and instrction memory per instruction
+        if(print_memory_contents)
+        {
+            cout << "Printing the  registers:" << endl;
+            registry.printRegisters();
+
+            cout << "Printing the contents of the data memory:" << endl;
+            memory.dataMemoryPrint();
+        }
+
+
     }
-    /*  cout << "Printing the contents of the instruction memory"<<endl;
-      im->printContents(); */
-
-
-  }
-//Print the final contents of registers, data memory, and instruction memory per instruction
+    
+    //Print the final contents of registers, data memory, and instruction memory per instruction
     if(write_to_file)
-  {
+    {
 
-  cout<<"The final register contents have been output to registerOutput"<<endl;
-  registry.printFinalRegisters("registerOutput.memory");
-   /*cout<<"The Instructionmemory has been written to outinstruction.memory"<<endl;
- *     instMem->imemPrintFinal("instructionMemoryOutput");*/
-    cout<<"The final data memory has been output to dataMemoryOutput"<<endl;
-      memory.dataMemoryPrintFinal("dataMemoryOutput.memory");
+        cout<<"The final register contents have been output to registerOutput"<<endl;
+        registry.printFinalRegisters("registerOutput.memory");
+        cout<<"The final data memory has been output to dataMemoryOutput"<<endl;
+        memory.dataMemoryPrintFinal("dataMemoryOutput.memory");
 
-  }
-  delete instMem;
-  cout << "did i end??" << endl;
+    }
+    delete instMem;
 }

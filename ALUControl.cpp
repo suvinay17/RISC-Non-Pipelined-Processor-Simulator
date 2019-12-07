@@ -23,7 +23,7 @@ void ALUControl::setImmediate(string imm){
 
 }
 
-//returns the operation baed on the control inputs and functionCode
+//returns the operation based on the control inputs and functionCode
 string ALUControl::getControlOutput(int input1, int input2, string funct)
 {
    string last4 = funct.substr(2); 

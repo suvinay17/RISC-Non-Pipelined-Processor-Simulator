@@ -1,7 +1,9 @@
 #include "SymbolTable.h"
 #include <fstream>
 #include <iostream>
+//writen by Jimmy
 
+//empty constructor
 SymbolTable::SymbolTable()
 {
 }
@@ -19,14 +21,15 @@ void SymbolTable::readASM(string filename)
         exit(0);
     }
 
-    int startMem = 4194304;
-    //string startMem = "400000";     //starting address of symbols program
-                                //equals hex value 0x400000
+    int startMem = 4194304;     //equals hex value 0x400000
+
     int track = 0;
     int place;
     HelperFunctions help;
     string line;
     string hexAddress;
+
+    //searches the .asm file for symbols and stores the address for them
     while(!infile.eof())
     {
         getline(infile, line);
@@ -34,8 +37,6 @@ void SymbolTable::readASM(string filename)
         if(place != -1) {
             int decAddress = track + startMem;     //finds decimal value of mem location
             Symbols temp = {line.substr(0,place), help.dectoHex(to_string(decAddress))};
-            //Symbols temp = {help.dectoHex(to_string(decAddress)), line.substr(0,place)};
-            //Symbols temp = {line.substr(0,place), startMem};
             mySymbol.push_back(temp);
             cout << temp.name << "\t"<< temp.address << endl;
         }
@@ -45,6 +46,9 @@ void SymbolTable::readASM(string filename)
     infile.close();
 }
 
+
+//returns the address of the symbol inputed by the user
+//returns nothing if the symbol is not real
 string SymbolTable::getSymbol(string symbol)
 {
     for(unsigned int i = 0; i < mySymbol.size(); i++)
