@@ -50,8 +50,10 @@ void Parser::ParseRegFile(string filename, RegisterTable &table){
       string param = line.substr(0, pos);
       string value = line.substr(pos+1);
       table.setRegValueByNumber(param, value);
-    }
+    }  
   }
+  in.close();
+
 }
 
 //THis method parses the memory file
@@ -77,6 +79,7 @@ ifstream in;
     }
 
   }
+  in.close();
 }
 
 
@@ -147,8 +150,10 @@ void Parser::ParseConfigFile(string filename){
     cout << "write_to_file: " << boolalpha << write_to_file << endl;
     cout << "output_file: " << boolalpha << output_file << endl;
 
-
+  
 
   }
+
+  in.close();
 
 }

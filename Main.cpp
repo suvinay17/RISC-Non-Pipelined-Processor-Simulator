@@ -48,6 +48,7 @@ using namespace std;
    //Run the driver method
  	sim->simulate();
        
+    cout << "did i end??" << endl;
  	delete sim;
 
  };

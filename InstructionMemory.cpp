@@ -15,7 +15,7 @@ InstructionMemory::InstructionMemory(string filename, SymbolTable &symbolTable)
   if(in.bad()){
     myFormatCorrect = false;
   }
-  else{
+  else {
     string line;
     while( getline(in, line)){
       cout << "Instruction: " << line << endl;
@@ -89,6 +89,7 @@ InstructionMemory::InstructionMemory(string filename, SymbolTable &symbolTable)
     }
   }
 
+  in.close();
   myIndex = 0;
 }
 

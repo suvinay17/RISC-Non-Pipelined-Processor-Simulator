@@ -1,4 +1,6 @@
 #include "Simulator.h"
+#include <stdlib.h>
+
 using namespace std;
 
 
@@ -331,6 +333,7 @@ void Simulator::simulate(){
         if((int)i.getOpcode() == 8)
         {
             cout << "break" << endl;
+            exit(0);
             break;
         }
         cout << "end" << endl;
@@ -360,6 +363,6 @@ void Simulator::simulate(){
       memory.dataMemoryPrintFinal("dataMemoryOutput.memory");
 
   }
-
-
+  delete instMem;
+  cout << "did i end??" << endl;
 }
