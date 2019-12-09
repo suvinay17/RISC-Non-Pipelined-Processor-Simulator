@@ -133,7 +133,7 @@ void Simulator::simulate(){
     cout << " Instruction in 32 bit format is: " << instMem->encode(i) << endl;
     cout << i.getString() << endl;
 
-        
+
         //binary encoding of mips instruction
         string encoded = instMem->encode(i);
         //taking substrings to get various components from the encoding
@@ -213,7 +213,7 @@ void Simulator::simulate(){
 
         string alu3_Result = alu3.getResult();
         cout << "ALU 3 result: " << alu3_Result << endl;
-        
+
 
         //inputs control for branch based on if it will be taken
         if(control.getValue("branch") == 1 && alu3_Result == "equal")
@@ -246,7 +246,7 @@ void Simulator::simulate(){
             cout << "ALU3 result: " << alu3_ResultHex << endl;
         }
 
-        //sets inputs for multiplexor 3 
+        //sets inputs for multiplexor 3
         multi3.setFirstInput(alu3_ResultHex);
         cout << "multi3 first input: " << alu3_ResultHex << endl;
         if(control.getValue("memRead") == 1)
@@ -268,7 +268,7 @@ void Simulator::simulate(){
             registry.setRegValueByNumber(regNum, writeData);
 
         }
-        
+
         //shifts the branch instructions value
         string instructionSLL = sll2.shift(ext);
         cout << "SLL2 input: " << ext << endl;
@@ -349,7 +349,7 @@ void Simulator::simulate(){
 
 
     }
-    
+
     //Print the final contents of registers, data memory, and instruction memory per instruction
     if(write_to_file)
     {
